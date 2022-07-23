@@ -1,0 +1,14 @@
+{
+  "material-icon-theme.folders.associations": {
+    "express-cron": "node",
+    "next": "next",
+    ".swc": "next",
+    "vite": "app",
+    "docker-compose": "docker",
+    "docker-files": "docker",
+    "dockerImages": "docker",
+    "redis": "database",
+    "static-assets": "public"
+  },
+  "materialTheme.accent": "Blue"
+}
