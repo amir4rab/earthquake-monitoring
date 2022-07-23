@@ -1,0 +1,38 @@
+{
+  "name": "express-cron",
+  "author": "Amir Arab",
+  "version": "1.0.0",
+  "module": "CommonJS",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p .",
+    "init-prisma-schema": "rm -r -f ./prisma && cp ../prisma . -r",
+    "prisma-migrate-dev": "npx prisma migrate dev --schema=../prisma/schema.prisma --skip-generate",
+    "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma --skip-generate",
+    "prisma-seed": "npx prisma db seed",
+    "prisma-studio": "npx prisma studio",
+    "prisma-generate": "npx prisma generate",
+    "docker-prisma-migrate-dev": "npx prisma migrate dev",
+    "docker-prisma-migrate-prod": "npx prisma migrate deploy",
+    "docker-prisma-seed": "npx prisma db docker-seed",
+    "docker-prisma-studio": "npx prisma studio",
+    "docker-prisma-generate": "npx prisma generate",
+    "docker-start": "npm-run-all docker-prisma-migrate-prod docker-prisma-seed build start"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.1.0",
+    "dotenv": "^16.0.1",
+    "fast-xml-parser": "^4.0.9",
+    "node-fetch": "^3.2.9",
+    "ts-node": "^10.9.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "@types/uuid": "^8.3.4",
+    "nodemon": "^2.0.19",
+    "prisma": "^4.1.0",
+    "typescript": "^4.7.4"
+  }
+}
