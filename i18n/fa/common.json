@@ -1,3 +1,13 @@
 {
-  "hello-world": "سلام دنیا"
+  "hello-world": "سلام دنیا",
+  "earthquake-monitoring": "پایش زلزله",
+  "search": "جستوجو",
+  "latest": "اخرین",
+  "states": "استان ها",
+  "api": "API",
+  "about": "درباره",
+  "near-me": "نزدیک من",
+  "dark-mode": "حالت تیره",
+  "light-mode": "حالت روشن",
+  "language": "زبان"
 }

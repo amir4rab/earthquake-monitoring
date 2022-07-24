@@ -1,3 +1,13 @@
 {
-  "hello-world": "Hallo welt"
+  "hello-world": "Hallo welt",
+  "earthquake-monitoring": "Erdbebenüberwachung",
+  "search": "Suche",
+  "latest": "Neueste",
+  "states": "Zustände",
+  "api": "API",
+  "about": "Über",
+  "near-me": "In meiner Nähe",
+  "dark-mode": "Dunkler Modus",
+  "light-mode": "Heller mode",
+  "language": "Sprache"
 }
