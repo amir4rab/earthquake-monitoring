@@ -29,7 +29,7 @@ function Layout( { children }: Props ) {
       <DesktopNavbar width={ desktopNavbarWidth }/>
       <MobileNavbar />
       <div className={ classes.container }>
-        <Container size='xl'>
+        <Container>
           { children }
         </Container>
       </div>

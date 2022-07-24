@@ -30,26 +30,26 @@ const LangSelector = () => {
       onChange={ (nLang) => nLang && changeLang(nLang) }
       styles={(t) => ({
         dropdown: { background: t.colors.dark[5], borderColor: t.colors.dark[3] },
-        item: { background: t.colors.dark[5], color: t.white },
+        item: { background: t.colors.dark[5], color: t.white, textAlign: t.dir === 'ltr' ? 'left' : 'right' },
         hovered: { background: t.colors.dark[4] },
         selected: { background: t.colors.dark[0], color: t.colors.dark[7] },
         defaultVariant: { background: t.colors.dark[9] },
-        withIcon: { color: t.white, borderColor: t.colors.dark[3], textDecoration: t.dir },
-        input: { background: 'transparent', textDecoration: t.dir },
+        withIcon: { color: t.white, borderColor: t.colors.dark[3], textAlign: t.dir === 'ltr' ? 'left' : 'right' },
+        input: { background: 'transparent' },
         label: { color: t.white },
       })}
       data={[
         {
           value: 'en',
-          label: 'English'
+          label: 'English',
         },
         {
           value: 'fa',
-          label: 'فارسی'
+          label: 'فارسی',
         },
         {
           value: 'de',
-          label: 'Deutsch'
+          label: 'Deutsch',
         }
       ]}
     />
