@@ -1,6 +1,6 @@
 {
   "material-icon-theme.folders.associations": {
-    "express-cron": "node",
+    "cronjob": "node",
     "next": "next",
     ".swc": "next",
     "vite": "app",
