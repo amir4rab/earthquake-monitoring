@@ -2,12 +2,14 @@
   "hello-world": "Hello world",
   "earthquake-monitoring": "Earthquake monitoring",
   "search": "Search",
-  "latest": "Latest",
+  "latest": "Latest events",
   "states": "States",
   "api": "Api",
   "about": "About",
   "near-me": "Near me",
   "dark-mode": "Dark mode",
   "light-mode": "Light mode",
-  "language": "Language"
+  "language": "Language",
+  "home": "Home",
+  "earthquake-data-license": "All of the earthquake data has been provided from <0>University of Tehran, Institute of Geophysics</0>"
 }

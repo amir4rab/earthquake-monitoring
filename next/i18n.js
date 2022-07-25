@@ -4,6 +4,6 @@ module.exports = {
   loadLocaleFrom: async (lang, ns) => 
     await require(`../i18n/${lang}/${ns}.json`),
   pages: {
-    "*": [ "common" ]
+    "*": [ "common", "earthquake", "states" ]
   }
 }

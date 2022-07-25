@@ -2,12 +2,14 @@
   "hello-world": "سلام دنیا",
   "earthquake-monitoring": "پایش زلزله",
   "search": "جستوجو",
-  "latest": "اخرین",
+  "latest": "آخرین رویدادها",
   "states": "استان ها",
   "api": "API",
   "about": "درباره",
   "near-me": "نزدیک من",
   "dark-mode": "حالت تیره",
   "light-mode": "حالت روشن",
-  "language": "زبان"
+  "language": "زبان",
+  "home": "خانه",
+  "earthquake-data-license": "تمامی اطلاعات زمین لرزه از <0>موسسه ژئوفیزیک دانشگاه تهران</0> تهیه شده است"
 }

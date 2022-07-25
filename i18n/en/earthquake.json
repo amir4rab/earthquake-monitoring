@@ -1,0 +1,8 @@
+{
+  "state": "State",
+  "mag": "Magnitude",
+  "dep": "Depth",
+  "nc": "Nearest city",
+  "date": "Date",
+  "hour": "Hour"
+}

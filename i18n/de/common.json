@@ -2,12 +2,14 @@
   "hello-world": "Hallo welt",
   "earthquake-monitoring": "Erdbebenüberwachung",
   "search": "Suche",
-  "latest": "Neueste",
-  "states": "Zustände",
+  "latest": "Letzte Veranstaltungen",
+  "states": "Bundeslanden",
   "api": "API",
   "about": "Über",
   "near-me": "In meiner Nähe",
   "dark-mode": "Dunkler Modus",
   "light-mode": "Heller mode",
-  "language": "Sprache"
+  "language": "Sprache",
+  "home": "Startseite",
+  "earthquake-data-license": "Alle Erdbebendaten wurden vom <0>Institut für Geophysik der Universität Teheran</0> bereitgestellt."
 }
