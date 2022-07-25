@@ -28,6 +28,7 @@ const LangSelector = () => {
       icon={ <IoLanguage /> }
       value={ lang }
       onChange={ (nLang) => nLang && changeLang(nLang) }
+      zIndex={ 1002 }
       styles={(t) => ({
         dropdown: { background: t.colors.dark[5], borderColor: t.colors.dark[3] },
         item: { background: t.colors.dark[5], color: t.white, textAlign: t.dir === 'ltr' ? 'left' : 'right' },

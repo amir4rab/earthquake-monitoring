@@ -22,6 +22,7 @@ const MobileNavbar = () => {
         color={ colorScheme === 'dark' ? 'gray' : 'dark' }
         sx={(t) => ({
           borderRadius: '50%',
+          zIndex: 1001,
           position: 'fixed',
           right: '2rem',
           bottom: '2rem',
@@ -34,6 +35,7 @@ const MobileNavbar = () => {
         <IoMenu />
       </ActionIcon>
       <Drawer
+        zIndex={ 1002 }
         transition={ dir === 'ltr' ? 'slide-right' : 'slide-left' }
         position={ dir === 'ltr' ? 'left' : 'right' } 
         styles={(t) => ({ drawer:{ background: t.colors.dark[7] }})} 
