@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*"],
+      "@/layout": ["src/layout"],
+      "@/prisma": ["src/prisma"],
       "@/utils/*": ["src/utils/*"],
       "@/classes/*": ["src/classes/*"],
       "@/hooks/*": ["src/hooks/*"],
