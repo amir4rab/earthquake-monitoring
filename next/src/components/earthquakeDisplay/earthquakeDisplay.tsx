@@ -22,12 +22,19 @@ import Link from 'next/link';
 // utils
 import { getDate, getHour } from './earthquakeDisplay-utils'
 
+
+// types
+import { MapOptions } from 'leaflet';
+
+
 interface EarthquakeDisplayProps {
   latestEarthquakesArr: Earthquake[],
-  title?: string
+  title?: string;
+  mapCenter?: MapOptions['center'];
+  mapZoom?: number; 
 }
 
-const EarthquakeDisplay = ({ latestEarthquakesArr, title }: EarthquakeDisplayProps) => {
+const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: EarthquakeDisplayProps) => {
   const { colors } = useMantineTheme();
   const { t: statesT, lang } = useTranslation('states');
 
@@ -55,6 +62,8 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title }: EarthquakeDisplayPro
       <Box style={{ height: '70vh' }}>
         <Map
           style={{ height: '100%' }}
+          zoom={ mapZoom }
+          mapCenter={ mapCenter }
           elements={ calcEarthQuakePoints }
         />
       </Box>
