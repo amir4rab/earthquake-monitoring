@@ -3,7 +3,8 @@
   "earthquake-monitoring": "Earthquake monitoring",
   "search": "Search",
   "latest": "Latest events",
-  "states": "States",
+  "states": "Provinces",
+  "states-subtitle": "View events by province",
   "api": "Api",
   "about": "About",
   "near-me": "Near me",
@@ -11,5 +12,6 @@
   "light-mode": "Light mode",
   "language": "Language",
   "home": "Home",
-  "earthquake-data-license": "All of the earthquake data has been provided from <0>University of Tehran, Institute of Geophysics</0>"
+  "earthquake-data-license": "All of the earthquake data has been provided from <0>University of Tehran, Institute of Geophysics</0>",
+  "no-search-result": "Sorry, we couldn't found anything containing '{{searchQuery}}'"
 }

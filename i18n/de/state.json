@@ -1,0 +1,5 @@
+{
+  "no-data-error-title": "Entschuldigung, wir konnten keine Daten finden",
+  "no-data-error-text": "Anscheinend haben wir noch keine Daten für {{state}}!",
+  "subtitle": "Neueste Ereignisse in den Provinzen {{state}}"
+}
