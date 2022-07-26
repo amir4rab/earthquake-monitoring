@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 // types
 import type { IconType } from 'react-icons'
@@ -7,7 +7,7 @@ import type { IconType } from 'react-icons'
 import { IoHome, IoPin, IoInformation, IoSearch, IoShapes, IoLocation } from 'react-icons/io5';
 
 // mantine components
-import { Box, Text } from '@mantine/core'
+import { Box, NavLink, NavLinkProps, Text } from '@mantine/core'
 import { createStyles } from '@mantine/styles'
 
 // next
@@ -30,45 +30,32 @@ const useStyles = createStyles((t) => ({
   title: {
     fontSize: t.fontSizes.xl,
     color: t.white
-  },
-  button: {
-    minWidth: '100%',
-    padding: `${t.spacing.md}px ${t.spacing.xs}px`,
-    borderRadius: t.radius.md,
-    background: 'transparent',
-    border: 'none',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignContent: 'center',
-    alignItems: 'center',
-    transition: 'background .15s ease-in-out',
-    textDecoration: 'none !important',
-    '&:not(:last-child)': {
-      marginBottom: t.spacing.xs
-    },
-    '& *': {
-      fontSize: t.fontSizes.sm,
-      color: t.white
-    },
-    '&:hover': {
-      cursor: 'pointer',
-      background: t.colorScheme === 'dark' ? t.colors.dark[6] : t.colors.dark[6],
-    },
-    '&:active': {
-      background: t.colorScheme === 'dark' ? t.colors.dark[7] : t.colors.dark[5],
-    }
-  },
-  activeButton: {
-    background: t.colorScheme === 'dark' ? t.colors.dark[7] : t.colors.dark[5],
-  },
-  iconWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: t.dir === 'rtl' ? t.spacing.md : 0,
-    marginRight: t.dir === 'ltr' ? t.spacing.md : 0
   }
 }));
+
+
+const NavLinksStyles: NavLinkProps['styles']  = (t) => ({
+  root: {
+    color: t.colors.gray[3],
+    transition: 'background .15s ease-in-out',
+    borderRadius: t.radius.md,
+    '&[data-active]': {
+      background: t.colors[t.primaryColor][7] + '80',
+      color: t.colors.gray[3],
+    },
+    [ '&[data-active]:hover' ] : {
+      background: t.colors[t.primaryColor][7] + 'a0 !important',
+      color: t.colors.gray[3],
+    },
+    [ '&:hover' ]: {
+      background: t.colorScheme === 'dark' ? t.colors.dark[4] : t.colors.dark[5],
+    }
+  },
+  body: {
+    textAlign: t.dir === 'ltr' ? 'left' : 'right',
+    paddingRight: t.dir === 'ltr' ? 0 : t.spacing.xs,
+  }
+})
 
 interface NavItemBase {
   icon: IconType;
@@ -145,28 +132,29 @@ const InnerNav = () => {
               const { fn } = props as NavFunctionItem;
 
               return (
-                <button onClick={ fn } className={ classes.button } key={ label }>
-                  <div className={ classes.iconWrapper }>
-                    <props.icon />
-                  </div>
-                  <p>
-                    { t(label) }
-                  </p>
-                </button>
+                <NavLink
+                  styles={ NavLinksStyles }
+                  component='button'
+                  onClick={ fn }
+                  key={ label } 
+                  icon={ <props.icon /> }
+                  label={ t(label) }
+                  mb='sm'
+                />
               )
             }
             if ( type === 'linkItem' ) {
               const { path } = props as NavLinkItem;
               return (
                 <Link passHref key={ label } href={ path }>
-                  <a className={cx( classes.button, pathname === path && classes.activeButton )}>
-                    <div className={ classes.iconWrapper }>
-                      <props.icon />
-                    </div>
-                    <p>
-                      { t(label) }
-                    </p>
-                  </a>
+                  <NavLink
+                    styles={ NavLinksStyles } 
+                    component='a'
+                    active={ pathname === path }
+                    icon={ <props.icon /> }
+                    label={ t(label) }
+                    mb='sm'
+                  />
                 </Link>
               )
             }

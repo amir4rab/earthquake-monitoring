@@ -45,7 +45,6 @@ const useStyles = createStyles((t) => ({
     height: '500px', 
     boxShadow: t.shadows.md,
     width: '100%', 
-    // filter: t.colorScheme === 'dark' ? 'brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7)' : 'none',
     filter: t.colorScheme === 'dark' ? 'invert(1) hue-rotate(180deg) grayscale(0.7)' : 'none',
     position: 'relative'
   },
@@ -58,7 +57,7 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-interface Props extends BoxProps<'div'> {
+interface Props extends BoxProps {
   elements?: CircleProps[];
   zoom?: number;
   mapCenter?: MapOptions['center'];

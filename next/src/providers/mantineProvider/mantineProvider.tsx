@@ -7,6 +7,10 @@ import { MantineProvider as MantineOriginalProvider, ColorSchemeProvider, ColorS
 import { useLocalStorage } from '@mantine/hooks';
 import useTranslation from 'next-translate/useTranslation';
 
+// components
+import RouterTransition from './routerTransition';
+
+
 interface Props {
   children: JSX.Element | JSX.Element[]; 
 }
@@ -28,6 +32,7 @@ const MantineProvider = ( { children }: Props ) => {
         withGlobalStyles 
         withNormalizeCSS
       >
+        <RouterTransition />
         <Global 
           styles={(t) => ({
             '*, *::after, *::before': {
@@ -37,6 +42,23 @@ const MantineProvider = ( { children }: Props ) => {
             },
             body: { 
               minHeight: '90vh',
+              scrollBehavior: 'smooth',
+              scrollbarWidth: 'thin',
+            },
+            [ 'html::-webkit-scrollbar' ]: {
+              width: '.5rem',
+              height: 'auto',
+              overflow: 'hidden'
+            },
+            ['html::-webkit-scrollbar-track']: {
+              backgroundColor: 'transparent'
+            },
+            ['html::-webkit-scrollbar-thumb']: {
+              backgroundColor: t.colorScheme === 'dark' ?  t.colors.dark[4] : t.colors.gray[4],
+              borderRadius: t.radius.xs,
+            },
+            ['html::-webkit-scrollbar-thumb:hover']: {
+              backgroundColor: t.colorScheme === 'dark' ?  t.colors.dark[3] : t.colors.gray[5],
             }
           })} 
         />
