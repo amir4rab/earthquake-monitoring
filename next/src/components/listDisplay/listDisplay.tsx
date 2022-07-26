@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 
 // mantine
-import { Box, Table, TextInput, Title } from '@mantine/core';
+import { Box, Table, Title } from '@mantine/core';
 import { useMantineTheme } from '@mantine/styles';
 
 // next-translate
@@ -9,6 +9,9 @@ import useTranslation from 'next-translate/useTranslation';
 
 // icons
 import { IoSearch } from 'react-icons/io5';
+
+// components
+import SearchInput from '../searchInput';
 
 // types
 export interface Content {
@@ -46,7 +49,7 @@ const ListDisplay = ({ title, content, namespace, searchable=false }: Props) => 
       const filteredArray = ({ ...content }).rows.filter( item => {
         let isIncluded = false;
         searchable.fields.every(key => {
-          if ( item.items[key]?.value?.toLocaleLowerCase()?.includes(formattedSearchQuery) ) {
+          if ( item.items[key]?.value?.toLocaleLowerCase().replace(/ /, '-')?.includes(formattedSearchQuery) ) {
             isIncluded = true;
             return false;
           }
@@ -86,20 +89,9 @@ const ListDisplay = ({ title, content, namespace, searchable=false }: Props) => 
       }
       {
         searchable !== false &&
-        <TextInput
-          styles={(t) => ({
-            icon: {
-              right: t.dir === 'rtl' ? 0 : 'auto',
-              left: t.dir === 'ltr' ? 0 : 'auto'
-            },
-            withIcon: {
-              paddingRight: t.dir === 'rtl' ? t.spacing.xl * 1.5 : t.spacing.sm,
-              paddingLeft: t.dir === 'ltr' ? t.spacing.xl * 1.5 : t.spacing.sm,
-              textAlign: t.dir === 'ltr' ? 'left' : 'right'
-            }
-          })}
-          value={ searchQuery }
-          onChange={ e => setSearchQuery(e.target.value) }
+        <SearchInput
+          searchQuery={ searchQuery }
+          setSearchQuery={ setSearchQuery }
           width='100%'
           mb='xl'
           radius='xl'
