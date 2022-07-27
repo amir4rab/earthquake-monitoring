@@ -18,6 +18,7 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/layout": ["src/layout"],
+      "@/swr-fetcher": ["src/swr"],
       "@/prisma": ["src/prisma"],
       "@/data/*": ["src/data/*"],
       "@/utils/*": ["src/utils/*"],
