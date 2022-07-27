@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 // mantine components
 import { Title, Box, Text, Anchor } from '@mantine/core'
@@ -26,7 +26,6 @@ import { getDate, getHour } from './earthquakeDisplay-utils'
 // types
 import { MapOptions } from 'leaflet';
 
-
 interface EarthquakeDisplayProps {
   latestEarthquakesArr: Earthquake[],
   title?: string;
@@ -39,8 +38,6 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: 
   const { t: statesT, lang } = useTranslation('states');
 
   const calcEarthQuakePoints = useMemo(() => {
-    console.log('Calculating Earthquake points ')
-
     return latestEarthquakesArr.map(({ id, lat, long, mag }) => ({
       key: id,
       center: [ +lat.slice(0, -1), +long.slice(0, -1) ],
@@ -49,7 +46,7 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: 
       fill: true,
       stroke: false,
     } as CircleProps))  
-  }, [ latestEarthquakesArr ])
+  }, [ latestEarthquakesArr ]);
 
   return (
     <Box my='xl'>
@@ -93,14 +90,14 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: 
                       sx={(t) => ( mag > 4 ? { color: t.colorScheme === 'dark' ? t.colors.red[9] : '#ff0000', fontWeight: 'bold' }: {})} 
                       size='sm'
                     >
-                      { mag }
+                      { mag.toLocaleString(lang) }
                     </Text>
                   ),
                 },
                 {
                   key: 'dep',
                   value: dep + '',
-                  el: <Text size='sm'>{ dep + 'Km' }</Text>,
+                  el: <Text size='sm'>{ dep.toLocaleString(lang) + (( lang !== 'fa' && lang !== 'ar' ) ? ' Km' : ' کلیومتر' ) }</Text>,
                 },
                 {
                   key: 'city',

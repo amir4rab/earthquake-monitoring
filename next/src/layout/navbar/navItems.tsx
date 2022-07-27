@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 
 // types
 import type { IconType } from 'react-icons'
@@ -17,6 +17,8 @@ import { useRouter } from 'next/router';
 // components
 import LangSelector from '@/components/langSelector';
 import ThemeSelector from '@/components/themeSelector';
+
+// next-translate
 import useTranslation from 'next-translate/useTranslation';
 
 // styles

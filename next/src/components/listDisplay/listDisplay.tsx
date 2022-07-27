@@ -64,7 +64,7 @@ const ListDisplay = ({ title, content, namespace, searchable=false }: Props) => 
       console.error(err);
       return [];
     };
-  }, [ searchQuery, lang ]);
+  }, [ searchQuery, lang, content ]);
 
   // validates the search fields
   useEffect(() => {
