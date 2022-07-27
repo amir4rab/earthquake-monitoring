@@ -10,5 +10,8 @@
     "redis": "database",
     "static-assets": "public"
   },
-  "materialTheme.accent": "Blue"
+  "materialTheme.accent": "Blue",
+  "eslint.workingDirectories": [
+    "./next",
+  ]
 }
