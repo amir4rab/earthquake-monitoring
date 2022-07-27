@@ -38,7 +38,7 @@ const ListDisplay = ({ title, content, namespace, searchable=false }: Props) => 
   const [ searchQuery, setSearchQuery ] = useState('');
   const filesAreValid = useRef< null | boolean >(null);
   const { t } = useTranslation(namespace);
-  const { t: commonT, lang } = useTranslation('common');
+  const { t: commonT } = useTranslation('common');
   const { dir } = useMantineTheme();
 
   const filteredArray = useMemo(() => { // filters the content to find the included items
@@ -64,7 +64,7 @@ const ListDisplay = ({ title, content, namespace, searchable=false }: Props) => 
       console.error(err);
       return [];
     };
-  }, [ searchQuery, lang, content ]);
+  }, [ searchQuery, content, searchable ]);
 
   // validates the search fields
   useEffect(() => {
@@ -77,7 +77,7 @@ const ListDisplay = ({ title, content, namespace, searchable=false }: Props) => 
     } else {
       filesAreValid.current = true;
     }
-  }, [])
+  }, [ content.header.length, searchable ])
 
   return (
     <Box>

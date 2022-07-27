@@ -14,7 +14,8 @@ import Map from '../map';
 
 // types
 import type { Earthquake } from '@prisma/client';
-import type { CircleProps } from 'react-leaflet'
+import type { MapOptions } from 'leaflet';
+import type { ExtendedCircleProps } from '@/types/extendedCircleProps';
 
 // next
 import Link from 'next/link';
@@ -22,9 +23,6 @@ import Link from 'next/link';
 // utils
 import { getDate, getHour } from './earthquakeDisplay-utils'
 
-
-// types
-import { MapOptions } from 'leaflet';
 
 interface EarthquakeDisplayProps {
   latestEarthquakesArr: Earthquake[],
@@ -45,8 +43,8 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: 
       fillColor: colors.red[6],
       fill: true,
       stroke: false,
-    } as CircleProps))  
-  }, [ latestEarthquakesArr ]);
+    } as ExtendedCircleProps))  
+  }, [ latestEarthquakesArr, colors.red ]);
 
   return (
     <Box my='xl'>

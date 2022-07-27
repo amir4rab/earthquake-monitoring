@@ -1,13 +1,16 @@
 import React from 'react';
 
 // leaflet
-import { MapContainer, TileLayer, Circle, CircleProps, useMapEvent } from 'react-leaflet'
+import { MapContainer, TileLayer, Circle, useMapEvent } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 // mantine
 import { createStyles, keyframes } from '@mantine/styles';
 import { Box, BoxProps, Loader } from '@mantine/core';
 import { MapOptions } from 'leaflet';
+
+// types
+import { ExtendedCircleProps } from '@/types/extendedCircleProps';
 
 const SetViewOnClick = () => {
   const map = useMapEvent('click', (e) => {
@@ -58,7 +61,7 @@ const useStyles = createStyles((t) => ({
 }));
 
 interface Props extends BoxProps {
-  elements?: CircleProps[];
+  elements?: ExtendedCircleProps[];
   zoom?: number;
   mapCenter?: MapOptions['center'];
 }
@@ -80,8 +83,8 @@ const Map = ({ elements= [], mapCenter= [33, 53], zoom=5, ...props }: Props) => 
         />
         <SetViewOnClick/>
         {
-          elements.map(el => (
-            <Circle { ...el } />
+          elements.map(({ key, ...props }) => (
+            <Circle { ...props } key={ key } />
           ))
         }
       </MapContainer>

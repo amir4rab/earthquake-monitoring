@@ -8,19 +8,19 @@ import { startNavigationProgress, resetNavigationProgress, NavigationProgress } 
 
 const RouterTransition = () => {
   const firstRender = useRef(true);
-  const router = useRouter();
+  const { events, asPath } = useRouter();
 
-  const handleStart = useCallback((url: string) => url !== router.asPath && startNavigationProgress(), []);
+  const handleStart = useCallback((url: string) => url !== asPath && startNavigationProgress(), [ asPath ]);
   const handleComplete = useCallback(() => resetNavigationProgress(), []);
   
   useEffect(() => {
     if ( !firstRender.current ) return;
     firstRender.current = false;
     
-    router.events.on('routeChangeStart',  handleStart);
-    router.events.on('routeChangeComplete', handleComplete);
-    router.events.on('routeChangeError', handleComplete);
-  }, []);
+    events.on('routeChangeStart',  handleStart);
+    events.on('routeChangeComplete', handleComplete);
+    events.on('routeChangeError', handleComplete);
+  }, [ events, handleStart, handleComplete ]);
 
   return <NavigationProgress zIndex={1006} />;
 };

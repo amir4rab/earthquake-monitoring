@@ -47,7 +47,7 @@ export interface StatesProps {
 const States = ({}: StatesProps ) => {
   const { classes } = useStyles();
   const { t } = useTranslation('common');
-  const { t: statesT, lang } = useTranslation('states');
+  const { t: statesT } = useTranslation('states');
   const [ searchQuery, setSearchQuery ] = useState('');
 
   const filteredArrayItems = useMemo(() => {
@@ -65,7 +65,7 @@ const States = ({}: StatesProps ) => {
       console.error(err);
       return [];
     }
-  }, [ searchQuery, lang ])
+  }, [ searchQuery, statesT ])
 
   return (
     <main className={ classes.main }>
@@ -93,7 +93,7 @@ const States = ({}: StatesProps ) => {
       >
         {
           filteredArrayItems.map(({ key, name }) => (
-            <Link key={ key } href={`/states/${key}`}>
+            <Link key={ key } passHref href={`/states/${key}`}>
               <UnstyledButton 
                 component='a' 
                 className={ classes.box } 
