@@ -21,6 +21,7 @@
       "@/swr-fetcher": ["src/swr"],
       "@/prisma": ["src/prisma"],
       "@/data/*": ["src/data/*"],
+      "@/shared-data/*": ["../shared-data/*"],
       "@/utils/*": ["src/utils/*"],
       "@/classes/*": ["src/classes/*"],
       "@/hooks/*": ["src/hooks/*"],

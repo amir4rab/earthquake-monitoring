@@ -8,7 +8,10 @@
     "docker-files": "docker",
     "dockerImages": "docker",
     "redis": "database",
-    "static-assets": "public"
+    "static-assets": "public",
+    "shared-data": "shared",
+    "postgres": "database",
+    "swr": "next"
   },
   "materialTheme.accent": "Blue",
   "eslint.workingDirectories": [
