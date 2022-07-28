@@ -9,6 +9,7 @@ import useTranslation from 'next-translate/useTranslation';
 
 // components
 import RouterTransition from './routerTransition';
+import MantineSpotlight from '../mantineSpotlight';
 
 
 interface Props {
@@ -62,7 +63,9 @@ const MantineProvider = ( { children }: Props ) => {
             }
           })} 
         />
-        { children }
+        <MantineSpotlight>
+          { children }
+        </MantineSpotlight>
       </MantineOriginalProvider>
     </ColorSchemeProvider>
   );

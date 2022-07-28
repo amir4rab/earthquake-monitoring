@@ -15,5 +15,6 @@
   "home": "Startseite",
   "earthquake-data-license": "Alle Erdbebendaten wurden vom <0>Institut für Geophysik der Universität Teheran</0> bereitgestellt.",
   "no-search-result": "Entschuldigung, wir konnten nichts mit '{{searchQuery}}' finden",
+  "no-search-result-no-query": "Leider konnten wir nichts finden!",
   "loading": "Wird geladen"
 }

@@ -8,7 +8,7 @@ import DesktopNavbar from './navbar/desktopNavbar';
 import MobileNavbar from './navbar/mobileNavbar';
 
 
-const desktopNavbarWidth= '20vw';
+const desktopNavbarWidth= 'max(20vw, 17rem)';
 const useStyles = createStyles((t) => ({
   container: {
     [ t.fn.largerThan('md') ]: {

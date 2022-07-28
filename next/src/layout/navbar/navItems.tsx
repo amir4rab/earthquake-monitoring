@@ -6,9 +6,10 @@ import type { IconType } from 'react-icons'
 // icons
 import { IoHome, IoPin, IoInformation, IoSearch, IoShapes, IoLocation } from 'react-icons/io5';
 
-// mantine components
-import { Box, NavLink, NavLinkProps, Text } from '@mantine/core'
-import { createStyles } from '@mantine/styles'
+// mantine
+import { Box, NavLink, NavLinkProps, Text } from '@mantine/core';
+import { createStyles } from '@mantine/styles';
+import { openSpotlight } from '@mantine/spotlight';
 
 // next
 import Link from 'next/link';
@@ -76,10 +77,10 @@ export interface NavLinkItem extends NavItemBase {
 
 type NavItem = NavFunctionItem | NavLinkItem
 
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     icon: IoSearch,
-    fn: () => {},
+    fn: openSpotlight,
     label: 'search',
     type: 'functionItem'
   },
@@ -115,7 +116,10 @@ const navItems: NavItem[] = [
   }
 ];
 
-const InnerNav = () => {
+interface InnerNavProps {
+  onSearch?: Function;
+}
+const InnerNav = ({ onSearch }: InnerNavProps ) => {
   const { classes, cx } = useStyles();
   const { pathname } = useRouter();
   const { t } = useTranslation('common');
@@ -137,7 +141,7 @@ const InnerNav = () => {
                 <NavLink
                   styles={ NavLinksStyles }
                   component='button'
-                  onClick={ fn }
+                  onClick={ () => { onSearch && onSearch(); fn(); } }
                   key={ label } 
                   icon={ <props.icon /> }
                   label={ t(label) }
