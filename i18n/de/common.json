@@ -1,6 +1,7 @@
 {
   "hello-world": "Hallo welt",
   "earthquake-monitoring": "Erdbebenüberwachung",
+  "earthquake-monitoring-subtitle": "Aktuelle Erdbebenereignisse im Iran.",
   "search": "Suche",
   "latest": "Letzte Veranstaltungen",
   "states": "Provinzen",
@@ -13,5 +14,6 @@
   "language": "Sprache",
   "home": "Startseite",
   "earthquake-data-license": "Alle Erdbebendaten wurden vom <0>Institut für Geophysik der Universität Teheran</0> bereitgestellt.",
-  "no-search-result": "Entschuldigung, wir konnten nichts mit '{{searchQuery}}' finden"
+  "no-search-result": "Entschuldigung, wir konnten nichts mit '{{searchQuery}}' finden",
+  "loading": "Wird geladen"
 }

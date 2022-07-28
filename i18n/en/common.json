@@ -1,6 +1,7 @@
 {
   "hello-world": "Hello world",
   "earthquake-monitoring": "Earthquake monitoring",
+  "earthquake-monitoring-subtitle": "Latest earthquake events in iran.",
   "search": "Search",
   "latest": "Latest events",
   "states": "Provinces",
@@ -13,5 +14,6 @@
   "language": "Language",
   "home": "Home",
   "earthquake-data-license": "All of the earthquake data has been provided from <0>University of Tehran, Institute of Geophysics</0>",
-  "no-search-result": "Sorry, we couldn't found anything containing '{{searchQuery}}'"
+  "no-search-result": "Sorry, we couldn't found anything containing '{{searchQuery}}'",
+  "loading": "Loading"
 }
