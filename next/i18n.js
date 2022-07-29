@@ -6,6 +6,7 @@ module.exports = {
     await require(`../i18n/${lang}/${ns}.json`),
   pages: {
     "*": [ "common", "earthquake", "states" ],
-    "/states/[id]": [ "state" ]
+    "/states/[id]": [ "state" ],
+    "/nearme": [ "near-me" ]
   }
 }

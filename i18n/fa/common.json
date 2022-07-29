@@ -16,6 +16,9 @@
   "earthquake-data-license": "تمامی اطلاعات زمین لرزه از <0>موسسه ژئوفیزیک دانشگاه تهران</0> تهیه شده است",
   "no-search-result": "با عرض پوزش، ما نتوانستیم چیزی حاوی '{{searchQuery}}' پیدا کنیم",
   "no-search-result-no-query": "با عرض پوزش ما نتوانستیم چیزی پیدا کنیم",
-  "loading": "بارگذاری"
-
+  "loading": "بارگذاری",
+  "developers": "برنامه نویس ها",
+  "select-your-location": "مکان خود را انتخاب کنید",
+  "nearest-state-to-you": "نزدیکترین استان به مکان شما {{state}} است",
+  "submit": "ثبت"
 }

@@ -1,0 +1,7 @@
+{
+  "geolocation-permission": "Geolocation permission",
+  "geolocation-permission-text": "We need your permission to use your geolocation, keep in mind none of your data will be sent to our servers, all of the calculations will happen locally!",
+  "geolocation-permission-accept": "Give Permission",
+  "failed": "Sorry, something went wrong!",
+  "failed-text": "It seems like, there is some problem with geolocation, please check your browser permissions"
+}

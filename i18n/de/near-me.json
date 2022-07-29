@@ -1,0 +1,7 @@
+{
+  "geolocation-permission": "Erlaubnis zur Geolokalisierung",
+  "geolocation-permission-text": "Wir benötigen Ihre Erlaubnis, Ihre Geolokalisierung zu verwenden, denken Sie daran, dass keine Ihrer Daten an unsere Server gesendet werden, alle Berechnungen werden lokal durchgeführt!",
+  "geolocation-permission-accept": "Erlaubnis erteilen",
+  "failed": "Entschuldigung, etwas ist schief gelaufen!",
+  "failed-text": "Anscheinend gibt es ein Problem mit der Geolokalisierung, bitte überprüfen Sie Ihre Browserberechtigungen"
+}

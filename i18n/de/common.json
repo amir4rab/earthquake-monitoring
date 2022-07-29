@@ -16,5 +16,9 @@
   "earthquake-data-license": "Alle Erdbebendaten wurden vom <0>Institut für Geophysik der Universität Teheran</0> bereitgestellt.",
   "no-search-result": "Entschuldigung, wir konnten nichts mit '{{searchQuery}}' finden",
   "no-search-result-no-query": "Leider konnten wir nichts finden!",
-  "loading": "Wird geladen"
+  "loading": "Wird geladen",
+  "developers": "Programmierer/in",
+  "select-your-location": "wähle deinen Standort",
+  "nearest-state-to-you": "Die nächstgelegene Provinz zu Ihrem Standort ist {{state}}",
+  "submit": "Einreichen"
 }

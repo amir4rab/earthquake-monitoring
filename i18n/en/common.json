@@ -16,5 +16,9 @@
   "earthquake-data-license": "All of the earthquake data has been provided from <0>University of Tehran, Institute of Geophysics</0>",
   "no-search-result": "Sorry, we couldn't find anything containing '{{searchQuery}}'",
   "no-search-result-no-query": "Sorry, we couldn't find anything!",
-  "loading": "Loading"
+  "loading": "Loading",
+  "developers": "Developers",
+  "select-your-location": "Select your location",
+  "nearest-state-to-you": "Nearest province to your location is {{state}}",
+  "submit": "Submit"
 }
