@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // leaflet
-import { MapContainer, TileLayer, Circle, useMapEvent } from 'react-leaflet'
+import { MapContainer, TileLayer, Circle, useMapEvent, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 // mantine
 import { createStyles, keyframes } from '@mantine/styles';
 import { Box, BoxProps, Loader } from '@mantine/core';
-import { MapOptions } from 'leaflet';
 
 // types
-import { ExtendedCircleProps } from '@/types/extendedCircleProps';
+import type { ExtendedCircleProps } from '@/types/extendedCircleProps';
+import type { MapOptions } from 'leaflet';
+
+interface Props extends BoxProps {
+  elements?: ExtendedCircleProps[];
+  zoom?: number;
+  mapCenter?: MapOptions['center'];
+  selectPos?: boolean;
+  onPos?: ({ lat, lng }:{ lat: number, lng: number }) => void;
+}
 
 const SetViewOnClick = () => {
   const map = useMapEvent('click', (e) => {
@@ -20,6 +28,28 @@ const SetViewOnClick = () => {
   })
 
   return null
+};
+
+interface SetLocationOnClick {
+  onPos: Props['onPos'];
+}
+const SetLocationOnClick = ({ onPos }: SetLocationOnClick) => {
+  const [ pos, setPos ] = useState({ lat: 33, lng: 53 });
+
+  useMapEvent('click', (e) => {
+    const pos = e.latlng;
+
+    setPos({
+      ...pos
+    })
+    onPos && onPos({
+      ...pos
+    })
+  });
+
+  return (
+    <Marker position={ pos } />
+  )
 }
 
 const animateIn = keyframes({
@@ -60,12 +90,10 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-interface Props extends BoxProps {
-  elements?: ExtendedCircleProps[];
-  zoom?: number;
-  mapCenter?: MapOptions['center'];
-}
-const Map = ({ elements= [], mapCenter= [33, 53], zoom=5, ...props }: Props) => {
+/**
+ * Displays a Leaflet map
+ */
+const Map = ({ elements= [], mapCenter= [33, 53], zoom=5, selectPos= false, onPos, ...props }: Props) => {
   const { classes } = useStyles();
 
   return (
@@ -81,7 +109,12 @@ const Map = ({ elements= [], mapCenter= [33, 53], zoom=5, ...props }: Props) => 
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <SetViewOnClick/>
+        {
+          !selectPos && <SetViewOnClick/>
+        }
+        {
+          selectPos && <SetLocationOnClick onPos={ onPos } />
+        }
         {
           elements.map(({ key, ...props }) => (
             <Circle { ...props } key={ key } />
