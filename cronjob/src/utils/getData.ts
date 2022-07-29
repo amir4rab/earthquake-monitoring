@@ -1,12 +1,8 @@
 // types
 import type { Prisma } from '@prisma/client'
 
-// uuid
-import { v4 as uuid } from 'uuid';
-
 // crypto
 import crypto from 'node:crypto';
-// import crypto from 'node:fet';
 
 // utils
 import xmlToJson from './xmlToJson';
@@ -46,7 +42,7 @@ const mappedStates = {
   "yazd": 30
 }
 
-const getData = async () => {
+const getData = async (verbose= false) => {
   try {
     const fetch = (await import('node-fetch')).default;
 
@@ -69,7 +65,7 @@ const getData = async () => {
     
     enJson.forEach((i, index) => {
       const [ cityNameEn, stateEn ] = i.reg1.split(', ');
-      const [ cityNameFa, stateFa ] = faJson[index].reg1.split('&#1548; ');
+      const [ cityNameFa, _ ] = faJson[index].reg1.split('&#1548; ');
 
       const state = stateEn.toLowerCase().replace(/ /g, '-');
       const stateCode = mappedStates.hasOwnProperty(state) ? (( mappedStates as unknown ) as { [v: string]: number } )[state] : null;
@@ -103,12 +99,12 @@ const getData = async () => {
         })
       }
 
-      if ( stateCode === null ) console.error(`Failed to find state code for "${stateEn}"`);
+      if ( stateCode === null && verbose ) console.error(`⚠️ Failed to find state code for "${stateEn}"`);
     });
 
     return exportedArray
   } catch(err) {
-    console.log('Error in "getData": ', err);
+    console.log('⚠️ Error in "getData": ', err);
     return null;
   }
 };

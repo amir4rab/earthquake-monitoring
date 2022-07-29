@@ -29,7 +29,7 @@ const submitToDatabase = async ( data: Prisma.EarthquakeCreateInput[] ): Promise
     await prisma.$disconnect();
     return diff
   } catch (err) {
-    console.error(`Error in "submitToDatabase":`, err);
+    console.error(`⚠️ Error in "submitToDatabase":`, err);
     return []
   }
 }

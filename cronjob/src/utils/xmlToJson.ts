@@ -24,7 +24,7 @@ const xmlToJson = ( XMLdata: string ): itemSchema[] | null => {
   
     return returnedArray;
   } catch (err) {
-    console.error(`Error in "submitToDatabase": `, err);
+    console.error(`⚠️ Error in "submitToDatabase": `, err);
     return null
   }
 };
