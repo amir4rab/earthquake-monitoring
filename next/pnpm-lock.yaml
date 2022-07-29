@@ -23,6 +23,7 @@ specifiers:
   cross-env: ^7.0.3
   eslint: 8.14.0
   eslint-config-next: 12.1.5
+  geolib: ^3.3.3
   jest: ^28.0.0
   leaflet: ^1.8.0
   next: 12.2.3
@@ -54,6 +55,7 @@ dependencies:
   '@next/bundle-analyzer': 12.1.5
   '@prisma/client': 4.1.0_prisma@4.1.0
   ajv: 8.11.0
+  geolib: 3.3.3
   leaflet: 1.8.0
   next: 12.2.3_wolu2i6bpdkfgjugct7lmgr62m
   next-compose-plugins: 2.2.1
@@ -2666,6 +2668,10 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
     dev: true
+
+  /geolib/3.3.3:
+    resolution: {integrity: sha512-YO704pzdB/8QQekQuDmFD5uv5RAwAf4rOUPdcMhdEOz+HoPWD0sC7Qqdwb+LAvwIjXVRawx0QgZlocKYh8PFOQ==}
+    dev: false
 
   /get-caller-file/2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
