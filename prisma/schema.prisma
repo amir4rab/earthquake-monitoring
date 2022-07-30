@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_DATABASE_URL")
+}
+
+model Earthquake {
+  id                  String    @unique @db.Char(44)
+  state               Int       @db.SmallInt()
+  reg                 Int       @db.SmallInt()
+  mag                 Float     @db.DoublePrecision
+  dep                 Float     @db.DoublePrecision
+  long                String    @db.VarChar(120)
+  lat                 String    @db.VarChar(120)
+  date                DateTime  @db.Timestamp()
+
+  city                City      @relation(fields: [nameEn], references: [name])
+  nameEn              String
+}
+
+model City {
+  name                String    @db.VarChar(64) @unique @id
+  nameFa              String    @db.VarChar(64)
+  index               Int       @db.Integer @default(autoincrement())
+
+  earthquake          Earthquake[]
+}
