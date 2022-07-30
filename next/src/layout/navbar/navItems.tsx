@@ -105,7 +105,7 @@ export const navItems: NavItem[] = [
   {
     icon: IoShapes,
     path: '/developers',
-    label: 'api',
+    label: 'developers',
     type: 'linkItem'
   },
   {

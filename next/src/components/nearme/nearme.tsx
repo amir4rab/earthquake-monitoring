@@ -156,10 +156,20 @@ const NearMe = ({ latestEarthquakesArr }: NearMeProps) => {
       {
         ( geolocationPermission && !isLoading && distances !== null ) &&
         <>
-            <Slider
-              onChange={ (v) => setMaximumRange(v) }
-              value={ maximumRange }
-            />
+          <Slider
+              marks={[
+              {
+                i18nKey: 'common:nearest',
+                value: 0
+              },
+              {
+                i18nKey: 'common:furthest',
+                value: 100
+              }
+            ]}
+            onChange={ (v) => setMaximumRange(v) }
+            value={ maximumRange }
+          />
           <EarthquakeDisplay
             mapCenter={{ lat: geolocationData!.lat, lng: geolocationData!.long }}
             latestEarthquakesArr={ filterArray(earthquakeArr, distances, maximumRange) }
