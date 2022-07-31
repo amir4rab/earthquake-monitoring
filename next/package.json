@@ -1,25 +1,19 @@
 {
-  "name": "next-mantine",
+  "name": "earthquake-monitoring",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "docker-build": "cross-env IS_DOCKER_BUILD=true next build",
     "start": "next start",
     "lint": "next lint",
     "init-prisma-schema": "rm -r -f ./prisma && cp ../prisma . -r",
     "prisma-migrate-dev": "npx prisma migrate dev --schema=../prisma/schema.prisma --skip-generate",
     "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma --skip-generate",
-    "prisma-seed": "npx prisma db seed",
-    "prisma-studio": "npx prisma studio",
     "prisma-generate": "npx prisma generate",
-    "docker-prisma-migrate-dev": "npx prisma migrate dev",
     "docker-prisma-migrate-prod": "npx prisma migrate deploy",
-    "docker-prisma-seed": "npx prisma db docker-seed",
-    "docker-prisma-studio": "npx prisma studio",
     "docker-prisma-generate": "npx prisma generate",
-    "docker-start": "npm-run-all docker-prisma-migrate-prod docker-prisma-seed build start"
+    "docker-start": "npm run build && npm run start"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -29,6 +23,7 @@
     "@mantine/modals": "5.0.0",
     "@mantine/next": "^5.0.0",
     "@mantine/nprogress": "^5.0.0",
+    "@mantine/prism": "^5.0.0",
     "@mantine/spotlight": "5.0.0",
     "@mantine/ssr": "^5.0.0",
     "@mantine/styles": "^5.0.0",
@@ -45,6 +40,7 @@
     "react-dom": "18.0.0",
     "react-icons": "^4.3.1",
     "react-leaflet": "^4.0.1",
+    "redis": "^4.2.0",
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "^2.1.1",
     "swr": "^1.3.0"

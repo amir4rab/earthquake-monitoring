@@ -8,6 +8,7 @@ specifiers:
   '@mantine/modals': 5.0.0
   '@mantine/next': ^5.0.0
   '@mantine/nprogress': ^5.0.0
+  '@mantine/prism': ^5.0.0
   '@mantine/spotlight': 5.0.0
   '@mantine/ssr': ^5.0.0
   '@mantine/styles': ^5.0.0
@@ -35,6 +36,7 @@ specifiers:
   react-dom: 18.0.0
   react-icons: ^4.3.1
   react-leaflet: ^4.0.1
+  redis: ^4.2.0
   sass: ^1.50.1
   stylis: ^4.1.1
   stylis-plugin-rtl: ^2.1.1
@@ -49,6 +51,7 @@ dependencies:
   '@mantine/modals': 5.0.0_lfgwvbhpuvp6cixzaacbu4g3eq
   '@mantine/next': 5.0.0_5c2s6upisqk23pa2rl2jkzowja
   '@mantine/nprogress': 5.0.0_lfgwvbhpuvp6cixzaacbu4g3eq
+  '@mantine/prism': 5.0.0_lfgwvbhpuvp6cixzaacbu4g3eq
   '@mantine/spotlight': 5.0.0_lfgwvbhpuvp6cixzaacbu4g3eq
   '@mantine/ssr': 5.0.0_nl7lhsv5aktsghtfcqefgnm6ry
   '@mantine/styles': 5.0.0_inikiyd4veuh43jonzwmw3bgnm
@@ -65,6 +68,7 @@ dependencies:
   react-dom: 18.0.0_react@18.0.0
   react-icons: 4.3.1_react@18.0.0
   react-leaflet: 4.0.1_5mpfu4vsyy7mubrozb5rekutqq
+  redis: 4.2.0
   stylis: 4.1.1
   stylis-plugin-rtl: 2.1.1_stylis@4.1.1
   swr: 1.3.0_react@18.0.0
@@ -917,6 +921,22 @@ packages:
       react-dom: 18.0.0_react@18.0.0
     dev: false
 
+  /@mantine/prism/5.0.0_lfgwvbhpuvp6cixzaacbu4g3eq:
+    resolution: {integrity: sha512-wdSUVNS7zbvdQI3HjCSoCLGyYXIGKPLnfWAB59tsyHgquBTDqYNZMO8drEBiWboEbD2n4MOz3OC+oKelEdy9ZA==}
+    peerDependencies:
+      '@mantine/core': 5.0.0
+      '@mantine/hooks': 5.0.0
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 5.0.0_mdnger63ug6jsrizgx22ddxg64
+      '@mantine/hooks': 5.0.0_react@18.0.0
+      '@mantine/utils': 5.0.0_react@18.0.0
+      prism-react-renderer: 1.3.5_react@18.0.0
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+    dev: false
+
   /@mantine/spotlight/5.0.0_lfgwvbhpuvp6cixzaacbu4g3eq:
     resolution: {integrity: sha512-emDuL15OSKQ9xw1y9gjTWIqWugD7MpLhoPBkfEQ8vAVnqgVUNZ99JGusyxmKZnvuXHg1BvAHio/PxFA+63dV1g==}
     peerDependencies:
@@ -1276,6 +1296,55 @@ packages:
       leaflet: 1.8.0
       react: 18.0.0
       react-dom: 18.0.0_react@18.0.0
+    dev: false
+
+  /@redis/bloom/1.0.2_@redis+client@1.2.0:
+    resolution: {integrity: sha512-EBw7Ag1hPgFzdznK2PBblc1kdlj5B5Cw3XwI9/oG7tSn85/HKy3X9xHy/8tm/eNXJYHLXHJL/pkwBpFMVVefkw==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.2.0
+    dev: false
+
+  /@redis/client/1.2.0:
+    resolution: {integrity: sha512-a8Nlw5fv2EIAFJxTDSSDVUT7yfBGpZO96ybZXzQpgkyLg/dxtQ1uiwTc0EGfzg1mrPjZokeBSEGTbGXekqTNOg==}
+    engines: {node: '>=14'}
+    dependencies:
+      cluster-key-slot: 1.1.0
+      generic-pool: 3.8.2
+      yallist: 4.0.0
+    dev: false
+
+  /@redis/graph/1.0.1_@redis+client@1.2.0:
+    resolution: {integrity: sha512-oDE4myMCJOCVKYMygEMWuriBgqlS5FqdWerikMoJxzmmTUErnTRRgmIDa2VcgytACZMFqpAOWDzops4DOlnkfQ==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.2.0
+    dev: false
+
+  /@redis/json/1.0.3_@redis+client@1.2.0:
+    resolution: {integrity: sha512-4X0Qv0BzD9Zlb0edkUoau5c1bInWSICqXAGrpwEltkncUwcxJIGEcVryZhLgb0p/3PkKaLIWkjhHRtLe9yiA7Q==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.2.0
+    dev: false
+
+  /@redis/search/1.0.6_@redis+client@1.2.0:
+    resolution: {integrity: sha512-pP+ZQRis5P21SD6fjyCeLcQdps+LuTzp2wdUbzxEmNhleighDDTD5ck8+cYof+WLec4csZX7ks+BuoMw0RaZrA==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.2.0
+    dev: false
+
+  /@redis/time-series/1.0.3_@redis+client@1.2.0:
+    resolution: {integrity: sha512-OFp0q4SGrTH0Mruf6oFsHGea58u8vS/iI5+NpYdicaM+7BgqBZH8FFvNZ8rYYLrUO/QRqMq72NpXmxLVNcdmjA==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.2.0
     dev: false
 
   /@rushstack/eslint-patch/1.0.8:
@@ -1912,6 +1981,11 @@ packages:
   /clsx/1.1.1:
     resolution: {integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==}
     engines: {node: '>=6'}
+    dev: false
+
+  /cluster-key-slot/1.1.0:
+    resolution: {integrity: sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
   /co/4.6.0:
@@ -2663,6 +2737,11 @@ packages:
   /functions-have-names/1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
+
+  /generic-pool/3.8.2:
+    resolution: {integrity: sha512-nGToKy6p3PAbYQ7p1UlWl6vSPwfwU6TMSWK7TTu+WUY4ZjyZQGniGGt2oNVvyNSpyZYSB43zMXVLcBm08MTMkg==}
+    engines: {node: '>= 4'}
+    dev: false
 
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -4064,6 +4143,14 @@ packages:
       react-is: 18.0.0
     dev: true
 
+  /prism-react-renderer/1.3.5_react@18.0.0:
+    resolution: {integrity: sha512-IJ+MSwBWKG+SM3b2SUfdrhC+gu01QkV2KmRQgREThBfSQRoufqRfxfHUxpG1WcaFjP+kojcFyO9Qqtpgt3qLCg==}
+    peerDependencies:
+      react: '>=0.14.9'
+    dependencies:
+      react: 18.0.0
+    dev: false
+
   /prisma/4.1.0:
     resolution: {integrity: sha512-iwqpAT6In1uvMSwQAM3PqmaBdhh2OaQ/2t+n3RjpW4vAKP3R7E1T34FZUU4zGOWtMWm5dt0sPThQkT/h87r6gw==}
     engines: {node: '>=14.17'}
@@ -4203,6 +4290,17 @@ packages:
       indent-string: 4.0.0
       strip-indent: 3.0.0
     dev: true
+
+  /redis/4.2.0:
+    resolution: {integrity: sha512-bCR0gKVhIXFg8zCQjXEANzgI01DDixtPZgIUZHBCmwqixnu+MK3Tb2yqGjh+HCLASQVVgApiwhNkv+FoedZOGQ==}
+    dependencies:
+      '@redis/bloom': 1.0.2_@redis+client@1.2.0
+      '@redis/client': 1.2.0
+      '@redis/graph': 1.0.1_@redis+client@1.2.0
+      '@redis/json': 1.0.3_@redis+client@1.2.0
+      '@redis/search': 1.0.6_@redis+client@1.2.0
+      '@redis/time-series': 1.0.3_@redis+client@1.2.0
+    dev: false
 
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
@@ -4850,7 +4948,6 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-    dev: true
 
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
