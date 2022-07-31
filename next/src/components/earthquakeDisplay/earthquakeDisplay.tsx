@@ -13,9 +13,9 @@ import ListDisplay from '../listDisplay';
 import Map from '../map';
 
 // types
-import type { Earthquake } from '@prisma/client';
 import type { MapOptions } from 'leaflet';
 import type { ExtendedCircleProps } from '@/types/extendedCircleProps';
+import type { ExtendedEarthquake } from '@/types/extendedEarthquake';
 
 // next
 import Link from 'next/link';
@@ -25,13 +25,14 @@ import { getDate, getHour } from './earthquakeDisplay-utils'
 
 
 interface EarthquakeDisplayProps {
-  latestEarthquakesArr: Earthquake[],
+  latestEarthquakesArr: ExtendedEarthquake[],
   title?: string;
   mapCenter?: MapOptions['center'];
-  mapZoom?: number; 
+  mapZoom?: number;
+  isLoading?: boolean
 }
 
-const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: EarthquakeDisplayProps) => {
+const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter, isLoading= false }: EarthquakeDisplayProps) => {
   const { colors } = useMantineTheme();
   const { t: statesT, lang } = useTranslation('states');
 
@@ -62,80 +63,85 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter }: 
           elements={ calcEarthQuakePoints }
         />
       </Box>
-      <Box my='xl'>
-        <ListDisplay
-          namespace='earthquake'
-          searchable={{
-            fields: [
-              0, 1, 3
-            ]
-          }}
-          content={{
-            header: [ 'state', 'mag', 'dep', 'nc', 'date', 'hour' ],
-            rows: latestEarthquakesArr.map(({ id, date, dep, mag, reg, state, ...earthquake }) => ({
-              id: id,
-              items: [
-                {
-                  key: 'state',
-                  value: statesT(state + ''),
-                  el: <Link href={`/states/${state}`} passHref><Text component='a' size='sm'>{ statesT(state + '') }</Text></Link>,
-                },
-                {
-                  key: 'mag',
-                  value: mag +'',
-                  el: (
-                    <Text 
-                      sx={(t) => ( mag > 4 ? { color: t.colorScheme === 'dark' ? t.colors.red[9] : '#ff0000', fontWeight: 'bold' }: {})} 
-                      size='sm'
-                    >
-                      { mag.toLocaleString(lang) }
-                    </Text>
-                  ),
-                },
-                {
-                  key: 'dep',
-                  value: dep + '',
-                  el: <Text size='sm'>{ dep.toLocaleString(lang) + (( lang !== 'fa' && lang !== 'ar' ) ? ' Km' : ' کلیومتر' ) }</Text>,
-                },
-                {
-                  key: 'city',
-                  value: ((earthquake as unknown) as { city: { name: string, nameFa: string }}).city[ lang === 'fa' ? 'nameFa' : 'name' ],
-                  el:( 
-                    <Text size='sm'>
-                      { ((earthquake as unknown) as { city: { name: string, nameFa: string }}).city[ lang === 'fa' ? 'nameFa' : 'name' ] }
-                    </Text>
-                  )
-                },
-                {
-                  key: 'date',
-                  el: <Text size='sm'>{ getDate((date as unknown) as number, lang) }</Text>,
-                },
-                {
-                  key: 'hour',
-                  el: <Text size='sm'>{ getHour((date as unknown) as number, lang) }</Text>,
-                }
-              ]
-            }))
-          }}
-        />
-      </Box>
-      <Box 
-        sx={(t) => ({
-          padding: `${t.spacing.md * 1.5}px ${t.spacing.xl * 1.5}px`,
-          borderRadius: t.radius.md,
-          background: t.colorScheme === 'dark' ? t.colors.dark[6] : t.colors.gray[2],
-          boxShadow: t.shadows.md
-        })}
-      >
-        <Text>
-          <Trans 
-            i18nKey='common:earthquake-data-license'
-            components={[
-              <Anchor key={0} href='http://irsc.ut.ac.ir/' target='_blank' rel='noreferrer' />
-            ]}
-          />
-        </Text>
-      </Box>
+      {
+        !isLoading &&
+        <>
+          <Box my='xl'>
+            <ListDisplay
+              namespace='earthquake'
+              searchable={{
+                fields: [
+                  0, 1, 3
+                ]
+              }}
+              content={{
+                header: [ 'state', 'mag', 'dep', 'nc', 'date', 'hour' ],
+                rows: latestEarthquakesArr.map(({ id, date, dep, mag, state, city }) => ({
+                  id: id,
+                  items: [
+                    {
+                      key: 'state',
+                      value: statesT(state + ''),
+                      el: <Link href={`/states/${state}`} passHref><Text component='a' size='sm'>{ statesT(state + '') }</Text></Link>,
+                    },
+                    {
+                      key: 'mag',
+                      value: mag +'',
+                      el: (
+                        <Text 
+                          sx={(t) => ( mag > 4 ? { color: t.colorScheme === 'dark' ? t.colors.red[9] : '#ff0000', fontWeight: 'bold' }: {})} 
+                          size='sm'
+                        >
+                          { mag.toLocaleString(lang) }
+                        </Text>
+                      ),
+                    },
+                    {
+                      key: 'dep',
+                      value: dep + '',
+                      el: <Text size='sm'>{ dep.toLocaleString(lang) + (( lang !== 'fa' && lang !== 'ar' ) ? ' Km' : ' کلیومتر' ) }</Text>,
+                    },
+                    {
+                      key: 'city',
+                      value: city[ lang === 'fa' ? 'nameFa' : 'name' ],
+                      el:( 
+                        <Text size='sm'>
+                          { city[ lang === 'fa' ? 'nameFa' : 'name' ] }
+                        </Text>
+                      )
+                    },
+                    {
+                      key: 'date',
+                      el: <Text size='sm'>{ getDate((date as unknown) as number, lang) }</Text>,
+                    },
+                    {
+                      key: 'hour',
+                      el: <Text size='sm'>{ getHour((date as unknown) as number, lang) }</Text>,
+                    }
+                  ]
+                }))
+              }}
+            />
+          </Box>
+          <Box 
+            sx={(t) => ({
+              padding: `${t.spacing.md * 1.5}px ${t.spacing.xl * 1.5}px`,
+              borderRadius: t.radius.md,
+              background: t.colorScheme === 'dark' ? t.colors.dark[6] : t.colors.gray[2],
+              boxShadow: t.shadows.md
+            })}
+          >
+            <Text>
+              <Trans 
+                i18nKey='common:earthquake-data-license'
+                components={[
+                  <Anchor key={0} href='http://irsc.ut.ac.ir/' target='_blank' rel='noreferrer' />
+                ]}
+              />
+            </Text>
+          </Box>
+        </>
+      }
     </Box>
   )
 };
