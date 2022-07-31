@@ -4,15 +4,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Box, Center, Loader } from '@mantine/core';
 import { createStyles } from '@mantine/styles';
 
-
-import { getDistance } from 'geolib'
-
 // hooks
 import useGeoLocation from '@/hooks/useGeoLocation';
 
 // types
-import { Earthquake } from '@prisma/client';
 import EarthquakeDisplay from '../earthquakeDisplay';
+import type { ExtendedEarthquakeArray, ExtendedEarthquake as ExtendedEarthquakeBase } from '@/types/extendedEarthquake';
+
 
 // subcomponents
 import NearMeErrorAlert from './subcomponents/nearme-errorAlert';
@@ -21,7 +19,7 @@ import NearMeHead from './subcomponents/nearme-head';
 import MapLocationSelector from '../mapLocationSelector';
 
 // components
-import Slider, { SliderProps } from '../slider';
+import Slider from '../slider';
 
 // utils
 import filterArray from './utils/filterArray';
@@ -48,12 +46,12 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-export interface ExtendedEarthquake extends Earthquake {
+export interface ExtendedEarthquake extends ExtendedEarthquakeBase {
   distance: number
 } 
 
 interface NearMeProps {
-  latestEarthquakesArr: Earthquake[];
+  latestEarthquakesArr: ExtendedEarthquakeArray;
 }
 const NearMe = ({ latestEarthquakesArr }: NearMeProps) => {
   const [ isBrowser, setIsBrowser ] = useState(false);

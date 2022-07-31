@@ -2,12 +2,12 @@
 import { getDistance } from 'geolib'
 
 // types
+import type { ExtendedEarthquakeArray } from '@/types/extendedEarthquake';
 import type { ExtendedEarthquake } from '../nearme';
-import { Earthquake } from '@prisma/client';
 
 interface CalcEarthquakeDistancesProps {
   geoData: { lat: number, long: number } | null;
-  earthquakesArr: Earthquake[]
+  earthquakesArr: ExtendedEarthquakeArray
 };
 
 /** Calculates user distance from earthquakes */
