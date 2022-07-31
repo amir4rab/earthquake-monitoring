@@ -37,7 +37,7 @@ module.exports = withPlugins(
     nextTranslate,
     withBundleAnalyzer
   ],
-  process.env.IS_DOCKER_BUILD === 'true' ? 
+  process.env.IS_DOCKER_BUILD === '1' ? 
     {
       ...config,
       output: 'standalone'
