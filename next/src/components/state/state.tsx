@@ -6,7 +6,6 @@ import { createStyles, keyframes, useMantineTheme } from '@mantine/styles';
 
 // types
 import type { StateGeoLocationInterface } from '@/data/statesGeoLocation';
-import type { Earthquake } from '@prisma/client';
 
 // components
 import EarthquakeDisplay from '../earthquakeDisplay';
@@ -81,20 +80,16 @@ interface StateData extends StateGeoLocationInterface {
 
 export interface StateInterface {
   stateData: StateData,
-  totalPages: number;
-  latestEarthquakesArr: Earthquake[];
   stateName: string;
 }
 
-const State = ({ stateName, stateData, latestEarthquakesArr, totalPages }: StateInterface) => {
+const State = ({ stateName, stateData }: StateInterface) => {
   const {
-    data, isLoading, page, setPage
+    data, isLoading, page, setPage, totalPages
   } = useFetchStateData({
     currentPage: 1,
-    initialPageData: latestEarthquakesArr,
-    pages: totalPages,
     stateId: stateData.id
-  })
+  });
 
   const { dir } = useMantineTheme();
   const { classes } = useStyles();
@@ -106,7 +101,7 @@ const State = ({ stateName, stateData, latestEarthquakesArr, totalPages }: State
       <main className={ classes.main }>
         <Box
           data-displayed={ isLoading }
-          data-hidden={ !isLoading && page !== 1 }
+          data-hidden={ !isLoading }
           className={ classes.loadingNotification }
         >
           <Group>
@@ -130,8 +125,14 @@ const State = ({ stateName, stateData, latestEarthquakesArr, totalPages }: State
             />
           </Title>
         </header>
+        <EarthquakeDisplay 
+          latestEarthquakesArr={ data }
+          mapZoom={7}
+          isLoading={ true }
+          mapCenter={[ stateData.lat, stateData.long ]}
+        />
         {
-          data.length === 0 &&
+          ( data.length === 0 && !isLoading ) ?
           <Alert
             icon={ <IoAlert /> }
             color='yellow'
@@ -141,20 +142,15 @@ const State = ({ stateName, stateData, latestEarthquakesArr, totalPages }: State
               i18nKey='state:no-data-error-text'
               values={{ state: stateName }}
             />
-          </Alert>
+          </Alert> :
+          <Center>
+            <Pagination 
+              total={ totalPages }
+              page={ page }
+              onChange={ setPage }
+            />
+          </Center>
         }
-        <EarthquakeDisplay 
-          latestEarthquakesArr={ data }
-          mapZoom={7}
-          mapCenter={[ stateData.lat, stateData.long ]}
-        />
-        <Center>
-          <Pagination 
-            total={ totalPages }
-            page={ page }
-            onChange={ setPage }
-          />
-        </Center>
       </main>
   )
 };

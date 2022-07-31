@@ -4,33 +4,37 @@ import useSWR from 'swr';
 import fetcher from '@/swr-fetcher';
 
 // types
-import type { Earthquake } from '@prisma/client';
+import { ExtendedEarthquakeArray } from '@/types/extendedEarthquake';
 
 interface UseFetchStateDataProps {
   currentPage: number;
-  pages: number;
   stateId: string;
-  initialPageData: Earthquake[];
 }
-const useFetchStateData = ({ currentPage, pages, stateId, initialPageData }: UseFetchStateDataProps ) => {
+const useFetchStateData = ({ currentPage, stateId }: UseFetchStateDataProps ) => {
   const [ page, setPage ] = useState(currentPage)
-  const [ bufferedData, setBufferedData ] = useState(initialPageData);
+  const [ bufferedData, setBufferedData ] = useState<ExtendedEarthquakeArray>([]);
+  const [ totalPages, setTotalPages ] = useState(0);
+  const [ initialLoading, setInitialLoading ] = useState(true);
 
-  const { data, isValidating } = useSWR( 
-    page > 1 ? `/api/state?state=${stateId}&page=${ page }` : null,
-    ( ...props ) => fetcher<{ data: null | { latestEarthquakesArr: Earthquake[], err: string | null } }>( ...props )
+  const { data: response, isValidating } = useSWR( 
+    `/api/state?state=${stateId}&page=${ page }`,
+    ( ...props ) => fetcher<{ data: null | { latestEarthquakesArr: ExtendedEarthquakeArray, totalPages: number, err: string | null } }>( ...props )
   );
 
   useEffect(() => {
-    if ( page === 1 ) setBufferedData(initialPageData)
-    if ( !isValidating && typeof data?.data?.latestEarthquakesArr !== 'undefined' ) setBufferedData(data.data.latestEarthquakesArr)
-  }, [ page, isValidating, initialPageData, data ]);
+    if ( !isValidating && typeof response?.data?.latestEarthquakesArr !== 'undefined' ) {
+      setBufferedData(response.data.latestEarthquakesArr);
+      setTotalPages(response.data.totalPages);
+      setInitialLoading(false);
+    }
+  }, [ page, isValidating, response ]);
 
 
   return ({
-    isLoading: page === 1 ? false : isValidating,
+    isLoading: initialLoading || isValidating,
     data: bufferedData,
-    setPage: (newPage: number) => ( page > 0 && page <= pages ) && setPage(newPage),
+    totalPages,
+    setPage: (newPage: number) => ( page > 0 && page <= totalPages ) && setPage(newPage),
     page
   })
 };
