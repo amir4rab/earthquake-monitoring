@@ -11,7 +11,14 @@
     "static-assets": "public",
     "shared-data": "shared",
     "postgres": "database",
-    "swr": "next"
+    "swr": "next",
+    "subcomponents": "components"
+  },
+  "material-icon-theme.files.associations": {
+    "tsconfig.docker.json": "tsconfig",
+    "i18n.base.js": "i18n",
+    "i18n.docker.js": "i18n",
+    "i18n.js": "i18n",
   },
   "materialTheme.accent": "Blue",
   "eslint.workingDirectories": [

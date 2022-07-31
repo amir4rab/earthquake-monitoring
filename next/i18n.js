@@ -1,12 +1,9 @@
 /** @type {import('next-translate').NextConfig} */
+
+const conf = require('./i18n.base');
+
 module.exports = {
-  locales: ["en", "de", "fa"],
-  defaultLocale: "en",
+  ...conf,
   loadLocaleFrom: async (lang, ns) => 
     await require(`../i18n/${lang}/${ns}.json`),
-  pages: {
-    "*": [ "common", "earthquake", "states" ],
-    "/states/[id]": [ "state" ],
-    "/nearme": [ "near-me" ]
-  }
 }

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,7 +22,7 @@
       "@/prisma": ["src/prisma"],
       "@/redis": ["src/redis"],
       "@/data/*": ["src/data/*"],
-      "@/shared-data/*": ["../shared-data/*"],
+      "@/shared-data/*": ["./shared-data/*"],
       "@/utils/*": ["src/utils/*"],
       "@/classes/*": ["src/classes/*"],
       "@/hooks/*": ["src/hooks/*"],
