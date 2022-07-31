@@ -10,15 +10,11 @@
     "init-prisma-schema": "rm -r -f ./prisma && cp ../prisma . -r",
     "prisma-migrate-dev": "npx prisma migrate dev --schema=../prisma/schema.prisma --skip-generate",
     "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma --skip-generate",
-    "prisma-seed": "npx prisma db seed",
     "prisma-studio": "npx prisma studio",
     "prisma-generate": "npx prisma generate",
-    "docker-prisma-migrate-dev": "npx prisma migrate dev",
     "docker-prisma-migrate-prod": "npx prisma migrate deploy",
-    "docker-prisma-seed": "npx prisma db docker-seed",
-    "docker-prisma-studio": "npx prisma studio",
     "docker-prisma-generate": "npx prisma generate",
-    "docker-start": "npm-run-all docker-prisma-migrate-prod docker-prisma-seed build start"
+    "docker-start": "npm-run-all docker-prisma-migrate-prod build start"
   },
   "dependencies": {
     "@prisma/client": "^4.1.0",

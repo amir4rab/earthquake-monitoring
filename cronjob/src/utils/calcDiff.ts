@@ -10,13 +10,13 @@ const calcDiff = ( latestData: Prisma.EarthquakeCreateInput[], latestItemHash: s
       if ( valueA > valueB ) return 1;
       if ( valueA < valueB ) return -1;
       return 0;
-    })
+    });
 
     const indexOfLatestItem = orderedArr.findIndex(({ id }) => id === latestItemHash );
 
     const slicedArr = 
       indexOfLatestItem === -1 ? orderedArr : // incase we couldn't found the previous item in the database
-      indexOfLatestItem + 1 !== orderedArr.length ? [] : // incase the founded item was the latest fetched item, there four there is no new items and we return empty array
+      indexOfLatestItem + 1 === orderedArr.length ? [] : // incase the founded item was the latest fetched item, there four there is no new items and we return empty array
       orderedArr.slice(indexOfLatestItem + 1); // in other cases we slice the array and return it
 
     return slicedArr;
