@@ -28,7 +28,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/providers/*": ["src/providers/*"],
       "@/types/*": ["src/types/*"],
-      "@/styles/*": ["styles/*"],
+      "@/styles/*": ["styles/*"]
     },
     "downlevelIteration": true
   },

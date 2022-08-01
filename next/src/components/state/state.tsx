@@ -85,7 +85,7 @@ export interface StateInterface {
 
 const State = ({ stateName, stateData }: StateInterface) => {
   const {
-    data, isLoading, page, setPage, totalPages
+    data, isLoading, page, setPage, totalPages, initialLoading
   } = useFetchStateData({
     currentPage: 1,
     stateId: stateData.id
@@ -128,11 +128,11 @@ const State = ({ stateName, stateData }: StateInterface) => {
         <EarthquakeDisplay 
           latestEarthquakesArr={ data }
           mapZoom={7}
-          isLoading={ true }
+          isLoading={ initialLoading }
           mapCenter={[ stateData.lat, stateData.long ]}
         />
         {
-          ( data.length === 0 && !isLoading ) ?
+          ( data.length === 0 && !initialLoading ) ?
           <Alert
             icon={ <IoAlert /> }
             color='yellow'

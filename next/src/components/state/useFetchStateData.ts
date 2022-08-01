@@ -31,6 +31,7 @@ const useFetchStateData = ({ currentPage, stateId }: UseFetchStateDataProps ) =>
 
 
   return ({
+    initialLoading: initialLoading,
     isLoading: initialLoading || isValidating,
     data: bufferedData,
     totalPages,
