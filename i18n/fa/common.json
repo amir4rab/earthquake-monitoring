@@ -20,5 +20,7 @@
   "developers": "برنامه نویس ها",
   "select-your-location": "مکان خود را انتخاب کنید",
   "nearest-state-to-you": "نزدیکترین استان به مکان شما {{state}} است",
-  "submit": "ثبت"
+  "submit": "ثبت",
+  "nearest": "نزدیک ترین",
+  "furthest": "دورترین"
 }

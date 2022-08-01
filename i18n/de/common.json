@@ -20,5 +20,7 @@
   "developers": "Programmierer/in",
   "select-your-location": "wähle deinen Standort",
   "nearest-state-to-you": "Die nächstgelegene Provinz zu Ihrem Standort ist {{state}}",
-  "submit": "Einreichen"
+  "submit": "Einreichen",
+  "nearest": "Nächste",
+  "furthest": "am weitesten"
 }

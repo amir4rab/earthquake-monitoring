@@ -20,5 +20,7 @@
   "developers": "Developers",
   "select-your-location": "Select your location",
   "nearest-state-to-you": "Nearest province to your location is {{state}}",
-  "submit": "Submit"
+  "submit": "Submit",
+  "nearest": "Nearest",
+  "furthest": "Furthest"
 }
