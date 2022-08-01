@@ -3,9 +3,9 @@ import { prisma } from '@/prisma';
 // types
 import type { Earthquake } from '@prisma/client';
 
-type GetLatestEvents = (pageSize?: number, page?: number) => Promise<Earthquake[]>;
+type GetLatestDataFromPostgres = (pageSize?: number, page?: number) => Promise<Earthquake[]>;
 
-export const getLatestEvents: GetLatestEvents = async (pageSize= 25, page= 0) => {
+export const getLatestDataFromPostgres: GetLatestDataFromPostgres = async (pageSize= 25, page= 0) => {
   try {
     const data = await prisma.earthquake.findMany({
       include: {

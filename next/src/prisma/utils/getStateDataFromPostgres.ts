@@ -4,12 +4,12 @@ import { prisma } from '../connect';
 // types
 import { Earthquake } from '@prisma/client';
 
-export interface GetStateEventsProps {
+export interface GetStatesDataFromPostgresProps {
   stateId: string;
   pageSize?: number;
   page?: number;
 }
-export interface GetStateEventsReturn {
+export interface GetStatesDataFromPostgresReturn {
   latestEarthquakesArr: Earthquake[];
   totalPages: number;
 }
@@ -17,7 +17,7 @@ export interface GetStateEventsReturn {
 /**
  * Finds the latest events of the requested state
  */
-export const getStateEvents = async ({ stateId, pageSize= 25, page= 0 }: GetStateEventsProps ): Promise<GetStateEventsReturn> => {
+export const GetStatesDataFromPostgres = async ({ stateId, pageSize= 25, page= 0 }: GetStatesDataFromPostgresProps ): Promise<GetStatesDataFromPostgresReturn> => {
   const earthquakes = await prisma.earthquake.findMany({
     where: {
       state: {
@@ -53,4 +53,4 @@ export const getStateEvents = async ({ stateId, pageSize= 25, page= 0 }: GetStat
   });
 };
 
-export default getStateEvents;
+export default GetStatesDataFromPostgres;
