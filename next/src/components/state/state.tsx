@@ -5,7 +5,7 @@ import { ActionIcon, Alert, Box, Center, Group, Loader, Pagination, Text, Title 
 import { createStyles, keyframes, useMantineTheme } from '@mantine/styles';
 
 // types
-import type { StateGeoLocationInterface } from '@/data/statesGeoLocation';
+import states from '@/shared-data/states-geo-location';
 
 // components
 import EarthquakeDisplay from '../earthquakeDisplay';
@@ -74,7 +74,9 @@ const useStyles = createStyles((t) => ({
   }
 }))
 
-interface StateData extends StateGeoLocationInterface {
+type StateGeoLocationInterface = typeof states[''];
+
+interface StateData extends StateGeoLocationInterface  {
   id: string
 }
 

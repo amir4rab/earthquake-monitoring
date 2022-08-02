@@ -8,7 +8,7 @@ import { createStyles } from '@mantine/styles';
 import useTranslation from 'next-translate/useTranslation';
 
 // states data
-import statesArray from '@/data/states-geo-location.json'
+import statesObj from '@/shared-data/states-geo-location'
 
 // next
 import Link from 'next/link';
@@ -52,7 +52,7 @@ const States = ({}: StatesProps ) => {
 
   const filteredArrayItems = useMemo(() => {
     try {
-      const arr = Object.keys(statesArray).map(i => ({ name: statesT(i), key: i }));
+      const arr = Object.keys(statesObj).map(i => ({ name: statesT(i), key: i }));
 
       const formattedQuery = searchQuery.trim().replace(/ /, '-');
 
