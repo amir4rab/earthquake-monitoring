@@ -3,6 +3,9 @@
   "settings": {
     "next": {
       "rootDir": ["next/"]
+    },
+    "vite": {
+      "rootDir": ["vite/"]
     }
   }
 }
