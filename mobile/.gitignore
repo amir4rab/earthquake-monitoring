@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# dist
+/dist
+
+# local files
+.env*.local
+docker-compose.local.yml
+
+#android
+/android
+
+# generated recorsed
+/resources/android/icon
+/resources/android/splash
