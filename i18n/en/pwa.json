@@ -1,0 +1,12 @@
+{
+  "incompatibleTitle": "Sorry, pwa is only compatible with mobile devices",
+  "incompatibleSubtitle": "Here are couple of methods to use Our application",
+  "openOnPhoneTitle": "Opening on Phone",
+  "openOnPhoneSubtitle": "You can scan the following link to open pwa on your mobile phone or use this link <0>{{ pwaUrl }}</0>.",
+  "downloadPhoneTitle": "Downloading mobile version",
+  "downloadPhoneSubtitle": "You can scan the following link to go to download page on your mobile phone or use this link <0>{{ downloadUrl }}</0>.",
+  "installingPwaTitle": "Installing PWA",
+  "installingPwaSubtitle": "a short guide on how to install pwa.",
+  "incompatibleBrowserTitle": "Sorry your browser is incompatible",
+  "incompatibleBrowserText": "Unfortunately your browser, '{{ browser }}', doesn't support pwa installations, if you have an android device, please use chrome or if you are using ios please consider using safari"
+}

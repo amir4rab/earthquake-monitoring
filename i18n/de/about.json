@@ -1,0 +1,7 @@
+{
+  "subtitle": "Über Erdbebenüberwachung",
+  "aboutSectionIntroductions": "Dies ist ein Abschlussprojekt für mein Bachelor-Programm an der Universität. Das Ziel des Projekts ist es, zur Verbreitung der Erdbebeninformationen an die Öffentlichkeit beizutragen, daher ist das Projekt so konzipiert, dass es skalierbar und zuverlässig ist.",
+  "aboutSectionOpenSource": "Project ist vollständig Open Source und kostenlos, Sie können auf den Code <0>hier</0> auf Github zugreifen. Es wird so lange wie möglich von mir selbst gehostet, aber ein unbefristetes Hosting ist nicht selbstverständlich.",
+  "aboutSectionBugs": "Falls Sie Fehler oder Probleme gefunden haben, erwägen Sie bitte, diese auf der <0>Issues-Seite</0> von Github zu melden, dies wird für den Anwendungsentwicklungszyklus sehr hilfreich sein.",
+  "aboutSectionPermission": "Denken Sie daran, dass keine Daten dieser Website in einem kommerziellen Umfeld verwendet werden dürfen, Sie müssen die Erlaubnis des Instituts für Geophysik der Universität Teheran einholen."
+}

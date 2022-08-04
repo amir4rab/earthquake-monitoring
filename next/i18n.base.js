@@ -6,6 +6,8 @@ module.exports = {
   pages: {
     "*": [ "common", "earthquake", "states" ],
     "/states/[id]": [ "state" ],
-    "/nearme": [ "near-me" ]
+    "/nearme": [ "near-me" ],
+    "/download": [ "download" ],
+    "/about": [ "about" ]
   }
 }

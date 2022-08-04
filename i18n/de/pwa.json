@@ -1,0 +1,12 @@
+{
+  "incompatibleTitle": "Tut mir leid, PWA ist nur mit Mobilgeräten kompatibel",
+  "incompatibleSubtitle": "Hier sind einige Methoden zur Verwendung unserer Anwendung",
+  "openOnPhoneTitle": "Öffnung am Telefon",
+  "openOnPhoneSubtitle": "Sie können den folgenden Link scannen, um pwa auf Ihrem Mobiltelefon zu öffnen, oder diesen Link <0>{{ pwaUrl }}</0> verwenden.",
+  "downloadPhoneTitle": "Mobile Version herunterladen",
+  "downloadPhoneSubtitle": "Sie können den folgenden Link scannen, um auf Ihrem Mobiltelefon zur Download-Seite zu gelangen, oder diesen Link <0>{{ downloadUrl }}</0> verwenden.",
+  "installingPwaTitle": "PWA installieren",
+  "installingPwaSubtitle": "eine kurze Anleitung zur Installation von pwa.",
+  "incompatibleBrowserTitle": "Entschuldigung, Ihr Browser ist nicht kompatibel",
+  "incompatibleBrowserText": "Leider unterstützt Ihr Browser, '{{ browser }}', keine PWA-Installationen, wenn Sie ein Android-Gerät haben, verwenden Sie bitte Chrome oder wenn Sie ios verwenden, ziehen Sie bitte die Verwendung von Safari in Betracht"
+}

@@ -1,0 +1,7 @@
+{
+  "subtitle": "About Earthquake Monitoring",
+  "aboutSectionIntroductions": "This is, final project for my bachelors program at university. The goal of the project is to help to distribute the earthquake information to the masses, therefore the project is designed to be scalable and reliable.",
+  "aboutSectionOpenSource": "Project is fully open source and free, you can access the code <0>here</0> on Github. It will be hosted as long as possible by myself, but indefinite hosting isn’t a given.",
+  "aboutSectionBugs": "In case you found any bugs or problems please consider reporting them on the Github <0>Issues page</0>, it will be very helpful to applications development cycle.",
+  "aboutSectionPermission": "Keep in mind none of this website data is permitted to be used in a commercial environment, you need to get permission from <0>the Institute of Geophysics of University of Tehran</0>."
+}

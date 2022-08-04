@@ -22,5 +22,7 @@
   "nearest-state-to-you": "Die nächstgelegene Provinz zu Ihrem Standort ist {{state}}",
   "submit": "Einreichen",
   "nearest": "Nächste",
-  "furthest": "am weitesten"
+  "furthest": "am weitesten",
+  "fetching": "Daten bekommen",
+  "download": "Download"
 }

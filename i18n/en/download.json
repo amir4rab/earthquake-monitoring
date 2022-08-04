@@ -1,0 +1,15 @@
+{
+  "subtitle": "Download latest earthquake monitoring applications from here",
+  "choseYourPlatFrom": "Choose your platform",
+  "scanQrCode": "Scan Qr-Code",
+  "openOnMobile": "Open this page on your phone",
+  "open": "Open",
+  "download": "Download",
+  "comingSoon": "coming soon",
+  "pwaSubtitle": "for Ios and Android",
+  "pwaTitle": "PWA version",
+  "androidSubtitle": "for android devices",
+  "androidTitle": "Android version",
+  "iosSubtitle": "for iPhones and IPads",
+  "iosTitle": "Ios version"
+}

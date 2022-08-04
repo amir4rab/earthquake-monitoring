@@ -1,6 +1,5 @@
 {
-  "hello-world": "سلام دنیا",
-  "earthquake-monitoring": "پایش زلزله",
+  "earthquake-monitoring": "مانیتورینگ زلزله",
   "earthquake-monitoring-subtitle": "آخرین حوادث زلزله در ایران.",
   "search": "جستوجو",
   "latest": "آخرین رویدادها",
@@ -22,5 +21,7 @@
   "nearest-state-to-you": "نزدیکترین استان به مکان شما {{state}} است",
   "submit": "ثبت",
   "nearest": "نزدیک ترین",
-  "furthest": "دورترین"
+  "furthest": "دورترین",
+  "fetching": "گرفتن داده",
+  "download": "دانلود"
 }

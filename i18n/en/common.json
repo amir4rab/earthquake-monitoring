@@ -22,5 +22,7 @@
   "nearest-state-to-you": "Nearest province to your location is {{state}}",
   "submit": "Submit",
   "nearest": "Nearest",
-  "furthest": "Furthest"
+  "furthest": "Furthest",
+  "fetching": "Getting data",
+  "download": "Download"
 }
