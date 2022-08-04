@@ -34,6 +34,7 @@ specifiers:
   next-seo: ^5.4.0
   next-translate: ^1.5.0
   prisma: ^4.1.0
+  qrcode.react: ^3.1.0
   react: 18.0.0
   react-dom: 18.0.0
   react-icons: ^4.3.1
@@ -67,6 +68,7 @@ dependencies:
   next-compose-plugins: 2.2.1
   next-seo: 5.4.0_55tb3ln6rvuidyspofoqve3jnu
   next-translate: 1.5.0_next@12.2.3+react@18.0.0
+  qrcode.react: 3.1.0_react@18.0.0
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
   react-icons: 4.3.1_react@18.0.0
@@ -4199,6 +4201,14 @@ packages:
   /punycode/2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
+
+  /qrcode.react/3.1.0_react@18.0.0:
+    resolution: {integrity: sha512-oyF+Urr3oAMUG/OiOuONL3HXM+53wvuH3mtIWQrYmsXoAq0DkvZp2RYUWFSMFtbdOpuS++9v+WAkzNVkMlNW6Q==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.0.0
+    dev: false
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
