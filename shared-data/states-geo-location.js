@@ -1,6 +1,6 @@
 /** @type {import('./types/states-geo-location').StatesGeoLocationInterface} */
 
-module.exports = {
+const data = {
   "0": {
     "lat": 38,
     "long": 47
@@ -125,4 +125,6 @@ module.exports = {
     "lat": 31,
     "long": 54
   }
-}
+};
+
+export default data;

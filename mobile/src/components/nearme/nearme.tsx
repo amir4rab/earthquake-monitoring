@@ -68,7 +68,7 @@ const NearMe = () => {
     setDistances({ ...distances });
     return resultArr;
 
-  }, [ geolocationData, data ]);
+  }, [ geolocationData, data, isFetchingData ]);
 
   const earthquakeManualArr: ExtendedEarthquake[] = useMemo(() => {
     if ( isFetchingData ) return [];
@@ -79,7 +79,7 @@ const NearMe = () => {
     setDistances({ ...distances });
     return resultArr;
 
-  }, [ manuallySelectedLocation, data ]);
+  }, [ manuallySelectedLocation, data, isFetchingData ]);
 
   //* Displaying: Error incase of automatic geolocation failing *//
   if ( failed && manuallySelectedLocation === null ) {
@@ -108,10 +108,10 @@ const NearMe = () => {
           !geolocationPermission && <NearMePermissionAlert acceptPermission={ () => setGeolocationPermission(true) } />
         }
         {
-          ( isLoading || distances === null ) && <Center sx={{ minHeight: '50vh' }}><Loader /></Center>
+          (( isLoading || distances === null ) && !failed ) && <Center sx={{ minHeight: '50vh' }}><Loader /></Center>
         }
         {
-          ( geolocationPermission && !isLoading && distances !== null ) &&
+          ( geolocationPermission && ( !isLoading || failed  ) && distances !== null ) &&
           <>
             <Slider
                 marks={[
