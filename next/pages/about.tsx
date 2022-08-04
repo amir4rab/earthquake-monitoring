@@ -4,6 +4,8 @@ import Head from 'next/head';
 // next-translate
 import useTranslation from 'next-translate/useTranslation';
 
+import About from '@/components/about';
+
 const AboutPage: NextPage = () => {
   const { t } = useTranslation('common');
 
@@ -12,7 +14,7 @@ const AboutPage: NextPage = () => {
       <Head>
         <title>{ t('about') }</title>
       </Head>
-      {/* <AboutPageComponent /> */}
+      <About />
     </>
   )
 }
