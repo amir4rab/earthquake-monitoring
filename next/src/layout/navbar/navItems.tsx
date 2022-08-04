@@ -4,7 +4,7 @@ import React from 'react';
 import type { IconType } from 'react-icons'
 
 // icons
-import { IoHome, IoPin, IoInformation, IoSearch, IoShapes, IoLocation } from 'react-icons/io5';
+import { IoHome, IoPin, IoInformation, IoSearch, IoShapes, IoLocation, IoCloudDownload } from 'react-icons/io5';
 
 // mantine
 import { Box, NavLink, NavLinkProps, Text } from '@mantine/core';
@@ -112,6 +112,12 @@ export const navItems: NavItem[] = [
     icon: IoInformation,
     path: '/about',
     label: 'about',
+    type: 'linkItem'
+  },
+  {
+    icon: IoCloudDownload,
+    path: '/download',
+    label: 'download',
     type: 'linkItem'
   }
 ];
