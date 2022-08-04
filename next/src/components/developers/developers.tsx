@@ -80,7 +80,7 @@ const Developers = () => {
           <Text component='span'>
             {`Keep in mind api data is only available for "non-commercial" usages, you also have to give credit to `}
           </Text>
-          <Anchor href='http://irsc.ut.ac.ir/' target='_blank' rel='noreferrer'>
+          <Anchor href={process.env.NEXT_PUBLIC_TEHRAN_UNIVERSITY_URL} target='_blank' rel='noreferrer'>
             {`University of Tehran, Institute of Geophysics`}
           </Anchor>
           <Text component='span'>
