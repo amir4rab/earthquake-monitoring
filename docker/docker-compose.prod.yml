@@ -28,9 +28,9 @@ services:
       NEXT_JS_API_KEY: "YOUR_API_REVALIDATE_KEY"
     depends_on:
       - postgres-db
-  next:
+  web:
     build:
-      dockerfile: next/Dockerfile
+      dockerfile: web/Dockerfile
       context: ../
     container_name: earthquake-monitoring-next
     ports:

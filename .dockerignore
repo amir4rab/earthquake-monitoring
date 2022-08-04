@@ -39,14 +39,14 @@
 **/public/fallback-*.js
 
 # development tsconfig
-next/tsconfig.json
+web/tsconfig.json
 
 # development prisma
-next/prisma
+web/prisma
 cronjob/prisma
 
 # databases
 /databases
 
 # i18n conf
-/next/i18n.js
+/web/i18n.js

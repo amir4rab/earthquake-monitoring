@@ -4,13 +4,13 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copying package.json and package-lock.json
-COPY next/package.json next/package-lock.json ./ 
+COPY web/package.json web/package-lock.json ./ 
 
 # Installing dependencies
 RUN npm ci --legacy-peer-deps
 
 # Copying every other file
-COPY next/ ./
+COPY web/ ./
 
 # Using docker confings
 RUN mv tsconfig.docker.json tsconfig.json
