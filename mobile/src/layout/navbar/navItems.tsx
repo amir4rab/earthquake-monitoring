@@ -80,25 +80,25 @@ export const navItems: NavItem[] = [
   },
   {
     icon: IoHome,
-    path: '/',
+    path: import.meta.env.VITE_PWA_BUILD === '1' ? './pwa-home' : './',
     label: 'latest',
     type: 'linkItem'
   },
   {
     icon: IoLocation,
-    path: '/nearme',
+    path: './nearme',
     label: 'near-me',
     type: 'linkItem'
   },
   {
     icon: IoPin,
-    path: '/states',
+    path: './states',
     label: 'states',
     type: 'linkItem'
   },
   {
     icon: IoInformation,
-    path: '/about',
+    path: './about',
     label: 'about',
     type: 'linkItem'
   }

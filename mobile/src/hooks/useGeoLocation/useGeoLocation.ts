@@ -10,7 +10,7 @@ const useGeoLocation = () => {
     defaultValue: false 
   });
   const [ geolocationData, setGeolocationData ] = useState< null | { lat: number, long: number } >(null);
-  const [ failed, setFailed ] = useState< boolean >( import.meta.env.IS_NATIVE_BUNDLE === '1' ? true : false );
+  const [ failed, setFailed ] = useState< boolean >( import.meta.env.VITE_ANDROID_BUILD === '1' ? true : false );
   const [ isLoading, setIsLoading ] = useState(false);
 
   const getGeoLocation = useCallback(() => {

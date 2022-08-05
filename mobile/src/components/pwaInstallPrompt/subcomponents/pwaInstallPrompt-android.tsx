@@ -8,7 +8,7 @@ const PwaInstallPromptAndroid = () => {
   return (
     <article>
       <Text>
-        { t('pwaInstallAndroidGuide') }
+        { t('pwaInstallGuideAndroid') }
       </Text>
     </article>
   )

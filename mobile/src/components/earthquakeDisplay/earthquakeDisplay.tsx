@@ -133,7 +133,7 @@ const EarthquakeDisplay = ({ latestEarthquakesArr, title, mapZoom, mapCenter, is
               <Trans 
                 i18nKey='common:earthquake-data-license'
                 components={[
-                  <Anchor key={0} href='http://irsc.ut.ac.ir/' target='_blank' rel='noreferrer' />
+                  <Anchor key={0} href={ import.meta.env.VITE_TEHRAN_UNIVERSITY_URL } target='_blank' rel='noreferrer' />
                 ]}
               />
             </Text>

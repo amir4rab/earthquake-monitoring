@@ -7,6 +7,8 @@ import { Container, createStyles } from '@mantine/core';
 import DesktopNavbar from './navbar/desktopNavbar';
 import MobileNavbar from './navbar/mobileNavbar';
 
+// router 
+import { useLocation } from 'react-router-dom'
 
 const desktopNavbarWidth= 'max(20vw, 17rem)';
 const useStyles = createStyles((t) => ({
@@ -23,6 +25,16 @@ interface Props {
 }
 function Layout( { children }: Props ) {
   const { classes } = useStyles();
+  const { pathname } = useLocation();
+
+  // hiding nav incase, user is on pwa install prompt
+  if ( import.meta.env.VITE_PWA_BUILD === '1' && pathname === '/' ) return (
+    <div className={ classes.container }>
+      <Container>
+        { children }
+      </Container>
+    </div>
+  )
 
   return (
     <>

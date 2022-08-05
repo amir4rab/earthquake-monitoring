@@ -8,7 +8,7 @@ const PwaInstallPromptIos = () => {
   return (
     <article>
       <Text>
-        { t('pwaInstallIosGuide') }
+        { t('pwaInstallGuideIos') }
       </Text>
     </article>
   )

@@ -88,7 +88,7 @@ const NearMe = () => {
         <NearMeHead />
         {
           // hiding location error on android builds
-          import.meta.env.ANDROID_BUILD !== '1' && 
+          import.meta.env.VITE_ANDROID_BUILD !== '1' && 
           <Box py='xl' my='xl'>
             <NearMeErrorAlert />
           </Box>
