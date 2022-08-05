@@ -68,14 +68,6 @@ const MantineSpotlight = ({ children }:{ children: ReactNode }) => {
       transition='slide-down'
       transitionDuration={300}
       limit={ 10 }
-      styles={(t) => ({
-        'searchInput': {
-          textAlign: t.dir === 'ltr' ? 'left' : 'right'
-        },
-        'action': {
-          textAlign: t.dir === 'ltr' ? 'left' : 'right'
-        }
-      })}
       nothingFoundMessage={ t('no-search-result-no-query') }
     >
       { children }

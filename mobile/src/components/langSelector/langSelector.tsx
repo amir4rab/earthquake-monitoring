@@ -25,7 +25,6 @@ const LangSelector = () => {
         item: { 
           background: t.colors.dark[5], 
           color: t.white, 
-          textAlign: t.dir === 'ltr' ? 'left' : 'right',
           [ '&:hover' ]: {
             background: t.colors.dark[4]
           },
@@ -35,7 +34,7 @@ const LangSelector = () => {
         },
         selected: { background: t.colors.dark[0], color: t.colors.dark[7] },
         defaultVariant: { background: t.colors.dark[9] },
-        withIcon: { color: t.white, borderColor: t.colors.dark[3], textAlign: t.dir === 'ltr' ? 'left' : 'right' },
+        withIcon: { color: t.white, borderColor: t.colors.dark[3] },
         input: { background: 'transparent' },
         label: { color: t.white },
       })}

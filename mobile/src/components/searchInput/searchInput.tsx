@@ -12,17 +12,6 @@ export interface SearchInputProps extends TextInputProps {
 const SearchInput = ({ searchQuery, placeHolder, icon, setSearchQuery, ...props }: SearchInputProps) => {
   return (
     <TextInput
-      styles={(t) => ({
-        icon: {
-          right: t.dir === 'rtl' ? 0 : 'auto',
-          left: t.dir === 'ltr' ? 0 : 'auto'
-        },
-        withIcon: {
-          paddingRight: t.dir === 'rtl' ? t.spacing.xl * 1.5 : t.spacing.sm,
-          paddingLeft: t.dir === 'ltr' ? t.spacing.xl * 1.5 : t.spacing.sm,
-          textAlign: t.dir === 'ltr' ? 'left' : 'right'
-        }
-      })}
       value={ searchQuery }
       onChange={ e => setSearchQuery(e.target.value) }
       width='100%'
