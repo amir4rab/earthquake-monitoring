@@ -27,7 +27,7 @@ let connectedToNext= false;
             console.log(`Running cronjob, ${date.toLocaleTimeString('de')} ⏰`);
           
             cronjob({ verbose: true, revalidateInDev: true });
-          }, ( 1000 * 60 * 5 )); // every 10 minutes
+          }, ( 1000 * 60 * 10 )); // every 10 minutes
     
         } catch(err) {
           resolve(false);

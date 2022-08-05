@@ -9,8 +9,8 @@ import xmlToJson from './xmlToJson';
 
 // mappedStates
 const mappedStates = {
-  "east-Azarbaijan": 0,
-  "west-Azarbaijan": 1,
+  "east-azarbaijan": 0,
+  "west-azarbaijan": 1,
   "ardabil": 2, "ardebil": 2,
   "esfahan": 3, "isfahan": 3,
   "alborz": 4,
