@@ -48,8 +48,73 @@
     <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_750.png' sizes='750x1334' />
     <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_640.png' sizes='640x1136' />
   </head>
-  <body>
-    <div id='root'></div>
+  <style>
+    
+    #loading-overlay {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 2000;
+      background-color: #1A1B1E;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+    #icon {
+      background-color: #4c6ef54f;
+      padding: 1rem;
+      border-radius: 2em;
+      margin-bottom: 2rem;
+    }
+    #icon svg {
+      width: 20vw;
+      height: 20vw;
+    }
+    #loading-text {
+      color: #C1C2C5; text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    @keyframes hide-overlay {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        display: none;
+      }
+    }
+
+    .hidden-overlay {
+      animation: hide-overlay 1s ease-in-out forwards;
+      user-select: none !important;
+      pointer-events: none !important;
+    }
+  </style>
+  <body style="background-color: #1A1B1E;">
+    <div id="loading-overlay">
+      <div>
+        <div id="icon">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M29.25 21.625C29.25 20.9346 29.8096 20.375 30.5 20.375H31.75C32.4404 20.375 33 20.9346 33 21.625V42.375C33 43.0654 32.4404 43.625 31.75 43.625H30.5C29.8096 43.625 29.25 43.0654 29.25 42.375V21.625Z" fill="#4C6EF5"/>
+            <path d="M40 33.125C40 32.4346 40.5596 31.875 41.25 31.875H42.5C43.1904 31.875 43.75 32.4346 43.75 33.125V42.375C43.75 43.0654 43.1904 43.625 42.5 43.625H41.25C40.5596 43.625 40 43.0654 40 42.375V33.125Z" fill="#4C6EF5"/>
+            <path d="M52 20.375C51.3096 20.375 50.75 20.9346 50.75 21.625V42.375C50.75 43.0654 51.3096 43.625 52 43.625H53.25C53.9404 43.625 54.5 43.0654 54.5 42.375V21.625C54.5 20.9346 53.9404 20.375 53.25 20.375H52Z" fill="#4C6EF5"/>
+            <path d="M34.625 28C34.625 27.3096 35.1846 26.75 35.875 26.75H37.125C37.8154 26.75 38.375 27.3096 38.375 28V37.25C38.375 37.9404 37.8154 38.5 37.125 38.5H35.875C35.1846 38.5 34.625 37.9404 34.625 37.25V28Z" fill="#4C6EF5"/>
+            <path d="M45.375 28C45.375 27.3096 45.9346 26.75 46.625 26.75H47.875C48.5654 26.75 49.125 27.3096 49.125 28V37.25C49.125 37.9404 48.5654 38.5 47.875 38.5H46.625C45.9346 38.5 45.375 37.9404 45.375 37.25V28Z" fill="#4C6EF5"/>
+            <path d="M10.875 43.625H24.125C24.8154 43.625 25.375 43.0654 25.375 42.375V41.125C25.375 40.4346 24.8154 39.875 24.125 39.875H10.875C10.1846 39.875 9.625 40.4346 9.625 41.125V42.375C9.625 43.0654 10.1846 43.625 10.875 43.625Z" fill="#4C6EF5"/>
+            <path d="M10.875 33.875H24.125C24.8154 33.875 25.375 33.3154 25.375 32.625V31.375C25.375 30.6846 24.8154 30.125 24.125 30.125H10.875C10.1846 30.125 9.625 30.6846 9.625 31.375V32.625C9.625 33.3154 10.1846 33.875 10.875 33.875Z" fill="#4C6EF5"/>
+            <path d="M10.875 38.75H14C14.6904 38.75 15.25 38.1904 15.25 37.5V36.25C15.25 35.5596 14.6904 35 14 35H10.875C10.1846 35 9.625 35.5596 9.625 36.25V37.5C9.625 38.1904 10.1846 38.75 10.875 38.75Z" fill="#4C6EF5"/>
+            <path d="M10.875 29H14C14.6904 29 15.25 28.4404 15.25 27.75V26.5C15.25 25.8096 14.6904 25.25 14 25.25H10.875C10.1846 25.25 9.625 25.8096 9.625 26.5V27.75C9.625 28.4404 10.1846 29 10.875 29Z" fill="#4C6EF5"/>
+            <path d="M10.875 24.125H24.125C24.8154 24.125 25.375 23.5654 25.375 22.875V21.625C25.375 20.9346 24.8154 20.375 24.125 20.375H10.875C10.1846 20.375 9.625 20.9346 9.625 21.625V22.875C9.625 23.5654 10.1846 24.125 10.875 24.125Z" fill="#4C6EF5"/>
+          </svg>                       
+        </div>         
+        <div id="loading-text">Loading...</div>
+      </div>
+    </div>
+    <div id='root'>
+    </div>
     <script type='module' src='/src/app/main.tsx'></script>
   </body>
 </html>

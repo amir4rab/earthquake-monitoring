@@ -1,4 +1,4 @@
-import React from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 // mantine components
 import { Container, createStyles } from '@mantine/core';
@@ -24,8 +24,25 @@ interface Props {
   children: JSX.Element | JSX.Element[];
 }
 function Layout( { children }: Props ) {
+  const firstRender = useRef(true);
   const { classes } = useStyles();
   const { pathname } = useLocation();
+
+  const hideLoadingOverlay = useCallback(() => {
+    const el = document.getElementById('loading-overlay') as HTMLDivElement;
+    el.setAttribute('class', 'hidden-overlay')
+    setTimeout(() => {
+      el.remove()
+    }, 700)
+  }, []);
+
+  useEffect(() => {
+    if ( !firstRender.current ) return;
+    firstRender.current = false;
+    hideLoadingOverlay();
+  })
+
+
 
   // hiding nav incase, user is on pwa install prompt
   if ( import.meta.env.VITE_PWA_BUILD === '1' && pathname === '/' ) return (
