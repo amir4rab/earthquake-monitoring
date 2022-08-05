@@ -8,6 +8,10 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prisma-types": "rm -r -f ./prisma && cp ../prisma . -r && npx prisma generate && rm -r -f ./prisma",
+    "android-build": "cross-env VITE_ANDROID_BUILD=1 pnpm run build && cp ./assets/* ./dist && npx cap sync android && pnpm run generate-assets",
+    "pwa-dev": "cross-env VITE_PWA_BUILD=1 pnpm run dev",
+    "android-dev": "cross-env VITE_ANDROID_BUILD=1 pnpm run dev",
+    "pwa-build": "cross-env VITE_PWA_BUILD=1 pnpm run build",
     "generate-assets": "npx cordova-res android --skip-config --copy --icon-background-source '#141517' --type=adaptive-icon && npx cap sync android"
   },
   "dependencies": {

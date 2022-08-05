@@ -46,7 +46,7 @@ export default defineConfig({
         ],
         'theme_color': '#4C6EF5',
         'background_color': '#141517',
-        'start_url': '/',
+        'start_url': '/pwa-home',
         'display': 'standalone',
         'lang': 'en',
         'dir': 'ltr',

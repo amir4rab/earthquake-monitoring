@@ -25,6 +25,10 @@ import enNearme from '../../i18n/en/near-me.json';
 import deNearme from '../../i18n/de/near-me.json';
 import faNearme from '../../i18n/fa/near-me.json';
 
+import enAbout from '../../i18n/en/about.json';
+import deAbout from '../../i18n/de/about.json';
+import faAbout from '../../i18n/fa/about.json';
+
 
 import { initReactI18next } from 'react-i18next';
 import LangDetector from 'i18next-browser-languagedetector'
@@ -38,7 +42,8 @@ const resources = {
     'near-me': enNearme,
     'states': enStates,
     'state': enState,
-    'pwa': enPwa
+    'pwa': enPwa,
+    'about': enAbout
   },
   de: {
     'common': deCommon,
@@ -46,7 +51,8 @@ const resources = {
     'near-me': deNearme,
     'states': deStates,
     'state': deState,
-    'pwa': dePwa
+    'pwa': dePwa,
+    'about': deAbout
   },
   fa: {
     'common': faCommon,
@@ -54,7 +60,8 @@ const resources = {
     'near-me': faNearme,
     'states': faStates,
     'state': faState,
-    'pwa': faPwa
+    'pwa': faPwa,
+    'about': faAbout
   }
 };
 
