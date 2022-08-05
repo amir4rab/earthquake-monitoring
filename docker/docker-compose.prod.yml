@@ -1,11 +1,11 @@
 version: "3.9"
 services:
-  postgres-db:
+  postgres-db-local:
     image: postgres
-    container_name: earthquake-monitoring-postgres-db
+    container_name: earthquake-monitoring-postgres-db-local
     ports:
       - '5432:5432'
-    volumes: 
+    volumes: #? you can update this route so your data will be stored somewhere else
       - ../databases/postgres:/var/lib/postgresql/data
     environment:
       #! you HAVE TO update the following ENV variable
@@ -17,17 +17,18 @@ services:
     ports:
       - '6379:6379'
     depends_on:
-      - postgres-db
+      - postgres-db-local
   cronjob:
     build: 
       dockerfile: cronjob/Dockerfile
       context: ../
-    environment: #! you HAVE TO update, all of ENV variables
-      POSTGRES_DATABASE_URL: "postgresql://postgres:YOUR_POSTGRESDB_PASSWORD@postgres-db:5432"
-      NEXT_JS_API_ROUTE: "http://next:3000/api/revalidate"
+    environment: 
+      NEXT_JS_API_ROUTE: "http://web:3000/api/revalidate"
+      #! you HAVE TO update, all of ENV variables
+      POSTGRES_DATABASE_URL: "postgresql://postgres:YOUR_POSTGRESDB_PASSWORD@postgres-db-local:5432"
       NEXT_JS_API_KEY: "YOUR_API_REVALIDATE_KEY"
     depends_on:
-      - postgres-db
+      - postgres-db-local
   web:
     build:
       dockerfile: web/Dockerfile
@@ -35,11 +36,15 @@ services:
     container_name: earthquake-monitoring-next
     ports:
       - "3000:3000"
-    environment: #! you HAVE TO update, all of ENV variables
-      POSTGRES_DATABASE_URL: "postgresql://postgres:YOUR_POSTGRESDB_PASSWORD@postgres-db:5432"
+    environment: 
+      NEXT_PUBLIC_PWA_URL: "https://pwa.earthquake-monitoring.amir4rab.com"
+      NEXT_PUBLIC_GITHUB_URL: "https://github.com/amir4rab/earthquake-monitoring"
+      NEXT_PUBLIC_TEHRAN_UNIVERSITY_URL: "http://irsc.ut.ac.ir/"
       REDIS_DATABASE_URL: "redis://redis-db:6379"
+      #! you HAVE TO update, all of ENV variables
+      POSTGRES_DATABASE_URL: "postgresql://postgres:YOUR_POSTGRESDB_PASSWORD@postgres-db-local:5432"
       API_REVALIDATE_KEY: "YOUR_API_REVALIDATE_KEY"
     depends_on:
       - cronjob
-      - postgres-db
+      - postgres-db-local
       - redis-db

@@ -46,6 +46,8 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Changing file ownership to the unprivileged user
+#? In case that owner of files in your linux os is an admin user, you need to uncomment the following command, and comment rest of "chown" commands.
+# RUN chown nextjs:nodejs . -R
 RUN chown nextjs:nodejs .
 RUN chown nextjs:nodejs -R ./prisma
 RUN chown nextjs:nodejs -R ./shared-data
