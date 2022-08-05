@@ -22,6 +22,6 @@
   },
   "materialTheme.accent": "Blue",
   "eslint.workingDirectories": [
-    "./next",
+    "./web", "./mobile"
   ]
 }

@@ -46,11 +46,9 @@ function Layout( { children }: Props ) {
 
   // hiding nav incase, user is on pwa install prompt
   if ( import.meta.env.VITE_PWA_BUILD === '1' && pathname === '/' ) return (
-    <div className={ classes.container }>
-      <Container>
-        { children }
-      </Container>
-    </div>
+    <Container>
+      { children }
+    </Container>
   )
 
   return (
