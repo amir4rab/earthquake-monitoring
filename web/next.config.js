@@ -22,14 +22,26 @@ module.exports = withPlugins(
           locale: false
         },
         {
+          source: '/:locale*/marker-icon-2x.png',
+          destination: '/assets/leaflet/marker-icon.svg',
+          permanent: false,
+          locale: false
+        },
+        {
           source: '/:locale*/marker-shadow.png',
           destination: '/assets/leaflet/shadow.png',
           permanent: false,
           locale: false
         },
         {
-          source: '/:locale*/marker-icon-2x.png',
-          destination: '/assets/leaflet/marker-icon.svg',
+          source: '/:locale*/layers.png',
+          destination: '/assets/leaflet/layers.svg',
+          permanent: false,
+          locale: false
+        },
+        {
+          source: '/:locale*/layers-2x.png',
+          destination: '/assets/leaflet/layers.svg',
           permanent: false,
           locale: false
         }
