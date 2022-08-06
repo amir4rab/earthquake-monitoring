@@ -10,7 +10,7 @@ import Trans from 'next-translate/Trans';
 
 // components
 import ListDisplay from '../listDisplay';
-import Map from '../map';
+import Map from '../map/suspended';
 
 // types
 import type { MapOptions } from 'leaflet';

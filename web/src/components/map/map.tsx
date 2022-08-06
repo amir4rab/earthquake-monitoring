@@ -12,7 +12,7 @@ import { Box, BoxProps, Loader } from '@mantine/core';
 import type { ExtendedCircleProps } from '@/types/extendedCircleProps';
 import type { MapOptions } from 'leaflet';
 
-interface Props extends BoxProps {
+export interface Props extends BoxProps {
   elements?: ExtendedCircleProps[];
   zoom?: number;
   mapCenter?: MapOptions['center'];
