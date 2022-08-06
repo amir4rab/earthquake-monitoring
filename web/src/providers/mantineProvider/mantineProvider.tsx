@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
 // mantine components
 import { MantineProvider as MantineOriginalProvider, ColorSchemeProvider, ColorScheme, Global } from '@mantine/styles';
@@ -8,8 +9,9 @@ import { useLocalStorage } from '@mantine/hooks';
 import useTranslation from 'next-translate/useTranslation';
 
 // components
-import RouterTransition from './routerTransition';
-import MantineSpotlight from '../mantineSpotlight';
+const RouterTransition = dynamic(() => import('./routerTransition'),{ suspense: true, ssr: false });
+// import MantineSpotlight from '../mantineSpotlight';
+const MantineSpotlight = dynamic(() => import('../mantineSpotlight'),{ suspense: true, ssr: false });
 
 
 interface Props {
@@ -33,7 +35,6 @@ const MantineProvider = ( { children }: Props ) => {
         withGlobalStyles 
         withNormalizeCSS
       >
-        <RouterTransition />
         <Global 
           styles={(t) => ({
             '*, *::after, *::before': {
@@ -63,9 +64,12 @@ const MantineProvider = ( { children }: Props ) => {
             }
           })} 
         />
-        <MantineSpotlight>
-          { children }
-        </MantineSpotlight>
+        <Suspense>
+          <RouterTransition />
+          <MantineSpotlight>
+            { children }
+          </MantineSpotlight>
+        </Suspense>
       </MantineOriginalProvider>
     </ColorSchemeProvider>
   );

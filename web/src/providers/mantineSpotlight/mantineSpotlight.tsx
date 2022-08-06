@@ -1,8 +1,7 @@
 import React, { ReactNode, useMemo } from 'react';
 
 // mantine
-import { Button, Group } from '@mantine/core';
-import { SpotlightProvider, openSpotlight } from '@mantine/spotlight';
+import { SpotlightProvider } from '@mantine/spotlight';
 
 // types
 import type { SpotlightAction } from '@mantine/spotlight';
@@ -44,13 +43,13 @@ const MantineSpotlight = ({ children }:{ children: ReactNode }) => {
       navArr.push({
         title: statesT(state),
         group: t('states'),
-        onTrigger: () => push(`states/${state}`, '', { locale: lang }),
+        onTrigger: () => push(`/states/${state}`, '', { locale: lang }),
         icon: <IoLocation />,
       });
     }
 
     return navArr
-  }, [ lang, push, t, statesT ])
+  }, [ lang, push, t, statesT ]);
 
   return (
     <SpotlightProvider
