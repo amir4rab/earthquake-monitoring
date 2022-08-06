@@ -1,22 +1,62 @@
+import { lazy, Suspense } from 'react';
+
+// react-router-dom
 import { Route, Routes as ReactRouterDomRoutes } from 'react-router-dom'
 
-
+// components
+import LoadingDisplay from '@/components/loadingDisplay';
 import Home from '@/components/home';
-import State from '@/components/state';
-import States from '@/components/states';
-import Nearme from '@/components/nearme';
 import PwaInstallPrompt from '@/components/pwaInstallPrompt/pwaInstallPrompt';
-import About from '@/components/about';
+
+// lazy loaded components
+const State = lazy(() => import('@/components/state'));
+const States = lazy(() => import('@/components/states'));
+const Nearme = lazy(() => import('@/components/nearme'));
+const About = lazy(() => import('@/components/about'));
 
 const Routes = () => {
   return (
     <ReactRouterDomRoutes>
-      <Route path='/' element={ import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home /> } />
-      <Route path='/pwa-home' element={ <Home /> } />
-      <Route path='/states' element={ <States /> } />
-      <Route path='/states/:id' element={ <State /> } />
-      <Route path='/nearme' element={ <Nearme /> } />
-      <Route path='/about' element={ <About /> } />
+      <Route 
+        path='/'
+        element={ import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home /> }
+      />
+      <Route 
+        path='/pwa-home' 
+        element={ <Home /> } 
+      />
+      <Route 
+        path='/states' 
+        element={
+          <Suspense fallback={ <LoadingDisplay /> }>
+            <States />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path='/states/:id' 
+        element={
+          <Suspense fallback={ <LoadingDisplay /> }>
+            <State />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path='/nearme' 
+        element={
+          <Suspense fallback={ <LoadingDisplay /> }>
+            <Nearme />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path='/about' 
+        element={
+          <Suspense>
+            <About />
+          </Suspense>
+        } 
+      />
     </ReactRouterDomRoutes>
   )
 };
