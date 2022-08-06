@@ -80,25 +80,25 @@ export const navItems: NavItem[] = [
   },
   {
     icon: IoHome,
-    path: import.meta.env.VITE_PWA_BUILD === '1' ? './pwa-home' : './',
+    path: import.meta.env.VITE_PWA_BUILD === '1' ? '/pwa-home' : '/',
     label: 'latest',
     type: 'linkItem'
   },
   {
     icon: IoLocation,
-    path: './nearme',
+    path: '/nearme',
     label: 'near-me',
     type: 'linkItem'
   },
   {
     icon: IoPin,
-    path: './states',
+    path: '/states',
     label: 'states',
     type: 'linkItem'
   },
   {
     icon: IoInformation,
-    path: './about',
+    path: '/about',
     label: 'about',
     type: 'linkItem'
   }
@@ -106,11 +106,11 @@ export const navItems: NavItem[] = [
 
 interface InnerNavProps {
   onSearch?: Function;
+  onLinkClick?: () => void;
 }
-const InnerNav = ({ onSearch }: InnerNavProps ) => {
-  const { classes, cx } = useStyles();
-  const  currentLocation = useLocation();
-
+const InnerNav = ({ onSearch, onLinkClick }: InnerNavProps ) => {
+  const { classes } = useStyles();
+  const { pathname } = useLocation();
   const { t } = useTranslation('common');
 
   return (
@@ -146,9 +146,10 @@ const InnerNav = ({ onSearch }: InnerNavProps ) => {
                   styles={ NavLinksStyles } 
                   component={ Link }
                   to={ path }
-                  active={ location.pathname === path }
+                  active={ pathname === path }
                   icon={ <props.icon /> }
                   label={ t(label) }
+                  onClick={ () => onLinkClick && onLinkClick() }
                   mb='sm'
                 />
               )

@@ -6,6 +6,7 @@ import { Container, createStyles } from '@mantine/core';
 // components
 import DesktopNavbar from './navbar/desktopNavbar';
 import MobileNavbar from './navbar/mobileNavbar';
+import useCapacitor from '@/hooks/useCapacitor';
 
 // router 
 import { useLocation } from 'react-router-dom'
@@ -27,6 +28,7 @@ function Layout( { children }: Props ) {
   const firstRender = useRef(true);
   const { classes } = useStyles();
   const { pathname } = useLocation();
+  useCapacitor();
 
   const hideLoadingOverlay = useCallback(() => {
     const el = document.getElementById('loading-overlay') as HTMLDivElement;

@@ -42,7 +42,7 @@ const MobileNavbar = () => {
         onClose={ () => setDrawerState(false) } 
         opened={ drawerState }
       >
-        <InnerNav onSearch={ () => setDrawerState(false) } />
+        <InnerNav onLinkClick={ () => setDrawerState(false) } onSearch={ () => setDrawerState(false) } />
       </Drawer>
     </>
   )
