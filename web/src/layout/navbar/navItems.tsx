@@ -124,9 +124,10 @@ export const navItems: NavItem[] = [
 
 interface InnerNavProps {
   onSearch?: Function;
+  onLinkClick?: () => void;
 }
-const InnerNav = ({ onSearch }: InnerNavProps ) => {
-  const { classes, cx } = useStyles();
+const InnerNav = ({ onSearch, onLinkClick }: InnerNavProps ) => {
+  const { classes } = useStyles();
   const { pathname } = useRouter();
   const { t } = useTranslation('common');
 
@@ -165,6 +166,7 @@ const InnerNav = ({ onSearch }: InnerNavProps ) => {
                     active={ pathname === path }
                     icon={ <props.icon /> }
                     label={ t(label) }
+                    onClick={ () => onLinkClick && onLinkClick() }
                     mb='sm'
                   />
                 </Link>

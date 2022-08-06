@@ -2,7 +2,19 @@ import React, { useState } from 'react';
 
 // mantine components
 import { ActionIcon, Drawer } from '@mantine/core';
-import { useMantineTheme } from '@mantine/styles'
+import { useMantineTheme, keyframes } from '@mantine/styles'
+
+// animations
+const animateInLTR = keyframes({
+  from: {
+    right: '-4rem',
+    opacity: 0
+  },
+  to: {
+    right: '2rem',
+    opacity: 1
+  }
+})
 
 // icons
 import { IoMenu } from 'react-icons/io5';
@@ -24,7 +36,8 @@ const MobileNavbar = () => {
           borderRadius: '50%',
           zIndex: 1001,
           position: 'fixed',
-          right: '2rem',
+          right: '-3rem',
+          animation: `${animateInLTR} forwards .3s ease-in .3s`,
           bottom: '2rem',
           [ t.fn.largerThan('md') ]: {
             display: 'none'
@@ -43,7 +56,7 @@ const MobileNavbar = () => {
         onClose={ () => setDrawerState(false) } 
         opened={ drawerState }
       >
-        <InnerNav onSearch={ () => setDrawerState(false) } />
+        <InnerNav onLinkClick={ () => setDrawerState(false) } onSearch={ () => setDrawerState(false) } />
       </Drawer>
     </>
   )
