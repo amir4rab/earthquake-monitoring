@@ -20,7 +20,10 @@ const submitToDatabase = async ( data: Prisma.EarthquakeCreateInput[] ): Promise
   
     const diff = latestItem === null ? data : calcDiff(data, latestItem.id.trim()); 
   
-    if ( diff.length === 0 ) return [];
+    if ( diff.length === 0 ) {
+      await prisma.$disconnect();
+      return []
+    };
   
     for ( let i = 0; i < diff.length; i++ ) {
       diff[i] && await prisma.earthquake.create({ data: diff[i] })
