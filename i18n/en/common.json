@@ -1,5 +1,4 @@
 {
-  "hello-world": "Hello world",
   "earthquake-monitoring": "Earthquake monitoring",
   "earthquake-monitoring-subtitle": "Latest earthquake events in iran.",
   "search": "Search",
@@ -24,5 +23,8 @@
   "nearest": "Nearest",
   "furthest": "Furthest",
   "fetching": "Getting data",
-  "download": "Download"
+  "download": "Download",
+  "notFound": "Not found",
+  "notFoundSubtitle": "Sorry, we could found this page",
+  "notFoundText": "it seems like you're somewhere that doesn't exist, you can go back to <0>home</0>, or in case this page should exist, report a bug on <1>Github</1>."
 }

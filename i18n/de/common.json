@@ -1,5 +1,4 @@
 {
-  "hello-world": "Hallo welt",
   "earthquake-monitoring": "Erdbebenüberwachung",
   "earthquake-monitoring-subtitle": "Aktuelle Erdbebenereignisse im Iran.",
   "search": "Suche",
@@ -24,5 +23,8 @@
   "nearest": "Nächste",
   "furthest": "am weitesten",
   "fetching": "Daten bekommen",
-  "download": "Download"
+  "download": "Download",
+  "notFound": "Nicht gefunden",
+  "notFoundSubtitle": "Entschuldigung, wir konnten diese Seite finden",
+  "notFoundText": "Es scheint, als wären Sie an einem Ort, der nicht existiert. Sie können zur <0>Startseite</0> zurückkehren oder, falls diese Seite existieren sollte, einen Fehler auf <1>Github</1> melden."
 }
