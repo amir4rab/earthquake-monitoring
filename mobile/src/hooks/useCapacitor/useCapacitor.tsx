@@ -11,7 +11,7 @@ const useCapacitor = () => {
   const [ perRoute, setPerRoute ] = useState< null | string>(null);
 
   const setupListeners = useCallback(() => {
-    App.addListener('backButton', () => {
+    App.addListener('backButton', async () => {
       if ( perRoute !== pathname ) { // going one page back incase pages were not the same
         setPerRoute(pathname);
         navigate(-1);
@@ -19,7 +19,7 @@ const useCapacitor = () => {
       };
 
       // the only other case is user is on the home and clicked back button therefore app will be closed
-      App.exitApp();
+      await App.minimizeApp();
     })
   }, [ pathname, perRoute ]);
 
@@ -35,7 +35,7 @@ const useCapacitor = () => {
     return () => {
       clearEventListeners();
     }
-  }, [ setupListeners ])
+  }, [ setupListeners ]);
 
   return undefined;
 };

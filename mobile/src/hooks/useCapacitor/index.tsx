@@ -1,3 +1,3 @@
-const useCapacitor = async () => import.meta.env.VITE_ANDROID_BUILD === '1' ? await import('./useCapacitor') : null;
+import useCapacitor from './useCapacitor';
 
-export default useCapacitor;
+export default import.meta.env.VITE_ANDROID_BUILD === '1' ? useCapacitor : () => {};
