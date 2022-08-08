@@ -1,11 +1,11 @@
 {
   "root": true,
   "settings": {
-    "next": {
-      "rootDir": ["next/"]
+    "web": {
+      "rootDir": ["./web"]
     },
-    "vite": {
-      "rootDir": ["vite/"]
+    "mobile": {
+      "rootDir": ["./mobile"]
     }
   }
 }
