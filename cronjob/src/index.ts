@@ -3,8 +3,12 @@ import dotenv from 'dotenv';
 
 // utils
 import cronjob from './utils/cronjob';
+import getTimeInterval from './utils/getTimeInterval'
 
 dotenv.config();
+
+const defaultTimeInterval = 1000 * 60 * 10; // default time interval is 10 minutes
+const timeInterval = getTimeInterval( defaultTimeInterval );
 
 const date = new Date();
 
@@ -13,6 +17,7 @@ let connectedToNext= false;
 
 (async () => {
   while( !connectedToNext ) {
+    console.log('Trying to connect to Next.js 🔗')
     connectedToNext = await new Promise<boolean>( async (resolve) => {
       setTimeout( async () => {
         try {
@@ -27,7 +32,7 @@ let connectedToNext= false;
             console.log(`Running cronjob, ${date.toLocaleTimeString('de')} ⏰`);
           
             cronjob({ verbose: true, revalidateInDev: true });
-          }, ( 1000 * 60 * 10 )); // every 10 minutes
+          }, timeInterval); // every 10 minutes
     
         } catch(err) {
           resolve(false);
