@@ -81,7 +81,7 @@ pnpm run prisma-migrate-dev # Applying schemas to database
 pnpm run dev # Starting the development server
 ```
 
-## Hosting 🔥 &nbsp;
+## Hosting 🔥
 
 ### software requirements:
 - Docker ( 20.10.17 or higher )
@@ -100,3 +100,6 @@ cp  docker-compose.prod.yml docker-compose.local.yml # then update the new file 
 # You might need to change "docker compose" to "docker-compose"
 docker compose -f docker-compose.local.yml up -d
 ```
+
+## Building android application
+please read our guide in [here](./mobile/README.md)
