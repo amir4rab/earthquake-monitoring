@@ -32,7 +32,7 @@ function Layout( { children }: Props ) {
 
   const hideLoadingOverlay = useCallback(() => {
     const el = document.getElementById('loading-overlay') as HTMLDivElement;
-    el.setAttribute('class', 'hidden-overlay')
+    el.setAttribute('class', 'hidden-overlay align-center')
     setTimeout(() => {
       el.remove()
     }, 700)

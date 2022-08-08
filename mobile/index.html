@@ -49,7 +49,12 @@
     <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_640.png' sizes='640x1136' />
   </head>
   <style>
-    
+    .align-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
     #loading-overlay {
       position: fixed;
       left: 0;
@@ -58,25 +63,12 @@
       height: 100vh;
       z-index: 2000;
       background-color: #1A1B1E;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-    }
-    #icon {
-      background-color: #4c6ef54f;
-      padding: 1rem;
-      border-radius: 2em;
-      margin-bottom: 2rem;
     }
     #icon svg {
-      width: 20vw;
-      height: 20vw;
+      aspect-ratio: 1/1;
+      width: min(20vw, 75px);
+      height: min(20vw, 75px);
     }
-    #loading-text {
-      color: #C1C2C5; text-align: center; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
     @keyframes hide-overlay {
       from {
         opacity: 1;
@@ -86,17 +78,30 @@
         display: none;
       }
     }
-
     .hidden-overlay {
       animation: hide-overlay 1s ease-in-out forwards;
       user-select: none !important;
       pointer-events: none !important;
     }
+    @keyframes spinner-animation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    #loading-spinner {
+      transform: scale(.5);
+    }
+    #loading-spinner svg {
+      animation: spinner-animation .65s ease-in-out forwards infinite;
+    }
   </style>
-  <body style="background-color: #1A1B1E;">
-    <div id="loading-overlay">
+  <body>
+    <div id="loading-overlay" class="align-center">
       <div>
-        <div id="icon">
+        <div id="icon" class="align-center">
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M29.25 21.625C29.25 20.9346 29.8096 20.375 30.5 20.375H31.75C32.4404 20.375 33 20.9346 33 21.625V42.375C33 43.0654 32.4404 43.625 31.75 43.625H30.5C29.8096 43.625 29.25 43.0654 29.25 42.375V21.625Z" fill="#4C6EF5"/>
             <path d="M40 33.125C40 32.4346 40.5596 31.875 41.25 31.875H42.5C43.1904 31.875 43.75 32.4346 43.75 33.125V42.375C43.75 43.0654 43.1904 43.625 42.5 43.625H41.25C40.5596 43.625 40 43.0654 40 42.375V33.125Z" fill="#4C6EF5"/>
@@ -109,8 +114,13 @@
             <path d="M10.875 29H14C14.6904 29 15.25 28.4404 15.25 27.75V26.5C15.25 25.8096 14.6904 25.25 14 25.25H10.875C10.1846 25.25 9.625 25.8096 9.625 26.5V27.75C9.625 28.4404 10.1846 29 10.875 29Z" fill="#4C6EF5"/>
             <path d="M10.875 24.125H24.125C24.8154 24.125 25.375 23.5654 25.375 22.875V21.625C25.375 20.9346 24.8154 20.375 24.125 20.375H10.875C10.1846 20.375 9.625 20.9346 9.625 21.625V22.875C9.625 23.5654 10.1846 24.125 10.875 24.125Z" fill="#4C6EF5"/>
           </svg>                       
-        </div>         
-        <div id="loading-text">Loading...</div>
+        </div>
+        <div id="loading-spinner" class="align-center">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M50 100C77.6142 100 100 77.6142 100 50C100 22.3858 77.6142 0 50 0C22.3858 0 0 22.3858 0 50C0 77.6142 22.3858 100 50 100ZM49.5 93C73.5244 93 93 73.5244 93 49.5C93 25.4756 73.5244 6 49.5 6C25.4756 6 6 25.4756 6 49.5C6 73.5244 25.4756 93 49.5 93Z" fill="#1B2651"/>
+            <path d="M85.3553 14.6447C76.3071 5.59644 63.8071 0 50 0C37.6193 0 26.2895 4.49986 17.5571 11.9533L21.3173 16.363C28.9088 9.90025 38.7489 6 49.5 6C61.7665 6 72.8472 11.0773 80.7551 19.2449L85.3553 14.6447Z" fill="#4C6EF5"/>
+          </svg>                                
+        </div>
       </div>
     </div>
     <div id='root'>
