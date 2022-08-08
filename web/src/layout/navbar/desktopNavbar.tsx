@@ -1,19 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 // mantine
-import { createStyles, useMantineTheme, keyframes } from '@mantine/styles'
+import { createStyles, useMantineTheme } from '@mantine/styles'
 
 // components
 import InnerNav from './navItems';
-
-const animateIn = keyframes({
-  from: {
-    opacity: 0
-  },
-  to: {
-    opacity: 1
-  }
-})
 
 // styles
 const useStyles = createStyles((t) => ({
@@ -27,7 +18,6 @@ const useStyles = createStyles((t) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    animation: `${animateIn} forwards .15s ease-in`,
     [ t.fn.smallerThan('md') ]: {
       display: 'none'
     }
@@ -54,4 +44,4 @@ const DesktopNavbar = ({ width }: Props) => {
   )
 }
 
-export default DesktopNavbar;
+export default memo(DesktopNavbar);

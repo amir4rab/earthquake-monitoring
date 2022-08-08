@@ -1,12 +1,10 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 
 // mantine components
-import { Container, createStyles } from '@mantine/core';
-import dynamic from 'next/dynamic';
+import { Container, createStyles } from '@mantine/core';;
 
-// components
-const DesktopNavbar =  dynamic(() => import('./navbar/desktopNavbar'), { suspense: true, ssr: false });
-const MobileNavbar = dynamic(() => import('./navbar/mobileNavbar'), { suspense: true, ssr: false });
+import DesktopNavbar from './navbar/desktopNavbar'
+import MobileNavbar from './navbar/mobileNavbar'
 
 const desktopNavbarWidth= 'max(20vw, 17rem)';
 const useStyles = createStyles((t) => ({
@@ -25,7 +23,7 @@ function Layout( { children }: Props ) {
   const { classes } = useStyles();
 
   return (
-    <Suspense>
+    <>
       <DesktopNavbar width={ desktopNavbarWidth }/>
       <MobileNavbar />
       <div className={ classes.container }>
@@ -33,7 +31,7 @@ function Layout( { children }: Props ) {
           { children }
         </Container>
       </div>
-    </Suspense>
+    </>
   )
 }
 

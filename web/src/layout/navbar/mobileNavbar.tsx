@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
 // mantine components
 import { ActionIcon, Drawer } from '@mantine/core';
-import { useMantineTheme, keyframes } from '@mantine/styles'
-
-// animations
-const animateInLTR = keyframes({
-  from: {
-    right: '-4rem',
-    opacity: 0
-  },
-  to: {
-    right: '2rem',
-    opacity: 1
-  }
-})
+import { useMantineTheme } from '@mantine/styles'
 
 // icons
 import { IoMenu } from 'react-icons/io5';
@@ -37,7 +25,6 @@ const MobileNavbar = () => {
           zIndex: 1001,
           position: 'fixed',
           right: '-3rem',
-          animation: `${animateInLTR} forwards .3s ease-in .3s`,
           bottom: '2rem',
           [ t.fn.largerThan('md') ]: {
             display: 'none'
@@ -62,4 +49,4 @@ const MobileNavbar = () => {
   )
 }
 
-export default MobileNavbar;
+export default memo(MobileNavbar);
