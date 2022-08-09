@@ -54,10 +54,10 @@ jobs:
           base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
       - name: Sign dev build
-        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/intermediates/release/app-release-signed.apk android/app/build/outputs/intermediates/release/app-release.apk release
+        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/apk/release/app-release-signed.apk android/app/build/outputs/apk/release/app-release-unsigned.apk release
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: mobile/android/app/build/outputs/intermediates/release/app-release-signed.apk
+          files: mobile/android/app/build/outputs/apk/release/app-release-signed.apk
           draft: true
