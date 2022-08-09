@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // leaflet
-import { MapContainer, TileLayer, Circle, useMapEvent, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Circle, useMapEvent, Marker, CircleProps } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 // mantine
@@ -95,6 +95,11 @@ const useStyles = createStyles((t) => ({
  */
 const Map = ({ elements= [], mapCenter= [33, 53], zoom=5, selectPos= false, onPos, ...props }: Props) => {
   const { classes } = useStyles();
+  const [ bufferedData, setBufferedData ] = useState<ExtendedCircleProps[]>([]);
+
+  useEffect(() => {
+    setBufferedData(elements)
+  }, [ elements ])
 
   return (
     <Box className={ classes.mapWrapper } { ...props } >
@@ -116,7 +121,7 @@ const Map = ({ elements= [], mapCenter= [33, 53], zoom=5, selectPos= false, onPo
           selectPos && <SetLocationOnClick onPos={ onPos } />
         }
         {
-          elements.map(({ key, ...props }) => (
+          bufferedData.map(({ key, ...props }) => (
             <Circle { ...props } key={ key } />
           ))
         }

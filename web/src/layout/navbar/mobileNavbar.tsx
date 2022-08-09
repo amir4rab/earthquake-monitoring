@@ -24,7 +24,7 @@ const MobileNavbar = () => {
           borderRadius: '50%',
           zIndex: 1001,
           position: 'fixed',
-          right: '-3rem',
+          right: '2rem',
           bottom: '2rem',
           [ t.fn.largerThan('md') ]: {
             display: 'none'
