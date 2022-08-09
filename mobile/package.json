@@ -12,7 +12,7 @@
     "pwa-dev": "cross-env VITE_PWA_BUILD=1 npm run dev",
     "pwa-build": "npm run prisma-types && cross-env VITE_PWA_BUILD=1 npm run build && npm run leaflet-assets",
     "android-dev": "cross-env VITE_ANDROID_BUILD=1 vite",
-    "android-build": "cross-env VITE_ANDROID_BUILD=1 npm run build && npm run leaflet-assets && npx cap sync android && npm run generate-assets",
+    "android-build": "cross-env VITE_ANDROID_BUILD=1 npm run build && npm run leaflet-assets && npx cap copy && npx cap sync android && npm run generate-assets",
     "generate-assets": "npx cordova-res android --skip-config --copy --icon-background-source '#141517' --type=adaptive-icon && npx cap sync android"
   },
   "dependencies": {

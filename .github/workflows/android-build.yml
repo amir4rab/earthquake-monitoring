@@ -45,7 +45,7 @@ jobs:
       - name: Build application
         run: pnpm run android-build
 
-      - name: Build app bundle
+      - name: Build apps apk
         run: cd android && gradle assembleRelease
 
       - name: Extract Android signing key from env
