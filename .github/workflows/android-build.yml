@@ -59,5 +59,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: mobile/android/app/build/outputs/apk/release/app-release-signed.apk
+          files: |
+            mobile/android/app/build/outputs/apk/release/app-release-signed.apk
+            mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
           draft: true
