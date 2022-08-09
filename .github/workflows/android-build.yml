@@ -34,6 +34,12 @@ jobs:
       - name: Install app dependencies
         run: pnpm install
 
+      - name: Generating prisma types
+        run: pnpm run prisma-types
+
+      - name: Adding android to capacitor
+        run: npx cap add android 
+
       - name: Build application
         run: pnpm run android-build
 
