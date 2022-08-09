@@ -50,19 +50,10 @@ jobs:
 
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
-
-      - name: Extract Android signing key from env
-        run: |
-          echo "${{ secrets.RELEASE_KEYSTORE }}" > android/release.jks.base64
-          base64 -d android/release.jks.base64 > android/release.decrypted.jks
-
-      - name: Sign dev build
-        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/apk/release/app-release-signed.apk android/app/build/outputs/apk/release/app-release-unsigned.apk release
           
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload APK to Release
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: |
-            mobile/android/app/build/outputs/apk/release/app-release-signed.apk
-            mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
-          draft: true
+          args: app/build/outputs/apk/release/**.apk
