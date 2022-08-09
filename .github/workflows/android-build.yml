@@ -25,6 +25,9 @@ jobs:
             distribution: 'zulu'
             java-version: '11'
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -46,7 +49,7 @@ jobs:
         run: pnpm run android-build
 
       - name: Build apps apk
-        run: cd android && gradle assembleRelease
+        run: cd android && gradlew assembleDebug --stacktrace
 
       - name: Extract Android signing key from env
         run: |
