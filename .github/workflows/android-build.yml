@@ -19,20 +19,6 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup java
-        uses: actions/setup-java@v3
-        with:
-            distribution: 'zulu'
-            java-version: '17'
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-
       - name: Installing PNPM
         run: npm install -g pnpm
 
@@ -50,10 +36,19 @@ jobs:
 
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
+
+      - name: Sign Release
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
+          alias: ${{ secrets.KEYSOTRE_ALIAS }}
+          keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.github_token }}
-          files: mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          files: ${{ steps.sign_app.outputs.signedReleaseFile }}
           draft: true
