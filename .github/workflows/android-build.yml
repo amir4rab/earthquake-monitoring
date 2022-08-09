@@ -50,11 +50,10 @@ jobs:
 
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
-
           
-      - name: Upload APK to Release
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          args: android/app/build/outputs/apk/release/**.apk
+          token: ${{ secrets.github_token }}
+          files: mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          draft: true
