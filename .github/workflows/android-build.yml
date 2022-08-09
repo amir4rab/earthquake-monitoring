@@ -34,7 +34,7 @@ jobs:
       - name: Install app dependencies
         run: pnpm install
 
-      - name: Build Svelte app
+      - name: Build application
         run: pnpm run android-build
 
       - name: Build app bundle
