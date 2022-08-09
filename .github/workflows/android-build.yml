@@ -50,10 +50,11 @@ jobs:
 
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
+
           
       - name: Upload APK to Release
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: app/build/outputs/apk/release/**.apk
+          args: android/app/build/outputs/apk/release/**.apk
