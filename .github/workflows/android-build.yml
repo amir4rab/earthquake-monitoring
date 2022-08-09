@@ -49,7 +49,7 @@ jobs:
         run: pnpm run android-build
 
       - name: Build apps apk
-        run: cd android && bash ./gradlew assembleDebug --stacktrace
+        run: cd android && bash ./gradlew assembleRelease --stacktrace
 
       - name: Extract Android signing key from env
         run: |
@@ -57,12 +57,12 @@ jobs:
           base64 -d android/release.jks.base64 > android/release.decrypted.jks
 
       - name: Sign dev build
-        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/apk/release/app-release-signed.apk android/app/build/outputs/apk/release/app-release.apk release
+        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/apk/release/app-release-signed.apk android/app/build/outputs/apk/release/app-release-unsigned.apk release
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             mobile/android/app/build/outputs/apk/release/app-release-signed.apk
-            mobile/android/app/build/outputs/apk/release/app-release.apk
+            mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
           draft: true
