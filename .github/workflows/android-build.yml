@@ -49,7 +49,7 @@ jobs:
         run: pnpm run android-build
 
       - name: Build apps apk
-        run: cd android && gradlew assembleDebug --stacktrace
+        run: cd android && bash ./gradlew assembleDebug --stacktrace
 
       - name: Extract Android signing key from env
         run: |
