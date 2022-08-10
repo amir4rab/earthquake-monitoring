@@ -37,16 +37,6 @@ jobs:
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
 
-      - name: Signing Apk
-        uses: r0adkll/sign-android-release@v1
-        id: sign_app
-        with:
-          releaseDirectory: mobile/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
-          alias: ${{ secrets.KEYSOTRE_ALIAS }}
-          keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
-
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -56,11 +46,21 @@ jobs:
         run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
       
       - name: Renaming apk
-        run: mv '/${{ steps.sign_app.outputs.signedReleaseFile }}' /mobile/android/app/build/outputs/apk/release/${{steps.file_name.outputs.NAME}}
+        run: mv /android/app/build/outputs/apk/release/app-release-unsigned.apk /android/app/build/outputs/apk/release/${{steps.file_name.outputs.NAME}}
+
+      - name: Signing Apk
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: mobile/android/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
+          alias: ${{ secrets.KEYSOTRE_ALIAS }}
+          keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.github_token }}
-          files: /mobile/android/app/build/outputs/apk/release/${{steps.file_name.outputs.NAME}}
+          files: ${{ steps.sign_app.outputs.signedReleaseFile }}
           draft: true
