@@ -46,7 +46,7 @@ jobs:
         run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
       
       - name: Renaming apk
-        run: mv /android/app/build/outputs/apk/release/app-release-unsigned.apk /android/app/build/outputs/apk/release/${{steps.file_name.outputs.NAME}}
+        run: mv android/app/build/outputs/apk/release/app-release-unsigned.apk android/app/build/outputs/apk/release/${{steps.file_name.outputs.NAME}}
 
       - name: Signing Apk
         uses: r0adkll/sign-android-release@v1
