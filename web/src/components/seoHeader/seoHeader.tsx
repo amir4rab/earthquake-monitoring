@@ -45,13 +45,56 @@ const SeoHeader = ({ lang, title, subtitle }: Props) => {
       <meta property='og:url' content={ websiteUrl } />
       <meta property='og:image' content={ websiteUrl + '/assets/pwa-icons/apple-touch-icon.png' }/>
 
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_2048.png' sizes='2048x2732' />
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_1668.png' sizes='1668x2224' />
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_1536.png' sizes='1536x2048' />
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_1125.png' sizes='1125x2436' />
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_1242.png' sizes='1242x2208' />
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_750.png' sizes='750x1334' />
-      <link rel='apple-touch-startup-image' href='/assets/splash-screens/apple_splash_640.png' sizes='640x1136' />
+      <link 
+        href='/pwa/iphone5_splash.png'
+        media='(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/iphone6_splash.png'
+        media='(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/iphoneplus_splash.png'
+        media='(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/iphonex_splash.png'
+        media='(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/iphonexr_splash.png'
+        media='(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/iphonexsmax_splash.png'
+        media='(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/ipad_splash.png'
+        media='(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/ipadpro1_splash.png'
+        media='(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/ipadpro3_splash.png'
+        media='(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
+      <link 
+        href='/pwa/ipadpro2_splash.png'
+        media='(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)' 
+        rel='apple-touch-startup-image' 
+      />
     </>
   )
 };
