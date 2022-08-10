@@ -51,10 +51,10 @@ jobs:
         run: echo ::set-output name=NAME::'Earthquake monitoring-${{steps.branch_name.outputs.VERSION}}.apk'
 
       - name: Sign dev build
-        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }} android/app/build/outputs/apk/release/app-release-unsigned.apk release
+        run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar 'android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }}' android/app/build/outputs/apk/release/app-release-unsigned.apk release
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: mobile/android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }}
+          files: 'mobile/android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }}'
           draft: true
