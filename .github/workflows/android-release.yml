@@ -37,7 +37,7 @@ jobs:
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
 
-      - name: Signing Aok
+      - name: Signing Apk
         uses: r0adkll/sign-android-release@v1
         id: sign_app
         with:
@@ -56,7 +56,7 @@ jobs:
         run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
       
       - name: Renaming apk
-        run: mkdir ~/android-release && mv '${{ steps.sign_app.outputs.signedReleaseFile }}' ~/android-release/${{steps.file_name.outputs.NAME}}
+        run: mkdir ~/android-release && mv '~/${{ steps.sign_app.outputs.signedReleaseFile }}' ~/android-release/${{steps.file_name.outputs.NAME}}
           
       - name: Release
         uses: softprops/action-gh-release@v1
