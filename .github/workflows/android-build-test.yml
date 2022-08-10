@@ -48,7 +48,7 @@ jobs:
 
       - name: Generate file name
         id: file_name
-        run: echo ::set-output name=NAME::${format('{0}-{1}.apk', 'Earthquake monitoring', steps.branch_name.outputs.VERSION)}
+        run: echo ::set-output name=NAME::'Earthquake monitoring-${{steps.branch_name.outputs.VERSION}}.apk'
 
       - name: Sign dev build
         run: jarsigner -keystore android/release.decrypted.jks -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}" -signedjar android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }} android/app/build/outputs/apk/release/app-release-unsigned.apk release
