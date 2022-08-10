@@ -1,4 +1,4 @@
-name: Build Android
+name: Android Release
 
 on:
   push:
@@ -38,7 +38,13 @@ jobs:
         run: cd android && bash ./gradlew assembleRelease --stacktrace
 
       - name: Sign Release
-        id: sign_app
+        id: sign_app- name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Generate file name
+        id: file_name
+        run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: mobile/android/app/build/outputs/apk/release
@@ -46,10 +52,21 @@ jobs:
           alias: ${{ secrets.KEYSOTRE_ALIAS }}
           keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Generate file name
+        id: file_name
+        run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
+      
+      - name: Renaming apk
+        run: mkdir ~/android-release && mv ${{ steps.sign_app.outputs.signedReleaseFile }} ~/android-release/${{steps.file_name.outputs.NAME}}
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.github_token }}
-          files: ${{ steps.sign_app.outputs.signedReleaseFile }}
+          files: /android-release/${{steps.file_name.outputs.NAME}}
           draft: true
