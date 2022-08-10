@@ -57,6 +57,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            'mobile/android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }}'
-            android/app/build/outputs/apk/release/app-release-unsigned.apk
+            mobile/android/app/build/outputs/apk/release/${{ steps.file_name.outputs.NAME }}
+            mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
           draft: true
