@@ -29,7 +29,12 @@ jobs:
         run: pnpm run prisma-types
 
       - name: Adding android to capacitor
-        run: npx cap add android 
+        run: npx cap add android
+
+      - name: create env file
+        run: |
+          touch .env.local
+          echo VITE_NEXT_API_ROUTE=${{ secrets.NEXT_API_ROUTE }} >> .env
 
       - name: Build application
         run: pnpm run android-build
