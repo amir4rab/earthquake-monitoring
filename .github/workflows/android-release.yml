@@ -37,14 +37,7 @@ jobs:
       - name: Build apps apk
         run: cd android && bash ./gradlew assembleRelease --stacktrace
 
-      - name: Sign Release
-        id: sign_app- name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
-      - name: Generate file name
-        id: file_name
-        run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
+      - name: Signing Aok
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: mobile/android/app/build/outputs/apk/release
