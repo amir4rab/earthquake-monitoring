@@ -56,11 +56,11 @@ jobs:
         run: echo ::set-output name=NAME::'Earthquake-monitoring-${{steps.get_version.outputs.VERSION}}.apk'
       
       - name: Renaming apk
-        run: mkdir /android-release && mv '/${{ steps.sign_app.outputs.signedReleaseFile }}' /android-release/${{steps.file_name.outputs.NAME}}
+        run: mkdir /mobile/android-release && mv '/${{ steps.sign_app.outputs.signedReleaseFile }}' /mobile/android-release/${{steps.file_name.outputs.NAME}}
           
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.github_token }}
-          files: /android-release/${{steps.file_name.outputs.NAME}}
+          files: /mobile/android-release/${{steps.file_name.outputs.NAME}}
           draft: true
