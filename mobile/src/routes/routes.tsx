@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react';
 
 // react-router-dom
-import { Route, Routes as ReactRouterDomRoutes } from 'react-router-dom'
+import { Outlet, Route, Routes as ReactRouterDomRoutes, useLocation } from 'react-router-dom';
+
+// framer
+import { AnimatePresence, motion, LazyMotion, domAnimation, m } from 'framer-motion'
 
 // components
 import LoadingDisplay from '@/components/loadingDisplay';
@@ -14,50 +17,58 @@ const States = lazy(() => import('@/components/states'));
 const Nearme = lazy(() => import('@/components/nearme'));
 const About = lazy(() => import('@/components/about'));
 
-const Routes = () => {
+
+// page wrapper
+const PageWrapper = () => {
   return (
-    <ReactRouterDomRoutes>
-      <Route 
-        path='/'
-        element={ import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home /> }
-      />
-      <Route 
-        path='/pwa-home' 
-        element={ <Home /> } 
-      />
-      <Route 
-        path='/states' 
-        element={
-          <Suspense fallback={ <LoadingDisplay /> }>
-            <States />
-          </Suspense>
-        } 
-      />
-      <Route 
-        path='/states/:id' 
-        element={
-          <Suspense fallback={ <LoadingDisplay /> }>
-            <State />
-          </Suspense>
-        } 
-      />
-      <Route 
-        path='/nearme' 
-        element={
-          <Suspense fallback={ <LoadingDisplay /> }>
-            <Nearme />
-          </Suspense>
-        } 
-      />
-      <Route 
-        path='/about' 
-        element={
-          <Suspense>
-            <About />
-          </Suspense>
-        } 
-      />
-    </ReactRouterDomRoutes>
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={{ x: '100%', zIndex: 0, opacity: 0  }}
+        animate={{ x: 0, zIndex: 1, opacity: 1, transition: { duration: .15, ease: 'linear' } }}
+        exit={{ x: '-100%', zIndex: 0, opacity: 0, transition: { duration: .15, ease: 'linear' }  }}
+      >
+        <Suspense fallback={ <LoadingDisplay /> }>
+        <Outlet />
+        </Suspense>
+      </m.div>
+    </LazyMotion>
+  );
+};
+
+const Routes = () => {
+  const location = useLocation()
+
+  return (
+    <AnimatePresence initial={ false } exitBeforeEnter={ false }>
+      <ReactRouterDomRoutes location={location} key={location.pathname}>
+        <Route element={ <PageWrapper /> }>
+          <Route 
+            path='/'
+            element={ import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home /> }
+          />
+          <Route 
+            path='/pwa-home' 
+            element={ <Home /> } 
+          />
+          <Route 
+            path='/states' 
+            element={ <States /> } 
+          />
+          <Route 
+            path='/states/:id' 
+            element={ <State /> } 
+          />
+          <Route 
+            path='/nearme' 
+            element={ <Nearme /> } 
+          />
+          <Route 
+            path='/about' 
+            element={ <About /> } 
+          />
+        </Route>
+      </ReactRouterDomRoutes>
+    </AnimatePresence>
   )
 };
 

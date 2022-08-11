@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom'
 const desktopNavbarWidth= 'max(20vw, 17rem)';
 const useStyles = createStyles((t) => ({
   container: {
+    overflowX: 'hidden',
     [ t.fn.largerThan('md') ]: {
       paddingLeft: t.dir === 'ltr' ? desktopNavbarWidth : 0,
       paddingRight: t.dir === 'rtl' ? desktopNavbarWidth : 0,

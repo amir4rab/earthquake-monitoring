@@ -26,6 +26,7 @@
     "@mantine/modals": "^5.0.2",
     "@mantine/spotlight": "^5.0.2",
     "@prisma/client": "^4.1.1",
+    "framer-motion": "^7.0.1",
     "geolib": "^3.3.3",
     "i18next": "^21.8.14",
     "i18next-browser-languagedetector": "^6.1.4",
