@@ -10,6 +10,8 @@ import LoadingIndicator from '../loadingIndicator';
 
 // hooks
 import useLatestData from '@/hooks/useLatestData';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   main: {
@@ -18,9 +20,17 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const HomeComponent = () => {
+  const navigate = useNavigate();
   const { data, isValidating } = useLatestData();
   const { classes } = useStyles();
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('common');
+
+  useEffect(() => {
+    if ( typeof window === 'undefined' ) return;
+
+    const isPwa = window.matchMedia('(display-mode: standalone)').matches;
+    isPwa && navigate('/pwa-home');
+  }, [])
 
   return (
     <>
