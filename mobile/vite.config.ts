@@ -44,6 +44,29 @@ export default defineConfig({
             'purpose': 'maskable'
           }
         ],
+        'screenshots': [
+          {
+            "src": "/assets/screenshots/mobile-screenshot-0.jpg",
+            "sizes": "1284x2778",
+            "type": "image/jpg",
+            "platform": "narrow",
+            "label": "Homescreen"
+          },
+          {
+            "src": "/assets/screenshots/mobile-screenshot-1.jpg",
+            "sizes": "1284x2778",
+            "type": "image/jpg",
+            "platform": "narrow",
+            "label": "States page"
+          },
+          {
+            "src": "/assets/screenshots/mobile-screenshot-2.jpg",
+            "sizes": "1284x2778",
+            "type": "image/jpg",
+            "platform": "narrow",
+            "label": "Developer guide"
+          },
+        ],
         'theme_color': '#4C6EF5',
         'background_color': '#141517',
         'start_url': '/pwa-home',
