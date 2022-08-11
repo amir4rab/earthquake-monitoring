@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react';
 import { Button, Center, Group, Text, Title } from '@mantine/core';
 
 // map
-import Map from '../map';
+import Map from '../map/suspended';
 
 // shared-data
 import states from '@/shared-data/states-geo-location'

@@ -7,9 +7,10 @@ import { Center, Loader, LoadingOverlay } from '@mantine/core';
 // components
 import { Props } from './map';
 import PlaceHolder from './placeHolder';
+import dynamic from 'next/dynamic';
 
 // lazy components
-const LazyMap = lazy(() => import('./index'));
+const LazyMap = dynamic(() => import('./index'), { ssr: false });
 
 const SuspendedMap = (props: Props) => {
   const timeoutRef = useRef< NodeJS.Timeout | null >(null);
@@ -18,6 +19,8 @@ const SuspendedMap = (props: Props) => {
   const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect(() => {
+    if ( typeof window === 'undefined' ) return;
+
     timeoutRef.current = setTimeout(() => {
       setRender(true);
       loadingTimeoutRef.current = setTimeout(() => {
