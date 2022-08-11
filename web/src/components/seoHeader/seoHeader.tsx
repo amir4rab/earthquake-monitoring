@@ -1,17 +1,16 @@
 const websiteUrl = 'https://earthquake-monitoring-amir4rab.com';
 
 interface Props {
-  lang: string;
   title: string;
   subtitle: string;
+  lang: string;
 }
 /**
  * Adds pwa headers and open graph headers
  */
-const SeoHeader = ({ lang, title, subtitle }: Props) => {
+const SeoHeader = ({ title, subtitle, lang }: Props) => {
   return (
     <>
-      <link rel='manifest' href={`/manifest.${lang}.webmanifest`} />
       <link rel='shortcut icon' href='/assets/favicons/favicon-32x32.png' />
 
       <meta name='application-name' content={ title } />
@@ -43,7 +42,7 @@ const SeoHeader = ({ lang, title, subtitle }: Props) => {
       <meta property='og:description' content={ subtitle } />
       <meta property='og:site_name' content={ title } />
       <meta property='og:url' content={ websiteUrl } />
-      <meta property='og:image' content={ websiteUrl + '/assets/pwa-icons/apple-touch-icon.png' }/>
+      <meta property='og:image' content={ websiteUrl + `/assets/banners/banner-${lang}.jpg` }/>
 
       <link 
         href='/pwa/iphone5_splash.png'
