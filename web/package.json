@@ -1,6 +1,6 @@
 {
   "name": "earthquake-monitoring",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,6 +8,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
+    "pnpm-setup": "pnpm install && pnpm run init-prisma-schema && pnpm run prisma-generate",
     "init-prisma-schema": "rm -r -f ./prisma && cp ../prisma . -r",
     "prisma-migrate-dev": "npx prisma migrate dev --schema=../prisma/schema.prisma --skip-generate",
     "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma --skip-generate",
@@ -60,6 +61,7 @@
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
     "jest": "^28.0.0",
+    "octokit": "^2.0.5",
     "prisma": "^4.1.0",
     "sass": "^1.50.1",
     "typescript": "4.6.3"

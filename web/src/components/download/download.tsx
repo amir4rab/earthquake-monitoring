@@ -13,7 +13,17 @@ import { QRCodeSVG } from 'qrcode.react';
 import { IoPhonePortrait } from 'react-icons/io5';
 import { SiApple, SiPwa, SiAndroid } from 'react-icons/si';
 
+// sub components
 import DownloadItem from './downloadItem';
+
+// types
+import { GhRelease } from '@/utils/backend/getApplications';
+
+const getAndroidVersion = ( data: GhRelease ) => {
+  const android = data.assets.find(({ name }) => ( name.endsWith('.apk') ));
+
+  return typeof android !== 'undefined' ? android.browser_download_url : '';
+}
 
 // styles
 const useStyles = createStyles((t) => ({
@@ -75,7 +85,10 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-const Download = () => {
+interface Props {
+  data: GhRelease | null
+}
+const Download = ({ data }: Props) => {
   const { classes } = useStyles();
   const { colors, white: mantineWhite } = useMantineTheme();
 
@@ -102,9 +115,12 @@ const Download = () => {
       </header>
       <Box className={ classes.pageWrapper }>
         <Box className={ classes.mainColumn }>
-          <Title mb='xl' order={ 3 }>
-            { t('choseYourPlatFrom') }
-          </Title>
+          <Group mb='xl' position='apart'>
+            <Title order={ 3 }>
+              { t('choseYourPlatFrom') }
+            </Title>
+            <Text size='xs'>{ data?.tag_name }</Text>
+          </Group>
           <DownloadItem
             tooltipLabel={ t('open') }
             href={ process.env.NEXT_PUBLIC_PWA_URL }
@@ -112,14 +128,17 @@ const Download = () => {
             subtitle={ t('pwaSubtitle') }
             title={ t('pwaTitle') }
           />
+          {
+            data !== null &&
+            <DownloadItem
+              tooltipLabel={ t('download') }
+              href={ getAndroidVersion(data) }
+              icon={ <SiAndroid /> }
+              subtitle={ t('androidSubtitle') }
+              title={ t('androidTitle') }
+            />
+          }
           <Divider my='xl' label={ t('comingSoon') } labelPosition='center' variant='solid' />
-          <DownloadItem
-            disabled={ true }
-            tooltipLabel={ t('comingSoon') }
-            icon={ <SiAndroid /> }
-            subtitle={ t('androidSubtitle') }
-            title={ t('androidTitle') }
-          />
           <DownloadItem
             disabled={ true }
             tooltipLabel={ t('comingSoon') }
