@@ -9,7 +9,7 @@ on:
 
 defaults:
   run:
-    working-directory: mobile
+    working-directory: app
 
 jobs:
   build:
@@ -57,7 +57,7 @@ jobs:
         uses: r0adkll/sign-android-release@v1
         id: sign_app
         with:
-          releaseDirectory: mobile/android/app/build/outputs/apk/release
+          releaseDirectory: app/android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE }}
           alias: ${{ secrets.KEYSOTRE_ALIAS }}
           keyStorePassword: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}

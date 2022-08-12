@@ -15,7 +15,9 @@ const desktopNavbarWidth= 'max(20vw, 17rem)';
 const useStyles = createStyles((t) => ({
   container: {
     overflowX: 'hidden',
-    paddingLeft: desktopNavbarWidth
+    [ t.fn.largerThan('md') ]: {
+      paddingLeft: desktopNavbarWidth
+    }
   }
 }))
 
