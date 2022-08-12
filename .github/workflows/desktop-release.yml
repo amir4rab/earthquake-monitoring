@@ -3,7 +3,9 @@ name: Desktop Release
 on:
   push:
     branches:
-      - dev
+      - main
+    tags:
+      - "v*.*.*"
 
 jobs:
   release:
@@ -29,4 +31,4 @@ jobs:
           build_script_name: 'electron-build-gh'
           package_root: './app'
           github_token: ${{ secrets.github_token }}
-          release: false
+          release: true
