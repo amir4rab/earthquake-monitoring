@@ -5,7 +5,7 @@
       "rootDir": ["./web"]
     },
     "mobile": {
-      "rootDir": ["./mobile"]
+      "rootDir": ["./app"]
     }
   }
 }

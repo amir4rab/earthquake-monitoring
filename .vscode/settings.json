@@ -12,6 +12,7 @@
     "shared-data": "shared",
     "postgres": "database",
     "swr": "next",
+    "electron": "node",
     "subcomponents": "components"
   },
   "material-icon-theme.files.associations": {
@@ -22,6 +23,6 @@
   },
   "materialTheme.accent": "Blue",
   "eslint.workingDirectories": [
-    "./web", "./mobile"
+    "./web", "./app"
   ]
 }
