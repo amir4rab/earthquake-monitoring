@@ -17,13 +17,11 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Make Env file
-        uses: SpicyPizza/create-envfile@v1.3
-        with:
-          VITE_NEXT_API_ROUTE: ${{ secrets.NEXT_API_ROUTE }}
-          directory: './app'
-          file_name: .env.local
-          fail_on_empty: false
+      - name: create env file
+        run: |
+          cd app
+          touch .env.local
+          echo VITE_NEXT_API_ROUTE=${{ secrets.NEXT_API_ROUTE }} >> .env.local
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
