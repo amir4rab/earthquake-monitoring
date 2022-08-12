@@ -1,7 +1,7 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
 // react-router-dom
-import { Outlet, Route, Routes as ReactRouterDomRoutes, useLocation } from 'react-router-dom';
+import { Outlet, Route, Routes as ReactRouterDomRoutes, useLocation, useNavigate } from 'react-router-dom';
 
 // framer
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion'
@@ -33,12 +33,12 @@ const PageWrapper = ({ animate }:{ animate: boolean }) => {
         }
         animate={ 
           animate ? 
-            { opacity: 1 } : 
+            { opacity: 1, transition: { duration: .15, ease: 'linear' } } : 
             { x: 0, zIndex: 1, top: 0, opacity: 1, transition: { duration: .15, ease: 'linear' } }
         }
         exit={ 
           animate ? 
-            { opacity: 0 } : 
+            { opacity: 0, transition: { duration: .15, ease: 'linear' } } : 
             { x: '-100%', zIndex: 0, top: 0, opacity: 0, transition: { duration: .15, ease: 'linear' }  }
         }
       >
@@ -54,14 +54,21 @@ const Routes = () => {
   const isDesktop = useMediaQuery('(min-width: 922px)');
   const reducedMotion = useReducedMotion(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    location.pathname.includes('index.html') && navigate('/')
+  }, [ location.pathname ])
 
   return (
     <AnimatePresence initial={ false } exitBeforeEnter={ isDesktop || reducedMotion }>
       <ReactRouterDomRoutes location={location} key={location.pathname}>
-        <Route element={ <PageWrapper animate={ isDesktop || reducedMotion } /> }>
+        <Route element={ <PageWrapper animate={ isDesktop || reducedMotion || import.meta.env.VITE_ELECTRON_BUILD === '1'  } /> }>
           <Route 
             path='/'
-            element={ import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home /> }
+            element={ 
+              import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home />
+            }
           />
           <Route 
             path='/pwa-home' 

@@ -5,6 +5,8 @@
 
 # dist
 /dist
+/out
+/electron-src
 
 # local files
 .env*.local

@@ -1,0 +1,29 @@
+{
+  "appId": "com.amir4rab.earthquake-monitoring",
+  "productName": "Earthquake monitoring",
+  "copyright": "Copyright © 2022 amir4rab",
+  "dmg": {
+    "icon": false
+  },
+  "mac": {
+    "category": "public.app-category.Utilities",
+    "hardenedRuntime": true
+  },
+  "linux": {
+    "desktop": {
+      "StartupNotify": "false",
+      "Encoding": "UTF-8",
+      "MimeType": "x-scheme-handler/deeplink"
+    },
+    "target": [
+      "AppImage"
+    ],
+    "category": "Utility"
+  },
+  "win": {
+    "target": "nsis"
+  },
+  "nsis": {
+    "deleteAppDataOnUninstall": true
+  }
+}
