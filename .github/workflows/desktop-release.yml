@@ -36,7 +36,7 @@ jobs:
           echo VITE_NEXT_API_ROUTE=${{ secrets.NEXT_API_ROUTE }} >> .env.local
 
       - name: Building application
-        run: pnpm run build-electron
+        run: pnpm run electron-build
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
