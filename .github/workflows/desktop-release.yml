@@ -5,10 +5,6 @@ on:
     branches:
       - dev
 
-defaults:
-  run:
-    working-directory: app
-
 jobs:
   release:
     runs-on: ${{ matrix.os }}
@@ -21,19 +17,13 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Installing PNPM
-        run: npm install -g pnpm
-
-      - name: Install app dependencies
-        run: pnpm install
-
-      - name: Generating prisma types
-        run: pnpm run prisma-types
-
-      - name: create env file
-        run: |
-          touch .env.local
-          echo VITE_NEXT_API_ROUTE=${{ secrets.NEXT_API_ROUTE }} >> .env.local
+      - name: Make Env file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          VITE_NEXT_API_ROUTE: ${{ secrets.NEXT_API_ROUTE }}
+          directory: app
+          file_name: .env.local
+          fail_on_empty: false
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
