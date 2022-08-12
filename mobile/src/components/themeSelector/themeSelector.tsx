@@ -15,13 +15,11 @@ import { useTranslation } from 'react-i18next';
 const useStyles = createStyles((t) => ({
   buttonWrapper: {
     display: 'flex',
-    // justifyContent: 'center',
     alignItems: 'center',
     marginTop: t.spacing.md
   },
   text: {
-    marginLeft: t.dir === 'rtl' ? t.spacing.md : 0,
-    marginRight: t.dir === 'ltr' ? t.spacing.md : 0,
+    marginRight: t.spacing.md,
     color: t.white
   }
 }));

@@ -1,5 +1,5 @@
 // mantine
-import { createStyles, useMantineTheme } from '@mantine/core'
+import { createStyles } from '@mantine/core'
 
 // components
 import InnerNav from './navItems';
@@ -16,15 +16,10 @@ const useStyles = createStyles((t) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',
+    left: 0,
     [ t.fn.smallerThan('md') ]: {
       display: 'none'
     }
-  },
-  navToLeft: {
-    left: 0,
-  },
-  navToRight: {
-    right: 0,
   }
 }));
 
@@ -32,11 +27,9 @@ interface Props {
   width: string
 }
 const DesktopNavbar = ({ width }: Props) => {
-  const { classes, cx } = useStyles();
-  const { dir } = useMantineTheme();
-
+  const { classes } = useStyles();
   return (
-    <nav style={{ width }} className={cx( classes.nav, dir === 'ltr' ? classes.navToLeft : classes.navToRight )} >  
+    <nav style={{ width }} className={ classes.nav } >  
       <InnerNav />
     </nav>
   )
