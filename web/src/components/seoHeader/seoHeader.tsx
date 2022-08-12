@@ -1,4 +1,4 @@
-const websiteUrl = 'https://earthquake-monitoring-amir4rab.com';
+const websiteUrl = 'https://earthquake-monitoring.amir4rab.com';
 
 interface Props {
   title: string;
