@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     VitePWA({ 
-      disable: process.env.PWA_BUILD === '1',
+      disable: process.env.VITE_PWA_BUILD === '1',
       registerType: 'autoUpdate',
       manifest: {
         'name': 'Earthquake Monitoring',
