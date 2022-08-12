@@ -10,6 +10,7 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     VitePWA({ 
+      disable: process.env.PWA_BUILD === '1',
       registerType: 'autoUpdate',
       manifest: {
         'name': 'Earthquake Monitoring',
@@ -46,26 +47,61 @@ export default defineConfig({
         ],
         'screenshots': [
           {
-            "src": "/assets/screenshots/mobile-screenshot-0.jpg",
-            "sizes": "1284x2778",
-            "type": "image/jpg",
-            "platform": "narrow",
-            "label": "Homescreen"
+            'src': '/assets/screenshots/mobile-screenshot-0.jpg',
+            'sizes': '1284x2778',
+            'type': 'image/jpg',
+            'platform': 'narrow',
+            'label': 'Homescreen'
           },
           {
-            "src": "/assets/screenshots/mobile-screenshot-1.jpg",
-            "sizes": "1284x2778",
-            "type": "image/jpg",
-            "platform": "narrow",
-            "label": "States page"
+            'src': '/assets/screenshots/mobile-screenshot-1.jpg',
+            'sizes': '1284x2778',
+            'type': 'image/jpg',
+            'platform': 'narrow',
+            'label': 'States page'
           },
           {
-            "src": "/assets/screenshots/mobile-screenshot-2.jpg",
-            "sizes": "1284x2778",
-            "type": "image/jpg",
-            "platform": "narrow",
-            "label": "Developer guide"
+            'src': '/assets/screenshots/mobile-screenshot-2.jpg',
+            'sizes': '1284x2778',
+            'type': 'image/jpg',
+            'platform': 'narrow',
+            'label': 'Developer guide'
           },
+        ],
+        'shortcuts': [
+          {
+            'name': 'Near me',
+            'url': '/nearme',
+            'short_name': 'Near',
+            'icons': [{
+              'src': '/assets/pwa-icons/nearme-icon.jpg',
+              'size': '512x215',
+              'type': 'image/jpg',
+              'purpose': 'any'
+            }]
+          },
+          {
+            'name': 'Provinces',
+            'url': '/states',
+            'short_name': 'Provinces',
+            'icons': [{
+              'src': '/assets/pwa-icons/states-icon.jpg',
+              'size': '512x215',
+              'type': 'image/jpg',
+              'purpose': 'any'
+            }]
+          },
+          {
+            'name': 'About',
+            'url': '/about',
+            'short_name': 'About',
+            'icons': [{
+              'src': '/assets/pwa-icons/about-icon.jpg',
+              'size': '512x215',
+              'type': 'image/jpg',
+              'purpose': 'any'
+            }]
+          }
         ],
         'theme_color': '#4C6EF5',
         'background_color': '#141517',
