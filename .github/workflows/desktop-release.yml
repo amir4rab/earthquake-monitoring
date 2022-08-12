@@ -21,7 +21,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           VITE_NEXT_API_ROUTE: ${{ secrets.NEXT_API_ROUTE }}
-          directory: app
+          directory: './app'
           file_name: .env.local
           fail_on_empty: false
 
@@ -29,6 +29,6 @@ jobs:
         uses: samuelmeuli/action-electron-builder@v1
         with:
           build_script_name: 'electron-build'
-          package_root: '/app'
+          package_root: './app'
           github_token: ${{ secrets.github_token }}
           release: false
