@@ -1,0 +1,46 @@
+name: Desktop Release
+
+on:
+  push:
+    branches:
+      - dev
+
+defaults:
+  run:
+    working-directory: app
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Installing PNPM
+        run: npm install -g pnpm
+
+      - name: Install app dependencies
+        run: pnpm install
+
+      - name: Generating prisma types
+        run: pnpm run prisma-types
+
+      - name: create env file
+        run: |
+          touch .env.local
+          echo VITE_NEXT_API_ROUTE=${{ secrets.NEXT_API_ROUTE }} >> .env.local
+
+      - name: Building application
+        run: pnpm run build-electron
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          skip_build: true
+          github_token: ${{ secrets.github_token }}
+          release: false
