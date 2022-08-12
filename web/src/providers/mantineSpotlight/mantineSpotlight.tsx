@@ -2,6 +2,7 @@ import React, { ReactNode, useMemo } from 'react';
 
 // mantine
 import { SpotlightProvider } from '@mantine/spotlight';
+import { useMediaQuery } from '@mantine/hooks';
 
 // types
 import type { SpotlightAction } from '@mantine/spotlight';
@@ -21,6 +22,8 @@ const MantineSpotlight = ({ children }:{ children: ReactNode }) => {
   const { t, lang } = useTranslation('common');
   const { t: statesT } = useTranslation('states');
   const { push } = useRouter();
+  const isDesktop = useMediaQuery('(min-width: 922px)');
+
 
   const actions: SpotlightAction[] = useMemo(()=> {
     const navArr: SpotlightAction[] = [];
@@ -70,6 +73,7 @@ const MantineSpotlight = ({ children }:{ children: ReactNode }) => {
         }
       })}
       nothingFoundMessage={ t('no-search-result-no-query') }
+      topOffset={ isDesktop ? undefined : 0 }
     >
       { children }
     </SpotlightProvider>

@@ -4,7 +4,10 @@ import { lazy, Suspense } from 'react';
 import { Outlet, Route, Routes as ReactRouterDomRoutes, useLocation } from 'react-router-dom';
 
 // framer
-import { AnimatePresence, motion, LazyMotion, domAnimation, m } from 'framer-motion'
+import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion'
+
+// mantine
+import { useMediaQuery, useReducedMotion } from '@mantine/hooks';
 
 // components
 import LoadingDisplay from '@/components/loadingDisplay';
@@ -19,13 +22,25 @@ const About = lazy(() => import('@/components/about'));
 
 
 // page wrapper
-const PageWrapper = () => {
+const PageWrapper = ({ animate }:{ animate: boolean }) => {
   return (
     <LazyMotion features={domAnimation}>
       <m.div
-        initial={{ x: '100%', zIndex: 0, opacity: 0  }}
-        animate={{ x: 0, zIndex: 1, opacity: 1, transition: { duration: .15, ease: 'linear' } }}
-        exit={{ x: '-100%', zIndex: 0, opacity: 0, transition: { duration: .15, ease: 'linear' }  }}
+        initial={ 
+          animate ? 
+            { opacity: 0 } : 
+            { x: '100%', zIndex: 0, top: 0, opacity: 0  }
+        }
+        animate={ 
+          animate ? 
+            { opacity: 1 } : 
+            { x: 0, zIndex: 1, top: 0, opacity: 1, transition: { duration: .15, ease: 'linear' } }
+        }
+        exit={ 
+          animate ? 
+            { opacity: 0 } : 
+            { x: '-100%', zIndex: 0, top: 0, opacity: 0, transition: { duration: .15, ease: 'linear' }  }
+        }
       >
         <Suspense fallback={ <LoadingDisplay /> }>
         <Outlet />
@@ -36,12 +51,14 @@ const PageWrapper = () => {
 };
 
 const Routes = () => {
-  const location = useLocation()
+  const isDesktop = useMediaQuery('(min-width: 922px)');
+  const reducedMotion = useReducedMotion(false);
+  const location = useLocation();
 
   return (
-    <AnimatePresence initial={ false } exitBeforeEnter={ false }>
+    <AnimatePresence initial={ false } exitBeforeEnter={ isDesktop || reducedMotion }>
       <ReactRouterDomRoutes location={location} key={location.pathname}>
-        <Route element={ <PageWrapper /> }>
+        <Route element={ <PageWrapper animate={ isDesktop || reducedMotion } /> }>
           <Route 
             path='/'
             element={ import.meta.env.VITE_PWA_BUILD === '1' ? <PwaInstallPrompt /> : <Home /> }
