@@ -33,6 +33,9 @@ check box displays if the fixes goal has been meet or not.
 ### **v1.0.6**
 - [X] changed win target back to nsis, due to some errors on github action 
 
+### **v1.0.7**
+- [X] Depreciated Desktop builds in favor of PWA
+
 ### **Next**
 - [ ] React in Production, error fixes
 

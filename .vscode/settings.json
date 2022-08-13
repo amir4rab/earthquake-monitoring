@@ -12,7 +12,6 @@
     "shared-data": "shared",
     "postgres": "database",
     "swr": "next",
-    "electron": "node",
     "subcomponents": "components"
   },
   "material-icon-theme.files.associations": {
