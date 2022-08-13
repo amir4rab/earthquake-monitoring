@@ -21,9 +21,6 @@
     "category": "Utility"
   },
   "win": {
-    "target": "nsis"
-  },
-  "nsis": {
-    "deleteAppDataOnUninstall": true
+    "target": "portable"
   }
 }
