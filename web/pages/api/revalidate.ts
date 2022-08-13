@@ -39,7 +39,7 @@ const revalidatePayloadSchema: JSONSchemaType<RevalidatePayload> = {
 
 type Data = {
   err: string | null;
-  sucessful: boolean;
+  successful: boolean;
 }
 
 const handler = async (
@@ -48,12 +48,12 @@ const handler = async (
 ) => {
   const startTime = performance.now();
   try {
-    if ( req.method !== 'POST' ) return res.status(405).json({ err: 'Method not allowed', sucessful: true });
+    if ( req.method !== 'POST' ) return res.status(405).json({ err: 'Method not allowed', successful: true });
     
     const apiKey = process.env.API_REVALIDATE_KEY;
-    if ( typeof apiKey !== 'string' ) return res.status(500).json({ err: 'Invalid api key on server', sucessful: false });
+    if ( typeof apiKey !== 'string' ) return res.status(500).json({ err: 'Invalid api key on server', successful: false });
 
-    if ( apiKey !== req.headers['x-api-key'] ) return res.status(401).json({ err: 'Unauthorized', sucessful: false });
+    if ( apiKey !== req.headers['x-api-key'] ) return res.status(401).json({ err: 'Unauthorized', successful: false });
 
 
     const ajv = new Ajv();
@@ -65,7 +65,7 @@ const handler = async (
 
     if ( !isValid ) return res.status(400).json({ 
       err: 'False parameters', 
-      sucessful: false 
+      successful: false 
     });
 
     // incase revalidate payload includes revalidating latest data
@@ -86,14 +86,16 @@ const handler = async (
     };
 
     if ( typeof body?.states !== 'undefined' && Array.isArray(body?.states) ) for( const state of body.states ){
-      console.log('Revalidating state with id of ' + state + ' 🏭');
-      await getStatesData({ page: 0, stateId: state + '', skipCache: true })
+      const stateStr = (state + '').replace(/\n|\r/g, "");
+
+      console.log('Revalidating state with id of ' + stateStr + ' 🏭');
+      await getStatesData({ page: 0, stateId: stateStr + '', skipCache: true });
     };
 
-    res.status(200).json({ err: null, sucessful: true });
+    res.status(200).json({ err: null, successful: true });
   } catch(err) {
     console.error(err);
-    res.status(500).json({ err: 'Something went wrong on next.js', sucessful: false });
+    res.status(500).json({ err: 'Something went wrong on next.js', successful: false });
   } finally {
     console.log(`Revalidating pages took ${(performance.now() - startTime).toFixed(0)}ms ⏱️`);
   }

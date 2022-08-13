@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // mantine
 import { Box, Center, Loader, createStyles } from '@mantine/core';

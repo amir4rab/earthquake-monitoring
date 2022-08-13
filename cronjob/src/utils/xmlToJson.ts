@@ -1,4 +1,4 @@
-const { XMLParser, XMLBuilder, XMLValidator} = require('fast-xml-parser');
+const { XMLParser } = require('fast-xml-parser');
 
 interface itemSchema {
   id: number,

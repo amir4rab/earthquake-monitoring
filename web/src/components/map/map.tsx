@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // leaflet
-import { MapContainer, TileLayer, Circle, useMapEvent, Marker, CircleProps } from 'react-leaflet'
+import { MapContainer, TileLayer, Circle, useMapEvent, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 // mantine

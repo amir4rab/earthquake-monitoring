@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 // mantine components
 import { Title, Box, Text, Anchor } from '@mantine/core'

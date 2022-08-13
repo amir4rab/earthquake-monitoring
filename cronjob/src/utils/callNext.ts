@@ -45,13 +45,13 @@ const callNext = async ({ apiKey, apiRoute, diff }: CallNextProps) => {
       }
     );
   
-    const { err, sucessful } = await res.json() as {
+    const { err } = await res.json() as {
       err: string | null;
-      sucessful: boolean;
+      successful: boolean;
     };
   
     if ( err === null ) {
-      console.log('Sucessfully regenerated next.js pages');
+      console.log('Successfully regenerated next.js pages');
     } else {
       console.error(`⚠️ Error in "callNext": `,err);
     };

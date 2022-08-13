@@ -44,7 +44,7 @@ const handler = async (
     });
 
     // parsing the inputs
-    const { page, state } = { page: parseInt(req.query.page), state: parseInt(req.query.state) }
+    const { page, state } = { page: parseInt(req.query.page), state: parseInt(req.query.state) };
 
     // verifying range
     if ( 1 > page || page > 5 || 0 > state || page > 30 ) return res.status(416).json({ 

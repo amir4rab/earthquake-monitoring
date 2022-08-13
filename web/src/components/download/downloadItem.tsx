@@ -1,7 +1,7 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { ReactNode } from 'react';
 
 // mantine
-import { Box, createStyles, Group, Text, Tooltip, UnstyledButton, UnstyledButtonProps } from '@mantine/core';
+import { createStyles, Text, Tooltip, UnstyledButton } from '@mantine/core';
 
 
 // styles

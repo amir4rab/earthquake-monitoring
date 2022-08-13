@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // mantine
 import { Box, createStyles, Divider, Group, LoadingOverlay, Text, ThemeIcon, Title, useMantineTheme } from '@mantine/core';
@@ -85,6 +85,8 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
+const currentWindowLocation = 'https://earthquake-monitoring.amir4rab.com/download';
+
 interface Props {
   data: GhRelease | null
 }
@@ -94,14 +96,6 @@ const Download = ({ data }: Props) => {
 
   const { t: commonT } = useTranslation('common');
   const { t } = useTranslation('download');
-  const [ currentWindowLocation, setCurrentWindowLocation ] = useState< null | string >(null);
-
-  useEffect(() => {
-    if ( typeof window === 'undefined' || currentWindowLocation !== null ) return;
-
-    const href = window.location.href;
-    setCurrentWindowLocation(href);
-  }, [ currentWindowLocation ])
 
   return (
     <main className={ classes.main }>

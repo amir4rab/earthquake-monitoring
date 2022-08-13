@@ -9,8 +9,6 @@ import { ExtendedEarthquakeArray } from '../types';
 export const setEarthquakeDataToCache = async ( data: ExtendedEarthquakeArray[], stateId: string ) => {
   try {
     await connect();
-
-    const currentDate = new Date();
     await redis.json.set(
       `statesEarthquakes:redisJson:${stateId}`, 
       '$', 
@@ -32,11 +30,9 @@ export const setEarthquakeDataToCache = async ( data: ExtendedEarthquakeArray[],
 /**
  * Sets latest earthquake data to Redis Cache
  */
- export const setLatestEarthquakeDataToCache = async ( data: ExtendedEarthquakeArray ) => {
+export const setLatestEarthquakeDataToCache = async ( data: ExtendedEarthquakeArray ) => {
   try {
     await connect();
-
-    const currentDate = new Date();
     await redis.json.set(
       `statesEarthquakes:redisJson:latest`, 
       '$', 

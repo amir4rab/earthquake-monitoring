@@ -1,5 +1,5 @@
 // react
-import { Suspense, lazy, useState, useEffect, useRef } from 'react';
+import { Suspense, useState, useEffect, useRef } from 'react';
 
 // mantine
 import { Center, Loader, LoadingOverlay } from '@mantine/core';

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 // mantine
-import { Avatar, Box, Center, Group, SimpleGrid, Text, Title, UnstyledButton } from '@mantine/core';
+import { Avatar, Center, Group, SimpleGrid, Text, Title, UnstyledButton } from '@mantine/core';
 import { createStyles } from '@mantine/styles';
 
 // next-translate
