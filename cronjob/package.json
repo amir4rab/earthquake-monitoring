@@ -1,7 +1,7 @@
 {
   "name": "cronjob",
   "author": "Amir Arab",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "module": "CommonJS",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",

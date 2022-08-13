@@ -1,7 +1,7 @@
 {
   "name": "earthquake-monitoring-app",
   "private": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": {
     "name": "Amir Arab",
     "email": "contact@amir4rab.com",
@@ -24,7 +24,7 @@
     "generate-assets": "npx cordova-res android --skip-config --copy --icon-background-source '#141517' --type=adaptive-icon && npx cap sync android",
     "electron-dev": "tsc -p electron-src && electron .",
     "electron-preparations": "rm ./out -rf && mv ./dist ./out",
-    "electron-build": "pnpm run prisma-types && cross-env VITE_ELECTRON_BUILD=1 npm run build && npm run leaflet-assets && pnpm run electron-preparations && tsc -p electron && electron-builder",
+    "electron-build": "pnpm run prisma-types && cross-env VITE_ELECTRON_BUILD=1 pnpm run build && pnpm run leaflet-assets && pnpm run electron-preparations && tsc -p electron && electron-builder",
     "electron-build-gh": "npm run prisma-types && cross-env VITE_ELECTRON_BUILD=1 npm run build && npm run leaflet-assets && npm run electron-preparations && tsc -p electron && electron-builder"
   },
   "dependencies": {
