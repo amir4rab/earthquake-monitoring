@@ -30,6 +30,9 @@ check box displays if the fixes goal has been meet or not.
 - [X] Changed windows version to a portable exe
 - [X] Updated the docs
 
+### **v1.0.6**
+- [X] changed win target back to nsis, due to some errors on github action 
+
 ### **Next**
 - [ ] React in Production, error fixes
 
