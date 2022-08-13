@@ -1,3 +1,5 @@
+![Banner](./banner.png)
+
 # Earthquake monitoring
 
 ## About 🪪
@@ -101,5 +103,5 @@ cp  docker-compose.prod.yml docker-compose.local.yml # then update the new file 
 docker compose -f docker-compose.local.yml up -d
 ```
 
-## Building android application
-please read our guide in [here](./mobile/README.md)
+## Building application
+please read our guide in [here](./app/README.md)

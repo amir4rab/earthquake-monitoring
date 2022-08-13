@@ -18,12 +18,19 @@ check box displays if the fixes goal has been meet or not.
 ### **v1.0.2**:
 - [X] Android workflow Hotfix
 
-### **v1.0.3**:
+### **v1.0.4**:
 - [X] ios pwa splash screen fixes
 - [X] Banner for website open graph
 - [X] PWA shortcut
 - [X] Minor ui improvements
-- [ ] Electron build ( Windows and Linux )
+- [X] Electron build ( Windows and Linux )
+
+### **v1.0.5**
+- [X] Github automated code checking
+- [X] Changed windows version to a portable exe
+- [X] Updated the docs
+
+### **Next**
 - [ ] React in Production, error fixes
 
 
