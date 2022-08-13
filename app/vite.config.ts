@@ -74,33 +74,30 @@ export default defineConfig({
             'name': 'Near me',
             'url': '/nearme',
             'short_name': 'Near',
+            'description': 'Nearest events to you',
             'icons': [{
-              'src': '/assets/pwa-icons/nearme-icon.jpg',
-              'size': '512x215',
-              'type': 'image/jpg',
-              'purpose': 'any'
+              'src': '/assets/pwa-icons/nearme-icon.png',
+              'size': '512x215'
             }]
           },
           {
             'name': 'Provinces',
             'url': '/states',
             'short_name': 'Provinces',
+            'description': 'Events per state',
             'icons': [{
-              'src': '/assets/pwa-icons/states-icon.jpg',
-              'size': '512x215',
-              'type': 'image/jpg',
-              'purpose': 'any'
+              'src': '/assets/pwa-icons/states-icon.png',
+              'size': '512x215'
             }]
           },
           {
             'name': 'About',
             'url': '/about',
             'short_name': 'About',
+            'description': 'About Earthquake monitoring',
             'icons': [{
-              'src': '/assets/pwa-icons/about-icon.jpg',
-              'size': '512x215',
-              'type': 'image/jpg',
-              'purpose': 'any'
+              'src': '/assets/pwa-icons/about-icon.png',
+              'size': '512x215'
             }]
           }
         ],

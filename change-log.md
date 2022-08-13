@@ -35,6 +35,7 @@ check box displays if the fixes goal has been meet or not.
 
 ### **v1.0.7**
 - [X] Depreciated Desktop builds in favor of PWA
+- [X] PWA shortcuts fixed
 
 ### **Next**
 - [ ] React in Production, error fixes
