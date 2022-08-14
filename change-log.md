@@ -38,6 +38,12 @@ check box displays if the fixes goal has been meet or not.
 - [X] PWA shortcuts fixed
 - [X] Updated pwa installation guide
 
+### **v1.1.0**
+- [X] Stable release
+
+**v1.1.1**
+- [X] performance improvements
+
 **Next**
 - [ ] React in Production, error fixes
 
