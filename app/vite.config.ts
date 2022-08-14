@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 
+// plugins
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';

@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 
 // mantine
 import { createStyles, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 // hooks
 import useUa from '@/hooks/useUa';
 
 // types
-import type { IOS } from 'ua-parser-js';
 import type { DetectBrowserSupportResult } from './utils';
 
 // subcomponents
@@ -26,7 +26,8 @@ import { detectBrowserSupport } from './utils';
 import LoadingDisplay from '../loadingDisplay';
 import LangSelector from '../langSelector';
 
-
+// react router dom
+import { useNavigate } from 'react-router-dom';
 
 // styles
 const useStyles = createStyles((t) => ({
@@ -49,9 +50,15 @@ const useStyles = createStyles((t) => ({
 }));
 
 const PwaInstallPrompt = () => {
-  const { os, browser } = useUa();
   const { classes } = useStyles();
+  const { os, browser } = useUa();
+  
   const [ browserInfo, setBrowserInfo ] = useState< DetectBrowserSupportResult | null >(null);
+  
+  const isInstalled = useMediaQuery('(display-mode: standalone)');
+
+  const navigate = useNavigate();
+
   const { t: pwaT, i18n } = useTranslation('pwa');
 
   useEffect(() => {
@@ -59,6 +66,10 @@ const PwaInstallPrompt = () => {
       setBrowserInfo(detectBrowserSupport(browser, os));
     }
   }, [ browserInfo ])
+
+  useEffect(() => {
+    if ( isInstalled ) navigate('/pwa-home')
+  }, [ isInstalled ])
 
   return (
     <main className={ classes.main }>
