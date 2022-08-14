@@ -1,5 +1,5 @@
 // mantine
-import { TypographyStylesProvider, useMantineTheme } from '@mantine/core';
+import { List, useMantineTheme } from '@mantine/core';
 
 interface Props {
   data: {
@@ -18,18 +18,27 @@ const PWABaseInstallProps = ({ lang, data, defaultLang, img }: Props ) => {
   const t = useMantineTheme();
 
   return (
-    <TypographyStylesProvider>
-      <article>
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={ img.src } alt={ img.alt } loading='lazy' style={{ aspectRatio: img.aspectRatio, borderRadius: t.radius.md, overflow: 'hidden' }} />
-        </div>
-        <ol>
-          {
-            (data.hasOwnProperty(lang) ? data[lang] : data[defaultLang]).map(i => <li key={ i }>{ i }</li>)
-          }
-        </ol>
-      </article>
-    </TypographyStylesProvider>
+    <article>
+      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img 
+          src={ img.src } 
+          alt={ img.alt } 
+          loading='lazy' 
+          style={{ 
+            aspectRatio: img.aspectRatio + '! important',
+            width: '25vw',
+            objectFit: 'scale-down',
+            borderRadius: t.radius.md, 
+            overflow: 'hidden' 
+          }}
+          />
+      </div>
+      <List size='lg' mt='xl'>
+        {
+          (data.hasOwnProperty(lang) ? data[lang] : data[defaultLang]).map(i => <List.Item key={ i }>{ i }</List.Item>)
+        }
+      </List>
+    </article>
   )
 };
 

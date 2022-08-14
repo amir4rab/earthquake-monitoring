@@ -35,7 +35,7 @@ const SeoHeader = ({ title, subtitle, lang }: Props) => {
       <meta name='twitter:url' content={ websiteUrl } />
       <meta name='twitter:title' content={ title } />
       <meta name='twitter:description' content={ subtitle } />
-      <meta name='twitter:image' content={ websiteUrl + '/assets/pwa-icons/android-chrome-192x192.png' } />
+      <meta name='twitter:image' content={ websiteUrl + `/assets/banners/banner-${lang}.jpg` } />
 
       <meta property='og:type' content='website' />
       <meta property='og:title' content={ title } />
