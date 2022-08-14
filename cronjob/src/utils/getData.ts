@@ -33,7 +33,7 @@ const mappedStates = {
   "kermanshah": 21,
   "kohgiloyeh-and-Boyerahmad": 22, "kohgiloyeh-va-Boyerahmad": 22,
   "golestan": 23,
-  "guilan": 24,
+  "guilan": 24, "gilan": 24,
   "lorestan": 25,
   "mazandaran": 26,
   "markazi": 27,

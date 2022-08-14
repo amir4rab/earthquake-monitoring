@@ -42,7 +42,8 @@ check box displays if the fixes goal has been meet or not.
 - [X] Stable release
 
 **v1.1.1**
-- [X] performance improvements
+- [X] Performance improvements
+- [X] Backend bug fixes
 
 **Next**
 - [ ] React in Production, error fixes
