@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite';
 
+// plugins
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.VITE_ELECTRON_BUILD === '1' ? './' : '/',
+  base: '/',
   plugins: [
     react(),
     tsconfigPaths(),
@@ -74,33 +75,30 @@ export default defineConfig({
             'name': 'Near me',
             'url': '/nearme',
             'short_name': 'Near',
+            'description': 'Nearest events to you',
             'icons': [{
-              'src': '/assets/pwa-icons/nearme-icon.jpg',
-              'size': '512x215',
-              'type': 'image/jpg',
-              'purpose': 'any'
+              'src': '/assets/pwa-icons/nearme-icon.png',
+              'size': '512x215'
             }]
           },
           {
             'name': 'Provinces',
             'url': '/states',
             'short_name': 'Provinces',
+            'description': 'Events per state',
             'icons': [{
-              'src': '/assets/pwa-icons/states-icon.jpg',
-              'size': '512x215',
-              'type': 'image/jpg',
-              'purpose': 'any'
+              'src': '/assets/pwa-icons/states-icon.png',
+              'size': '512x215'
             }]
           },
           {
             'name': 'About',
             'url': '/about',
             'short_name': 'About',
+            'description': 'About Earthquake monitoring',
             'icons': [{
-              'src': '/assets/pwa-icons/about-icon.jpg',
-              'size': '512x215',
-              'type': 'image/jpg',
-              'purpose': 'any'
+              'src': '/assets/pwa-icons/about-icon.png',
+              'size': '512x215'
             }]
           }
         ],

@@ -1,39 +1,33 @@
+import { useEffect, useState } from 'react';
+
 // mantine
-import { Alert, createStyles, Title } from '@mantine/core';
+import { createStyles, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 // hooks
 import useUa from '@/hooks/useUa';
 
 // types
-import type { IOS } from 'ua-parser-js';
+import type { DetectBrowserSupportResult } from './utils';
 
 // subcomponents
-import PwaInstallPromptIncompatible from './subcomponents/pwaInstallPrompt-incompatible';
+import PwaInstallPromptIncompatible from './subcomponents/incompatible';
+import PwaInstallPromptIos from './subcomponents/ios';
+import PwaInstallPromptAndroid from './subcomponents/android';
+import PwaInstallPromptChrome from './subcomponents/chrome';
 
 // react-i18next
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-// icons
-import { IoAlert } from 'react-icons/io5';
-import PwaInstallPromptIos from './subcomponents/pwaInstallPrompt-ios';
-import PwaInstallPromptAndroid from './subcomponents/pwaInstallPrompt-android';
+// utils
+import { detectBrowserSupport } from './utils';
 
-const isIncompatible = ( os: IOS ) => os.name?.toLocaleLowerCase() !== 'android' && os.name?.toLocaleLowerCase() !== 'ios';
-const isIncompatibleBrowser = ( browser: string ) => {
-  const incompatibleBrowsersArray = [ 'firefox' ];
+// components
+import LoadingDisplay from '../loadingDisplay';
+import LangSelector from '../langSelector';
 
-  let incompatible = false;
-  incompatibleBrowsersArray.every(i => {
-    if ( browser.toLowerCase().includes(i) ) {
-      incompatible= true;
-      return false;
-    };
-    return true;
-  });
-
-  return incompatible
-};
-const validIos = ( browser: string ) => browser.toLowerCase().includes('safari');
+// react router dom
+import { useNavigate } from 'react-router-dom';
 
 // styles
 const useStyles = createStyles((t) => ({
@@ -47,27 +41,35 @@ const useStyles = createStyles((t) => ({
     fontWeight: 'normal',
     opacity: .75,
     marginTop: t.spacing.sm
+  },
+  footer: {
+    marginTop: t.spacing.xl * 4,
+    display: 'flex', 
+    justifyContent: 'flex-start'
   }
 }));
 
 const PwaInstallPrompt = () => {
-  const { os, browser } = useUa();
   const { classes } = useStyles();
-  const { t: pwaT } = useTranslation('pwa');
+  const { os, browser } = useUa();
+  
+  const [ browserInfo, setBrowserInfo ] = useState< DetectBrowserSupportResult | null >(null);
+  
+  const isInstalled = useMediaQuery('(display-mode: standalone)');
 
-  if ( isIncompatible(os) ) return (
-    <main className={ classes.main }>
-      <header className={ classes.header }>
-        <Title order={1}>
-          { pwaT('incompatibleTitle') }
-        </Title>
-        <Title className={ classes.subtitle } order={3}>
-          { pwaT('incompatibleSubtitle') }
-        </Title>
-      </header>
-      <PwaInstallPromptIncompatible />
-    </main>
-  )
+  const navigate = useNavigate();
+
+  const { t: pwaT, i18n } = useTranslation('pwa');
+
+  useEffect(() => {
+    if ( browserInfo === null && typeof window !== 'undefined' ) {
+      setBrowserInfo(detectBrowserSupport(browser, os));
+    }
+  }, [ browserInfo ])
+
+  useEffect(() => {
+    if ( isInstalled ) navigate('/pwa-home')
+  }, [ isInstalled ])
 
   return (
     <main className={ classes.main }>
@@ -80,32 +82,19 @@ const PwaInstallPrompt = () => {
         </Title>
       </header>
       {
-        isIncompatibleBrowser(typeof browser.name !== 'undefined' ? browser.name : '') ?
-          <Alert
-            title={ pwaT('incompatibleBrowserTitle') }
-            color='red'
-            icon={ <IoAlert /> }
-          >
-            <Trans 
-              i18nKey='pwa:incompatibleBrowserText'
-              values={{ browser: browser.name }}
-            />
-          </Alert> :
-        os.name?.toLocaleLowerCase() === 'android' ?
-          <PwaInstallPromptAndroid /> :
-        os.name?.toLocaleLowerCase() === 'ios' && validIos(browser.name!) ?
-          <PwaInstallPromptIos /> :
-          <Alert
-            title={ pwaT('incompatibleBrowserTitle') }
-            color='red'
-            icon={ <IoAlert /> }
-          >
-            <Trans 
-              i18nKey='pwa:incompatibleBrowserText'
-              values={{ browser: browser.name }}
-            />
-          </Alert>
+        browserInfo === null ?
+        <LoadingDisplay /> :
+        ( browserInfo.os === 'ios' && browserInfo.supported ) ? 
+        <PwaInstallPromptIos lang={ i18n.language }/> :
+        ( browserInfo.os === 'android' && browserInfo.supported ) ? 
+        <PwaInstallPromptAndroid lang={ i18n.language } /> :
+        browserInfo.supported ?
+        <PwaInstallPromptChrome lang={ i18n.language }/>: 
+        <PwaInstallPromptIncompatible browser={ typeof browser.name !== 'undefined' ? browser.name : '' } />
       }
+      <footer className={ classes.footer }>
+        <LangSelector />
+      </footer>
     </main>
   )
 };

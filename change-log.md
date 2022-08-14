@@ -12,28 +12,33 @@ check box displays if the fixes goal has been meet or not.
 - [X] Download page
 - [ ] React in production, error fixes
 
-### **v1.0.1**:
+**v1.0.1**:
 - [ ] Android workflow Hotfix
 
-### **v1.0.2**:
+**v1.0.2**:
 - [X] Android workflow Hotfix
 
-### **v1.0.4**:
+**v1.0.4**:
 - [X] ios pwa splash screen fixes
 - [X] Banner for website open graph
 - [X] PWA shortcut
 - [X] Minor ui improvements
 - [X] Electron build ( Windows and Linux )
 
-### **v1.0.5**
+**v1.0.5**
 - [X] Github automated code checking
 - [X] Changed windows version to a portable exe
 - [X] Updated the docs
 
-### **v1.0.6**
+**v1.0.6**
 - [X] changed win target back to nsis, due to some errors on github action 
 
-### **Next**
+**v1.0.7**
+- [X] Depreciated Desktop builds in favor of PWA
+- [X] PWA shortcuts fixed
+- [X] Updated pwa installation guide
+
+**Next**
 - [ ] React in Production, error fixes
 
 

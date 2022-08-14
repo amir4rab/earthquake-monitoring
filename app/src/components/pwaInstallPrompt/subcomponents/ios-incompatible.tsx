@@ -41,7 +41,7 @@ const QrCode = ({ url }:{ url: string }) => {
   );
 }
 
-const PwaInstallPromptIncompatible = () => {
+const PwaInstallPromptIncompatibleIos = () => {
   const pwaUrl = import.meta.env.VITE_PWA_URL;
   const downloadUrl = import.meta.env.VITE_DOWNLOAD_URL;
   const { t } = useTranslation('pwa');
@@ -90,4 +90,4 @@ const PwaInstallPromptIncompatible = () => {
   );
 };
 
-export default PwaInstallPromptIncompatible;
+export default PwaInstallPromptIncompatibleIos;

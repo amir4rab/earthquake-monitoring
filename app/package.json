@@ -1,7 +1,7 @@
 {
   "name": "earthquake-monitoring-app",
   "private": true,
-  "version": "1.0.6",
+  "version": "1.1.0",
   "author": {
     "name": "Amir Arab",
     "email": "contact@amir4rab.com",
@@ -21,11 +21,7 @@
     "pwa-build": "npm run prisma-types && cross-env VITE_PWA_BUILD=1 npm run build && npm run leaflet-assets",
     "android-dev": "cross-env VITE_ANDROID_BUILD=1 vite",
     "android-build": "cross-env VITE_ANDROID_BUILD=1 npm run build && npm run leaflet-assets && npx cap copy && npx cap sync android && npm run generate-assets",
-    "generate-assets": "npx cordova-res android --skip-config --copy --icon-background-source '#141517' --type=adaptive-icon && npx cap sync android",
-    "electron-dev": "tsc -p electron-src && electron .",
-    "electron-preparations": "rm ./out -rf && mv ./dist ./out",
-    "electron-build": "pnpm run prisma-types && cross-env VITE_ELECTRON_BUILD=1 pnpm run build && pnpm run leaflet-assets && pnpm run electron-preparations && tsc -p electron && electron-builder",
-    "electron-build-gh": "npm run prisma-types && cross-env VITE_ELECTRON_BUILD=1 npm run build && npm run leaflet-assets && npm run electron-preparations && tsc -p electron && electron-builder"
+    "generate-assets": "npx cordova-res android --skip-config --copy --icon-background-source '#141517' --type=adaptive-icon && npx cap sync android"
   },
   "dependencies": {
     "@capacitor/android": "^4.0.1",
@@ -67,17 +63,12 @@
     "@vitejs/plugin-react": "^2.0.0",
     "cordova-res": "^0.15.4",
     "cross-env": "^7.0.3",
-    "electron": "^20.0.2",
-    "electron-builder": "^23.3.3",
-    "electron-is-dev": "^2.0.0",
     "eslint": "^8.21.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.30.1",
     "prisma": "^4.1.1",
-    "terser": "^5.14.2",
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
     "vite-plugin-pwa": "^0.12.3"
-  },
-  "main": "electron-src/main.js"
+  }
 }
