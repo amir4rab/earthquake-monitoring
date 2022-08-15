@@ -22,8 +22,6 @@ const useFetchStateData = ({ currentPage, stateId }: UseFetchStateDataProps ) =>
   );
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_NEXT_API_ROUTE);
-
     if ( !isValidating && typeof response?.data?.latestEarthquakesArr !== 'undefined' ) {
       setBufferedData(response.data.latestEarthquakesArr);
       setTotalPages(response.data.totalPages);
