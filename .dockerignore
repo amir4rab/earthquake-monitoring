@@ -41,6 +41,9 @@
 # development tsconfig
 web/tsconfig.json
 
+# normal tsconfig
+app/tsconfig.json
+
 # development prisma
 web/prisma
 cronjob/prisma
@@ -50,3 +53,6 @@ cronjob/prisma
 
 # i18n conf
 /web/i18n.js
+
+# cordova
+*/android/

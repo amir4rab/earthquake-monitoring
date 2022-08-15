@@ -78,7 +78,7 @@ export default defineConfig({
             'description': 'Nearest events to you',
             'icons': [{
               'src': '/assets/pwa-icons/nearme-icon.png',
-              'size': '512x215'
+              'size': '512x512'
             }]
           },
           {
@@ -88,7 +88,7 @@ export default defineConfig({
             'description': 'Events per state',
             'icons': [{
               'src': '/assets/pwa-icons/states-icon.png',
-              'size': '512x215'
+              'size': '512x512'
             }]
           },
           {
@@ -98,7 +98,7 @@ export default defineConfig({
             'description': 'About Earthquake monitoring',
             'icons': [{
               'src': '/assets/pwa-icons/about-icon.png',
-              'size': '512x215'
+              'size': '512x512'
             }]
           }
         ],

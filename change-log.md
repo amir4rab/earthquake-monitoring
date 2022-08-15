@@ -38,9 +38,15 @@ check box displays if the fixes goal has been meet or not.
 - [X] PWA shortcuts fixed
 - [X] Updated pwa installation guide
 
-**Next**
-- [ ] React in Production, error fixes
+### **v1.1.0**
+- [X] Stable release
 
+**v1.1.1**
+- [X] Performance improvements
+- [X] Backend bug fixes
+- [X] Minor UI fixes
+- [X] React in production, error fixes
+- [X] Added PWA hosting config to Docker-files
 
 ---
 

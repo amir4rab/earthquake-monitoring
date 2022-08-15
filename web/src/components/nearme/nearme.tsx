@@ -3,6 +3,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 // mantine
 import { Box, Center, Loader } from '@mantine/core';
 import { createStyles } from '@mantine/styles';
+import { useDebouncedValue } from '@mantine/hooks';
+
 
 // hooks
 import useGeoLocation from '@/hooks/useGeoLocation';
@@ -10,7 +12,6 @@ import useGeoLocation from '@/hooks/useGeoLocation';
 // types
 import EarthquakeDisplay from '../earthquakeDisplay';
 import type { ExtendedEarthquakeArray, ExtendedEarthquake as ExtendedEarthquakeBase } from '@/types/extendedEarthquake';
-
 
 // subcomponents
 import NearMeErrorAlert from './subcomponents/nearme-errorAlert';
@@ -58,6 +59,8 @@ const NearMe = ({ latestEarthquakesArr }: NearMeProps) => {
   const [ distances, setDistances ] = useState< { min: number, max: number } | null >(null);
   const [ manuallySelectedLocation, setManuallySelectedLocation ] = useState< { lat: number, long: number } | null >(null);
   const [ maximumRange, setMaximumRange ] = useState(0);
+  const [ debouncedMaximumRange ] = useDebouncedValue(maximumRange, 50);
+
   const { classes } = useStyles();
   const { geolocationData, geolocationPermission, isLoading, setGeolocationPermission, failed } = useGeoLocation();
 
@@ -106,19 +109,22 @@ const NearMe = ({ latestEarthquakesArr }: NearMeProps) => {
     ) 
   }
 
-  //* Displaying: Result after a manual geolocation data input
-  if ( manuallySelectedLocation !== null ) {
-    return (
+  //* Displaying: Results
+  return (
+    <>
       <main className={ classes.main }>
         <NearMeHead />
         {
-          distances === null ? 
-          <Center>
-            <Loader />
-          </Center> :
+          !geolocationPermission && <NearMePermissionAlert acceptPermission={ () => setGeolocationPermission(true) } />
+        }
+        {
+          (( isLoading || distances === null ) && !failed ) && <Center sx={{ minHeight: '50vh' }}><Loader /></Center>
+        }
+        {
+          ( geolocationPermission && ( !isLoading || failed  ) && distances !== null ) &&
           <>
             <Slider
-              marks={[
+                marks={[
                 {
                   i18nKey: 'common:nearest',
                   value: 0
@@ -131,50 +137,24 @@ const NearMe = ({ latestEarthquakesArr }: NearMeProps) => {
               onChange={ (v) => setMaximumRange(v) }
               value={ maximumRange }
             />
-            <EarthquakeDisplay
-              mapCenter={{ lat: manuallySelectedLocation!.lat, lng: manuallySelectedLocation!.long }}
-              latestEarthquakesArr={ filterArray(earthquakeManualArr, distances, maximumRange) }
-            />
+            {
+              manuallySelectedLocation !== null &&
+              <EarthquakeDisplay
+                mapCenter={{ lat: manuallySelectedLocation.lat, lng: manuallySelectedLocation.long }}
+                latestEarthquakesArr={ filterArray(earthquakeManualArr, distances, debouncedMaximumRange) }
+              />
+            }
+            {
+              geolocationData !== null &&
+              <EarthquakeDisplay
+                mapCenter={{ lat: geolocationData.lat, lng: geolocationData.long }}
+                latestEarthquakesArr={ filterArray(earthquakeArr, distances, debouncedMaximumRange) }
+              />
+            }
           </>
         }
       </main>
-    )
-  };
-
-  //* Displaying: Result after the automatic geolocation data input
-  return (
-    <main className={ classes.main }>
-      <NearMeHead />
-      {
-        !geolocationPermission && <NearMePermissionAlert acceptPermission={ () => setGeolocationPermission(true) } />
-      }
-      {
-        ( isLoading || distances === null ) && <Center sx={{ minHeight: '50vh' }}><Loader /></Center>
-      }
-      {
-        ( geolocationPermission && !isLoading && distances !== null ) &&
-        <>
-          <Slider
-              marks={[
-              {
-                i18nKey: 'common:nearest',
-                value: 0
-              },
-              {
-                i18nKey: 'common:furthest',
-                value: 100
-              }
-            ]}
-            onChange={ (v) => setMaximumRange(v) }
-            value={ maximumRange }
-          />
-          <EarthquakeDisplay
-            mapCenter={{ lat: geolocationData!.lat, lng: geolocationData!.long }}
-            latestEarthquakesArr={ filterArray(earthquakeArr, distances, maximumRange) }
-          />
-        </>
-      }
-    </main>
+    </>
   )
 };
 

@@ -2,13 +2,14 @@ import { useMemo, useState } from 'react';
 
 // mantine
 import { Box, Center, Loader, createStyles } from '@mantine/core';
+import { useDebouncedValue } from '@mantine/hooks';
 
 // hooks
 import useGeoLocation from '@/hooks/useGeoLocation';
 
 // types
 import EarthquakeDisplay from '../earthquakeDisplay';
-import type { ExtendedEarthquakeArray, ExtendedEarthquake as ExtendedEarthquakeBase } from '@/types/extendedEarthquake';
+import type { ExtendedEarthquake as ExtendedEarthquakeBase } from '@/types/extendedEarthquake';
 
 
 // subcomponents
@@ -56,6 +57,8 @@ const NearMe = () => {
   const [ distances, setDistances ] = useState< { min: number, max: number } | null >(null);
   const [ manuallySelectedLocation, setManuallySelectedLocation ] = useState< { lat: number, long: number } | null >(null);
   const [ maximumRange, setMaximumRange ] = useState(0);
+  const [ debouncedMaximumRange ] = useDebouncedValue(maximumRange, 50);
+
   const { classes } = useStyles();
   const { geolocationData, geolocationPermission, isLoading, setGeolocationPermission, failed } = useGeoLocation();
 
@@ -131,14 +134,14 @@ const NearMe = () => {
               manuallySelectedLocation !== null &&
               <EarthquakeDisplay
                 mapCenter={{ lat: manuallySelectedLocation.lat, lng: manuallySelectedLocation.long }}
-                latestEarthquakesArr={ filterArray(earthquakeManualArr, distances, maximumRange) }
+                latestEarthquakesArr={ filterArray(earthquakeManualArr, distances, debouncedMaximumRange) }
               />
             }
             {
               geolocationData !== null &&
               <EarthquakeDisplay
                 mapCenter={{ lat: geolocationData.lat, lng: geolocationData.long }}
-                latestEarthquakesArr={ filterArray(earthquakeArr, distances, maximumRange) }
+                latestEarthquakesArr={ filterArray(earthquakeArr, distances, debouncedMaximumRange) }
               />
             }
           </>

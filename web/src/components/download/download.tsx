@@ -1,7 +1,7 @@
 import React from 'react';
 
 // mantine
-import { Box, createStyles, Divider, Group, LoadingOverlay, Text, ThemeIcon, Title, useMantineTheme } from '@mantine/core';
+import { Box, createStyles, Divider, Group, Text, ThemeIcon, Title, useMantineTheme } from '@mantine/core';
 
 // next-translate
 import useTranslation from 'next-translate/useTranslation';
@@ -153,15 +153,14 @@ const Download = ({ data }: Props) => {
           <Box
             className={ classes.qrCodeWrapper }
           >
-            <LoadingOverlay visible={ currentWindowLocation === null } />
             <QRCodeSVG 
-              value={ currentWindowLocation !== null ? currentWindowLocation : '' }
+              value={ currentWindowLocation }
               bgColor={ mantineWhite }
               fgColor={ colors.dark[7] }
               // @ts-ignore
               size='100%'
             />
-            <Text component='p'>
+            <Text sx={{ userSelect: 'none' }} component='p'>
               { t('scanQrCode') }
             </Text>
           </Box>
