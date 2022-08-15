@@ -45,9 +45,7 @@ check box displays if the fixes goal has been meet or not.
 - [X] Performance improvements
 - [X] Backend bug fixes
 - [X] Minor UI fixes
-
-**Next**
-- [ ] React in Production, error fixes
+- [X] React in production, error fixes
 
 
 ---
