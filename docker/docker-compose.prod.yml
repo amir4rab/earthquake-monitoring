@@ -48,3 +48,13 @@ services:
       - cronjob
       - postgres-db-local
       - redis-db
+  pwa:
+    build:
+      dockerfile: app/Dockerfile
+      context: ../
+      args:
+      #! you have to update following argument with url of your main webserver.
+        VITE_NEXT_API_ROUTE: "https://YOUR_DOMAIN/api"
+    container_name: pwa-earthquake-monitoring
+    ports:
+      - "5173:5173"

@@ -46,7 +46,7 @@ check box displays if the fixes goal has been meet or not.
 - [X] Backend bug fixes
 - [X] Minor UI fixes
 - [X] React in production, error fixes
-
+- [X] Added PWA hosting config to Docker-files
 
 ---
 
