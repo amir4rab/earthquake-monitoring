@@ -30,6 +30,8 @@ This project is the final project of my bachelors of computer engineering progra
 - prisma ( Client for Postgres database )
 - fast-xml-parser ( Parsing Xml to json )
 
+---
+
 ## Development setup 💻
 
 ### Requirements
@@ -82,6 +84,8 @@ pnpm run init-prisma-schema # Generating prisma types
 pnpm run prisma-migrate-dev # Applying schemas to database
 pnpm run dev # Starting the development server
 ```
+
+---
 
 ## Hosting 🔥
 
