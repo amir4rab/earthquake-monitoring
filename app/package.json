@@ -16,6 +16,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
+    "prettier": "prettier --write . --config .prettierrc --config-precedence file-override",
     "prisma-types": "rm -r -f ./prisma && cp ../prisma . -r && npx prisma generate && rm -r -f ./prisma",
     "leaflet-assets": " cp ./assets/* ./dist",
     "pwa-dev": "cross-env VITE_PWA_BUILD=1 npm run dev",

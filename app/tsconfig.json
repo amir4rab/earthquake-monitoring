@@ -26,8 +26,8 @@
       "@/providers/*": ["src/providers/*"],
       "@/types/*": ["src/types/*"],
       "@/shared-data/*": ["../shared-data/*"],
-      "@/swr-fetcher": ["src/swr"],
-    },
+      "@/swr-fetcher": ["src/swr"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

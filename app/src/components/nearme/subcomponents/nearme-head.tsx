@@ -14,8 +14,9 @@ const useStyles = createStyles((t) => ({
     padding: t.spacing.md,
     borderRadius: t.radius.md,
     boxShadow: t.shadows.sm,
-    transition: 'box-shadow .15s ease-in-out, background .2s ease-in-out, transform .15s ease-in-out',
-    [ '&:hover' ]: {
+    transition:
+      'box-shadow .15s ease-in-out, background .2s ease-in-out, transform .15s ease-in-out',
+    ['&:hover']: {
       boxShadow: t.shadows.md,
       transform: 'scale(1.01)'
     }
@@ -30,12 +31,12 @@ const NearMeHead = () => {
   const { t } = useTranslation('common');
 
   return (
-    <header className={ classes.header }>
+    <header className={classes.header}>
       <Title mb='sm' order={1}>
-        { t('near-me') }
+        {t('near-me')}
       </Title>
     </header>
-  )
+  );
 };
 
 export default NearMeHead;

@@ -1,17 +1,20 @@
-import PWABaseInstallProps from "./base";
+import PWABaseInstallProps from './base';
 
-const PWAInstallPromptIos = ({ lang }:{ lang: string }) => {
+const PWAInstallPromptIos = ({ lang }: { lang: string }) => {
   return (
-    <PWABaseInstallProps 
+    <PWABaseInstallProps
       data={{
         en: [
-          'Click on the button displayed at the image', 'Scroll down and click on "Add to Home Screen"'
+          'Click on the button displayed at the image',
+          'Scroll down and click on "Add to Home Screen"'
         ],
         fa: [
-          'روی دکمه نمایش داده شده در تصویر کلیک کنید', 'به پایین اسکرول کنید و روی "افزودن به صفحه اصلی" کلیک کنید.'
+          'روی دکمه نمایش داده شده در تصویر کلیک کنید',
+          'به پایین اسکرول کنید و روی "افزودن به صفحه اصلی" کلیک کنید.'
         ],
         de: [
-          'Klicken Sie auf die im Bild angezeigte Schaltfläche', 'Scrollen Sie nach unten und klicken Sie auf "Zum Startbildschirm hinzufügen"'
+          'Klicken Sie auf die im Bild angezeigte Schaltfläche',
+          'Scrollen Sie nach unten und klicken Sie auf "Zum Startbildschirm hinzufügen"'
         ]
       }}
       defaultLang='en'
@@ -20,7 +23,7 @@ const PWAInstallPromptIos = ({ lang }:{ lang: string }) => {
         aspectRatio: '375/812',
         src: '/assets/guide/ios.png'
       }}
-      lang={ lang }
+      lang={lang}
     />
   );
 };

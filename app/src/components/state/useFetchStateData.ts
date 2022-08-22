@@ -10,34 +10,48 @@ interface UseFetchStateDataProps {
   currentPage: number;
   stateId: string;
 }
-const useFetchStateData = ({ currentPage, stateId }: UseFetchStateDataProps ) => {
-  const [ page, setPage ] = useState(currentPage)
-  const [ bufferedData, setBufferedData ] = useState<ExtendedEarthquakeArray>([]);
-  const [ totalPages, setTotalPages ] = useState(0);
-  const [ initialLoading, setInitialLoading ] = useState(true);
+const useFetchStateData = ({
+  currentPage,
+  stateId
+}: UseFetchStateDataProps) => {
+  const [page, setPage] = useState(currentPage);
+  const [bufferedData, setBufferedData] = useState<ExtendedEarthquakeArray>([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  const { data: response, isValidating } = useSWR( 
-    import.meta.env.VITE_NEXT_API_ROUTE + `/state?state=${stateId}&page=${ page }`,
-    ( ...props ) => fetcher<{ data: null | { latestEarthquakesArr: ExtendedEarthquakeArray, totalPages: number, err: string | null } }>( ...props )
+  const { data: response, isValidating } = useSWR(
+    import.meta.env.VITE_NEXT_API_ROUTE +
+      `/state?state=${stateId}&page=${page}`,
+    (...props) =>
+      fetcher<{
+        data: null | {
+          latestEarthquakesArr: ExtendedEarthquakeArray;
+          totalPages: number;
+          err: string | null;
+        };
+      }>(...props)
   );
 
   useEffect(() => {
-    if ( !isValidating && typeof response?.data?.latestEarthquakesArr !== 'undefined' ) {
+    if (
+      !isValidating &&
+      typeof response?.data?.latestEarthquakesArr !== 'undefined'
+    ) {
       setBufferedData(response.data.latestEarthquakesArr);
       setTotalPages(response.data.totalPages);
       setInitialLoading(false);
     }
-  }, [ page, isValidating, response ]);
+  }, [page, isValidating, response]);
 
-
-  return ({
+  return {
     initialLoading: initialLoading,
     isLoading: initialLoading || isValidating,
     data: bufferedData,
     totalPages,
-    setPage: (newPage: number) => ( page > 0 && page <= totalPages ) && setPage(newPage),
+    setPage: (newPage: number) =>
+      page > 0 && page <= totalPages && setPage(newPage),
     page
-  })
+  };
 };
 
 export default useFetchStateData;

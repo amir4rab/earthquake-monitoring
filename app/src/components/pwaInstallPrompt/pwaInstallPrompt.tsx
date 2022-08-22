@@ -39,12 +39,12 @@ const useStyles = createStyles((t) => ({
   },
   subtitle: {
     fontWeight: 'normal',
-    opacity: .75,
+    opacity: 0.75,
     marginTop: t.spacing.sm
   },
   footer: {
     marginTop: t.spacing.xl * 4,
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'flex-start'
   }
 }));
@@ -52,9 +52,10 @@ const useStyles = createStyles((t) => ({
 const PwaInstallPrompt = () => {
   const { classes } = useStyles();
   const { os, browser } = useUa();
-  
-  const [ browserInfo, setBrowserInfo ] = useState< DetectBrowserSupportResult | null >(null);
-  
+
+  const [browserInfo, setBrowserInfo] =
+    useState<DetectBrowserSupportResult | null>(null);
+
   const isInstalled = useMediaQuery('(display-mode: standalone)');
 
   const navigate = useNavigate();
@@ -62,41 +63,41 @@ const PwaInstallPrompt = () => {
   const { t: pwaT, i18n } = useTranslation('pwa');
 
   useEffect(() => {
-    if ( browserInfo === null && typeof window !== 'undefined' ) {
+    if (browserInfo === null && typeof window !== 'undefined') {
       setBrowserInfo(detectBrowserSupport(browser, os));
     }
-  }, [ browserInfo ])
+  }, [browserInfo]);
 
   useEffect(() => {
-    if ( isInstalled ) navigate('/pwa-home')
-  }, [ isInstalled ])
+    if (isInstalled) navigate('/pwa-home');
+  }, [isInstalled]);
 
   return (
-    <main className={ classes.main }>
-      <header className={ classes.header }>
-        <Title order={1}>
-          { pwaT('installingPwaTitle') }
-        </Title>
-        <Title className={ classes.subtitle } order={3}>
-          { pwaT('installingPwaSubtitle') }
+    <main className={classes.main}>
+      <header className={classes.header}>
+        <Title order={1}>{pwaT('installingPwaTitle')}</Title>
+        <Title className={classes.subtitle} order={3}>
+          {pwaT('installingPwaSubtitle')}
         </Title>
       </header>
-      {
-        browserInfo === null ?
-        <LoadingDisplay /> :
-        ( browserInfo.os === 'ios' && browserInfo.supported ) ? 
-        <PwaInstallPromptIos lang={ i18n.language }/> :
-        ( browserInfo.os === 'android' && browserInfo.supported ) ? 
-        <PwaInstallPromptAndroid lang={ i18n.language } /> :
-        browserInfo.supported ?
-        <PwaInstallPromptChrome lang={ i18n.language }/>: 
-        <PwaInstallPromptIncompatible browser={ typeof browser.name !== 'undefined' ? browser.name : '' } />
-      }
-      <footer className={ classes.footer }>
+      {browserInfo === null ? (
+        <LoadingDisplay />
+      ) : browserInfo.os === 'ios' && browserInfo.supported ? (
+        <PwaInstallPromptIos lang={i18n.language} />
+      ) : browserInfo.os === 'android' && browserInfo.supported ? (
+        <PwaInstallPromptAndroid lang={i18n.language} />
+      ) : browserInfo.supported ? (
+        <PwaInstallPromptChrome lang={i18n.language} />
+      ) : (
+        <PwaInstallPromptIncompatible
+          browser={typeof browser.name !== 'undefined' ? browser.name : ''}
+        />
+      )}
+      <footer className={classes.footer}>
         <LangSelector />
       </footer>
     </main>
-  )
+  );
 };
 
 export default PwaInstallPrompt;

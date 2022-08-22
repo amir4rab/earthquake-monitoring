@@ -1,11 +1,12 @@
 import PWABaseInstallProps from './base';
 
-const PwaInstallPromptChrome = ({ lang }:{ lang: string }) => {
+const PwaInstallPromptChrome = ({ lang }: { lang: string }) => {
   return (
-    <PWABaseInstallProps 
+    <PWABaseInstallProps
       data={{
         en: [
-          'At the top right of the address bar', `Click Install ( in case install isn't displayed there please wait until application data has been downloaded )`
+          'At the top right of the address bar',
+          `Click Install ( in case install isn't displayed there please wait until application data has been downloaded )`
         ],
         fa: [
           'در بالا سمت چپ نوار نشانی، روی «نصب»  کلیک کنید',
@@ -22,7 +23,7 @@ const PwaInstallPromptChrome = ({ lang }:{ lang: string }) => {
         aspectRatio: '344/82',
         src: '/assets/guide/chrome.png'
       }}
-      lang={ lang }
+      lang={lang}
     />
   );
 };

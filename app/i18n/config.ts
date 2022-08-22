@@ -29,39 +29,38 @@ import enAbout from '../../i18n/en/about.json';
 import deAbout from '../../i18n/de/about.json';
 import faAbout from '../../i18n/fa/about.json';
 
-
 import { initReactI18next } from 'react-i18next';
-import LangDetector from 'i18next-browser-languagedetector'
+import LangDetector from 'i18next-browser-languagedetector';
 
-export const langs = [ 'en', 'de', 'fa' ]
+export const langs = ['en', 'de', 'fa'];
 
 const resources = {
   en: {
-    'common': enCommon,
-    'earthquake': enEarthquake,
+    common: enCommon,
+    earthquake: enEarthquake,
     'near-me': enNearme,
-    'states': enStates,
-    'state': enState,
-    'pwa': enPwa,
-    'about': enAbout
+    states: enStates,
+    state: enState,
+    pwa: enPwa,
+    about: enAbout
   },
   de: {
-    'common': deCommon,
-    'earthquake': deEarthquake,
+    common: deCommon,
+    earthquake: deEarthquake,
     'near-me': deNearme,
-    'states': deStates,
-    'state': deState,
-    'pwa': dePwa,
-    'about': deAbout
+    states: deStates,
+    state: deState,
+    pwa: dePwa,
+    about: deAbout
   },
   fa: {
-    'common': faCommon,
-    'earthquake': faEarthquake,
+    common: faCommon,
+    earthquake: faEarthquake,
     'near-me': faNearme,
-    'states': faStates,
-    'state': faState,
-    'pwa': faPwa,
-    'about': faAbout
+    states: faStates,
+    state: faState,
+    pwa: faPwa,
+    about: faAbout
   }
 };
 
@@ -75,13 +74,12 @@ i18n
     debug: true,
     resources,
     detection: {
-      order: [ 'queryString', 'cookie' ],
-      caches: [ 'cookie' ]
+      order: ['queryString', 'cookie'],
+      caches: ['cookie']
     },
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+      escapeValue: false // not needed for react as it escapes by default
     }
   });
-
 
 export default i18n;

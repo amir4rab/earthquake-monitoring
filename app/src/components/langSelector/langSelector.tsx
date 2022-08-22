@@ -8,27 +8,30 @@ import { useTranslation } from 'react-i18next';
 import { IoLanguage } from 'react-icons/io5';
 
 const LangSelector = () => {
-  const { i18n }  = useTranslation();
+  const { i18n } = useTranslation();
   const { t } = useTranslation('common');
 
-  const changeLang = ( nLang: string ) => i18n.changeLanguage( nLang );
+  const changeLang = (nLang: string) => i18n.changeLanguage(nLang);
 
   return (
     <Select
-      label={ t('language') }
-      icon={ <IoLanguage /> }
-      value={ i18n.language }
-      onChange={ (nLang) => nLang && changeLang(nLang) }
-      zIndex={ 1002 }
+      label={t('language')}
+      icon={<IoLanguage />}
+      value={i18n.language}
+      onChange={(nLang) => nLang && changeLang(nLang)}
+      zIndex={1002}
       styles={(t) => ({
-        dropdown: { background: t.colors.dark[5], borderColor: t.colors.dark[3] },
-        item: { 
-          background: t.colors.dark[5], 
-          color: t.white, 
-          [ '&:hover' ]: {
+        dropdown: {
+          background: t.colors.dark[5],
+          borderColor: t.colors.dark[3]
+        },
+        item: {
+          background: t.colors.dark[5],
+          color: t.white,
+          ['&:hover']: {
             background: t.colors.dark[4]
           },
-          [ '&[data-hovered]' ]: {
+          ['&[data-hovered]']: {
             background: t.colors.dark[4]
           }
         },
@@ -36,24 +39,24 @@ const LangSelector = () => {
         defaultVariant: { background: t.colors.dark[9] },
         withIcon: { color: t.white, borderColor: t.colors.dark[3] },
         input: { background: 'transparent' },
-        label: { color: t.white },
+        label: { color: t.white }
       })}
       data={[
         {
           value: 'en',
-          label: 'English',
+          label: 'English'
         },
         {
           value: 'fa',
-          label: 'فارسی',
+          label: 'فارسی'
         },
         {
           value: 'de',
-          label: 'Deutsch',
+          label: 'Deutsch'
         }
       ]}
     />
-  )
-}
+  );
+};
 
 export default LangSelector;

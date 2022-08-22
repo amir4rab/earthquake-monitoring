@@ -7,23 +7,24 @@ import fetcher from '@/swr-fetcher';
 import { ExtendedEarthquakeArray } from '@/types/extendedEarthquake';
 
 const useLatestData = () => {
-  const [ data, setData ] = useState([] as ExtendedEarthquakeArray)
+  const [data, setData] = useState([] as ExtendedEarthquakeArray);
 
-  const { data: response, isValidating } = useSWR( 
+  const { data: response, isValidating } = useSWR(
     import.meta.env.VITE_NEXT_API_ROUTE + `/latest`,
-    ( ...props ) => fetcher<{ data: ExtendedEarthquakeArray, err: string | null }>( ...props )
+    (...props) =>
+      fetcher<{ data: ExtendedEarthquakeArray; err: string | null }>(...props)
   );
 
   useEffect(() => {
-    if ( !isValidating && typeof response?.data !== 'undefined' ) {
+    if (!isValidating && typeof response?.data !== 'undefined') {
       setData(response.data);
     }
-  }, [ isValidating, response ]);
+  }, [isValidating, response]);
 
-  return ({
+  return {
     isValidating,
-    data,
-  })
+    data
+  };
 };
 
 export default useLatestData;

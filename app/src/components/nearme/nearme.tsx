@@ -11,7 +11,6 @@ import useGeoLocation from '@/hooks/useGeoLocation';
 import EarthquakeDisplay from '../earthquakeDisplay';
 import type { ExtendedEarthquake as ExtendedEarthquakeBase } from '@/types/extendedEarthquake';
 
-
 // subcomponents
 import NearMeErrorAlert from './subcomponents/nearme-errorAlert';
 import NearMePermissionAlert from './subcomponents/nearme-permissionAlert';
@@ -37,8 +36,9 @@ const useStyles = createStyles((t) => ({
     padding: t.spacing.md,
     borderRadius: t.radius.md,
     boxShadow: t.shadows.sm,
-    transition: 'box-shadow .15s ease-in-out, background .2s ease-in-out, transform .15s ease-in-out',
-    [ '&:hover' ]: {
+    transition:
+      'box-shadow .15s ease-in-out, background .2s ease-in-out, transform .15s ease-in-out',
+    ['&:hover']: {
       boxShadow: t.shadows.md,
       transform: 'scale(1.01)'
     }
@@ -49,75 +49,99 @@ const useStyles = createStyles((t) => ({
 }));
 
 export interface ExtendedEarthquake extends ExtendedEarthquakeBase {
-  distance: number
-} 
+  distance: number;
+}
 
 const NearMe = () => {
   const { data, isValidating: isFetchingData } = useLatestData();
-  const [ distances, setDistances ] = useState< { min: number, max: number } | null >(null);
-  const [ manuallySelectedLocation, setManuallySelectedLocation ] = useState< { lat: number, long: number } | null >(null);
-  const [ maximumRange, setMaximumRange ] = useState(0);
-  const [ debouncedMaximumRange ] = useDebouncedValue(maximumRange, 50);
+  const [distances, setDistances] = useState<{
+    min: number;
+    max: number;
+  } | null>(null);
+  const [manuallySelectedLocation, setManuallySelectedLocation] = useState<{
+    lat: number;
+    long: number;
+  } | null>(null);
+  const [maximumRange, setMaximumRange] = useState(0);
+  const [debouncedMaximumRange] = useDebouncedValue(maximumRange, 50);
 
   const { classes } = useStyles();
-  const { geolocationData, geolocationPermission, isLoading, setGeolocationPermission, failed } = useGeoLocation();
+  const {
+    geolocationData,
+    geolocationPermission,
+    isLoading,
+    setGeolocationPermission,
+    failed
+  } = useGeoLocation();
 
   const earthquakeArr: ExtendedEarthquake[] = useMemo(() => {
-    if ( isFetchingData ) return [];
-    const res = calcEarthquakeDistances({ geoData: geolocationData, earthquakesArr: data });
-    if ( res === null ) return [];
+    if (isFetchingData) return [];
+    const res = calcEarthquakeDistances({
+      geoData: geolocationData,
+      earthquakesArr: data
+    });
+    if (res === null) return [];
 
-    const { distances, resultArr }  = res;
+    const { distances, resultArr } = res;
     setDistances({ ...distances });
     return resultArr;
-
-  }, [ geolocationData, data, isFetchingData ]);
+  }, [geolocationData, data, isFetchingData]);
 
   const earthquakeManualArr: ExtendedEarthquake[] = useMemo(() => {
-    if ( isFetchingData ) return [];
-    const res = calcEarthquakeDistances({ geoData: manuallySelectedLocation, earthquakesArr: data });
-    if ( res === null ) return [];
+    if (isFetchingData) return [];
+    const res = calcEarthquakeDistances({
+      geoData: manuallySelectedLocation,
+      earthquakesArr: data
+    });
+    if (res === null) return [];
 
-    const { distances, resultArr }  = res;
+    const { distances, resultArr } = res;
     setDistances({ ...distances });
     return resultArr;
-
-  }, [ manuallySelectedLocation, data, isFetchingData ]);
+  }, [manuallySelectedLocation, data, isFetchingData]);
 
   //* Displaying: Error incase of automatic geolocation failing *//
-  if ( failed && manuallySelectedLocation === null ) {
+  if (failed && manuallySelectedLocation === null) {
     return (
-      <main className={ classes.main }>
+      <main className={classes.main}>
         <NearMeHead />
         {
           // hiding location error on android builds
-          import.meta.env.VITE_ANDROID_BUILD !== '1' && 
-          <Box py='xl' my='xl'>
-            <NearMeErrorAlert />
-          </Box>
+          import.meta.env.VITE_ANDROID_BUILD !== '1' && (
+            <Box py='xl' my='xl'>
+              <NearMeErrorAlert />
+            </Box>
+          )
         }
-        <MapLocationSelector onSubmit={ (v) => { setManuallySelectedLocation({ lat: v.lat, long: v.lng }) }} />
+        <MapLocationSelector
+          onSubmit={(v) => {
+            setManuallySelectedLocation({ lat: v.lat, long: v.lng });
+          }}
+        />
       </main>
-    ) 
+    );
   }
 
   //* Displaying: Results
   return (
     <>
-      <LoadingIndicator isLoading={ isFetchingData } />
-      <main className={ classes.main }>
+      <LoadingIndicator isLoading={isFetchingData} />
+      <main className={classes.main}>
         <NearMeHead />
-        {
-          !geolocationPermission && <NearMePermissionAlert acceptPermission={ () => setGeolocationPermission(true) } />
-        }
-        {
-          (( isLoading || distances === null ) && !failed ) && <Center sx={{ minHeight: '50vh' }}><Loader /></Center>
-        }
-        {
-          ( geolocationPermission && ( !isLoading || failed  ) && distances !== null ) &&
+        {!geolocationPermission && (
+          <NearMePermissionAlert
+            acceptPermission={() => setGeolocationPermission(true)}
+          />
+        )}
+        {(isLoading || distances === null) && !failed && (
+          <Center sx={{ minHeight: '50vh' }}>
+            <Loader />
+          </Center>
+        )}
+        {geolocationPermission && (!isLoading || failed) && distances !== null && (
           <>
             <Slider
-                marks={[
+              marks={[
                 {
                   i18nKey: 'common:nearest',
                   value: 0
@@ -127,28 +151,40 @@ const NearMe = () => {
                   value: 100
                 }
               ]}
-              onChange={ (v) => setMaximumRange(v) }
-              value={ maximumRange }
+              onChange={(v) => setMaximumRange(v)}
+              value={maximumRange}
             />
-            {
-              manuallySelectedLocation !== null &&
+            {manuallySelectedLocation !== null && (
               <EarthquakeDisplay
-                mapCenter={{ lat: manuallySelectedLocation.lat, lng: manuallySelectedLocation.long }}
-                latestEarthquakesArr={ filterArray(earthquakeManualArr, distances, debouncedMaximumRange) }
+                mapCenter={{
+                  lat: manuallySelectedLocation.lat,
+                  lng: manuallySelectedLocation.long
+                }}
+                latestEarthquakesArr={filterArray(
+                  earthquakeManualArr,
+                  distances,
+                  debouncedMaximumRange
+                )}
               />
-            }
-            {
-              geolocationData !== null &&
+            )}
+            {geolocationData !== null && (
               <EarthquakeDisplay
-                mapCenter={{ lat: geolocationData.lat, lng: geolocationData.long }}
-                latestEarthquakesArr={ filterArray(earthquakeArr, distances, debouncedMaximumRange) }
+                mapCenter={{
+                  lat: geolocationData.lat,
+                  lng: geolocationData.long
+                }}
+                latestEarthquakesArr={filterArray(
+                  earthquakeArr,
+                  distances,
+                  debouncedMaximumRange
+                )}
               />
-            }
+            )}
           </>
-        }
+        )}
       </main>
     </>
-  )
+  );
 };
 
 export default NearMe;
