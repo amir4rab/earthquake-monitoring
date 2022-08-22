@@ -31,6 +31,8 @@ const QrCode = ({ url }: { url: string }) => {
           bgColor={t.white}
           fgColor={t.colors.dark[7]}
           level='H'
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
           size='min(15vw, 500px)'
         />
       </Box>
