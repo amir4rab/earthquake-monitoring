@@ -8,7 +8,9 @@ export default class _Document extends Document {
 
   render() {
     return (
-      <Html dir={ this.props.locale === 'fa' ? 'rtl' : 'ltr' } lang={ this.props.locale }>
+      <Html
+        dir={this.props.locale === 'fa' ? 'rtl' : 'ltr'}
+        lang={this.props.locale}>
         <Head />
         <body>
           <Main />

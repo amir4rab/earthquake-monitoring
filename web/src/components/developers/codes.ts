@@ -1,5 +1,5 @@
 const data = {
-  "latest-js": `
+  'latest-js': `
 const apiUrl = 'https://earthquake-monitoring.amir4rab.com/api/latest';
 
 const getData = async () => {
@@ -14,7 +14,7 @@ const getData = async () => {
   }
 }
   `,
-  "latest-ts": `
+  'latest-ts': `
 const apiUrl = 'https://earthquake-monitoring.amir4rab.com/api/latest';
 
 type Earthquake = {
@@ -167,7 +167,7 @@ const getData = async () => {
   "29": "Hamedan",
   "30": "Yazd"
 }
-  ` 
+  `
 };
 
 export default data;

@@ -1,7 +1,16 @@
 import React from 'react';
 
 // mantine
-import { Box, createStyles, Divider, Group, Text, ThemeIcon, Title, useMantineTheme } from '@mantine/core';
+import {
+  Box,
+  createStyles,
+  Divider,
+  Group,
+  Text,
+  ThemeIcon,
+  Title,
+  useMantineTheme
+} from '@mantine/core';
 
 // next-translate
 import useTranslation from 'next-translate/useTranslation';
@@ -19,11 +28,11 @@ import DownloadItem from './downloadItem';
 // types
 import { GhRelease } from '@/utils/backend/getApplications';
 
-const getAndroidVersion = ( data: GhRelease ) => {
-  const android = data.assets.find(({ name }) => ( name.endsWith('.apk') ));
+const getAndroidVersion = (data: GhRelease) => {
+  const android = data.assets.find(({ name }) => name.endsWith('.apk'));
 
   return typeof android !== 'undefined' ? android.browser_download_url : '';
-}
+};
 
 // styles
 const useStyles = createStyles((t) => ({
@@ -35,7 +44,7 @@ const useStyles = createStyles((t) => ({
   },
   subtitle: {
     fontWeight: 'normal',
-    opacity: .75,
+    opacity: 0.75,
     fontSize: t.fontSizes.lg,
     marginTop: t.spacing.xs
   },
@@ -50,7 +59,7 @@ const useStyles = createStyles((t) => ({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    [ '& p' ]: {
+    ['& p']: {
       fontSize: t.fontSizes.sm,
       color: t.colors.dark[3],
       position: 'absolute',
@@ -64,7 +73,7 @@ const useStyles = createStyles((t) => ({
     justifyContent: 'space-between',
     alignContent: 'flex-start',
     alignItems: 'flex-start',
-    [ t.fn.smallerThan('md') ]: {
+    [t.fn.smallerThan('md')]: {
       display: 'block'
     }
   },
@@ -73,22 +82,23 @@ const useStyles = createStyles((t) => ({
     position: 'sticky',
     top: '10vh',
     left: 'auto',
-    [ t.fn.smallerThan('md') ]: {
+    [t.fn.smallerThan('md')]: {
       display: 'none'
     }
   },
   mainColumn: {
     width: 'min(65%, 25vw)',
-    [ t.fn.smallerThan('md') ]: {
-      width: '100%',
+    [t.fn.smallerThan('md')]: {
+      width: '100%'
     }
   }
 }));
 
-const currentWindowLocation = 'https://earthquake-monitoring.amir4rab.com/download';
+const currentWindowLocation =
+  'https://earthquake-monitoring.amir4rab.com/download';
 
 interface Props {
-  data: GhRelease | null
+  data: GhRelease | null;
 }
 const Download = ({ data }: Props) => {
   const { classes } = useStyles();
@@ -98,76 +108,72 @@ const Download = ({ data }: Props) => {
   const { t } = useTranslation('download');
 
   return (
-    <main className={ classes.main }>
-      <header className={ classes.header }>
-        <Title order={ 1 }>
-          { commonT('download') }
-        </Title>
-        <Title className={ classes.subtitle } order={ 2 }>
-          { t('subtitle') }
+    <main className={classes.main}>
+      <header className={classes.header}>
+        <Title order={1}>{commonT('download')}</Title>
+        <Title className={classes.subtitle} order={2}>
+          {t('subtitle')}
         </Title>
       </header>
-      <Box className={ classes.pageWrapper }>
-        <Box className={ classes.mainColumn }>
+      <Box className={classes.pageWrapper}>
+        <Box className={classes.mainColumn}>
           <Group mb='xl' position='apart'>
-            <Title order={ 3 }>
-              { t('choseYourPlatFrom') }
-            </Title>
-            <Text size='xs'>{ data?.tag_name }</Text>
+            <Title order={3}>{t('choseYourPlatFrom')}</Title>
+            <Text size='xs'>{data?.tag_name}</Text>
           </Group>
           <DownloadItem
-            tooltipLabel={ t('open') }
-            href={ process.env.NEXT_PUBLIC_PWA_URL }
-            icon={ <SiPwa /> }
-            subtitle={ t('pwaSubtitle') }
-            title={ t('pwaTitle') }
+            tooltipLabel={t('open')}
+            href={process.env.NEXT_PUBLIC_PWA_URL}
+            icon={<SiPwa />}
+            subtitle={t('pwaSubtitle')}
+            title={t('pwaTitle')}
           />
-          {
-            data !== null &&
+          {data !== null && (
             <DownloadItem
-              tooltipLabel={ t('download') }
-              href={ getAndroidVersion(data) }
-              icon={ <SiAndroid /> }
-              subtitle={ t('androidSubtitle') }
-              title={ t('androidTitle') }
+              tooltipLabel={t('download')}
+              href={getAndroidVersion(data)}
+              icon={<SiAndroid />}
+              subtitle={t('androidSubtitle')}
+              title={t('androidTitle')}
             />
-          }
-          <Divider my='xl' label={ t('comingSoon') } labelPosition='center' variant='solid' />
+          )}
+          <Divider
+            my='xl'
+            label={t('comingSoon')}
+            labelPosition='center'
+            variant='solid'
+          />
           <DownloadItem
-            disabled={ true }
-            tooltipLabel={ t('comingSoon') }
-            icon={ <SiApple /> }
-            subtitle={ t('iosSubtitle') }
-            title={ t('iosTitle') }
+            disabled={true}
+            tooltipLabel={t('comingSoon')}
+            icon={<SiApple />}
+            subtitle={t('iosSubtitle')}
+            title={t('iosTitle')}
           />
         </Box>
-        <Box className={ classes.desktopAddon }>
+        <Box className={classes.desktopAddon}>
           <Group spacing='xs' mb='xl'>
             <ThemeIcon variant='light' color='dark'>
               <IoPhonePortrait />
             </ThemeIcon>
-            <Text>
-              { t('openOnMobile') }
-            </Text>
+            <Text>{t('openOnMobile')}</Text>
           </Group>
-          <Box
-            className={ classes.qrCodeWrapper }
-          >
-            <QRCodeSVG 
-              value={ currentWindowLocation }
-              bgColor={ mantineWhite }
-              fgColor={ colors.dark[7] }
+          <Box className={classes.qrCodeWrapper}>
+            <QRCodeSVG
+              value={currentWindowLocation}
+              bgColor={mantineWhite}
+              fgColor={colors.dark[7]}
               // @ts-ignore
               size='100%'
             />
             <Text sx={{ userSelect: 'none' }} component='p'>
-              { t('scanQrCode') }
+              {t('scanQrCode')}
             </Text>
           </Box>
         </Box>
       </Box>
     </main>
-  )
+  );
 };
 
 export default Download;

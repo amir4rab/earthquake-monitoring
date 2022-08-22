@@ -8,8 +8,14 @@ export interface SearchInputProps extends TextInputProps {
   placeHolder?: string;
   icon?: ReactNode;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
-};
-const SearchInput = ({ searchQuery, placeHolder, icon, setSearchQuery, ...props }: SearchInputProps) => {
+}
+const SearchInput = ({
+  searchQuery,
+  placeHolder,
+  icon,
+  setSearchQuery,
+  ...props
+}: SearchInputProps) => {
   return (
     <TextInput
       styles={(t) => ({
@@ -23,16 +29,16 @@ const SearchInput = ({ searchQuery, placeHolder, icon, setSearchQuery, ...props 
           textAlign: t.dir === 'ltr' ? 'left' : 'right'
         }
       })}
-      value={ searchQuery }
-      onChange={ e => setSearchQuery(e.target.value) }
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
       width='100%'
       mb='xl'
       radius='xl'
-      placeholder={ placeHolder }
-      icon={ icon }
-      { ...props }
+      placeholder={placeHolder}
+      icon={icon}
+      {...props}
     />
-  )
+  );
 };
 
 export default SearchInput;

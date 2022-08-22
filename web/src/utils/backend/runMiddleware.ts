@@ -8,12 +8,12 @@ const runMiddleware = (
   return new Promise((resolve, reject) => {
     fn(req, res, (result: any) => {
       if (result instanceof Error) {
-        return reject(result)
+        return reject(result);
       }
 
-      return resolve(result)
-    })
-  })
+      return resolve(result);
+    });
+  });
 };
 
-export default runMiddleware
+export default runMiddleware;

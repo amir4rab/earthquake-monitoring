@@ -1,2 +1,2 @@
-export * from './extendedCircleProps'
-export * from './extendedEarthquake'
+export * from './extendedCircleProps';
+export * from './extendedEarthquake';

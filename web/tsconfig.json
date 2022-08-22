@@ -27,7 +27,7 @@
       "@/classes/*": ["src/classes/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/providers/*": ["src/providers/*"],
-      "@/types/*": ["src/types/*"],
+      "@/types/*": ["src/types/*"]
     },
     "downlevelIteration": true
   },

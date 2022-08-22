@@ -1,10 +1,10 @@
 import React from 'react';
 
 // mantine components
-import { Title, Box, createStyles } from '@mantine/core'
+import { Title, Box, createStyles } from '@mantine/core';
 
 // next-translate
-import useTranslation from 'next-translate/useTranslation'
+import useTranslation from 'next-translate/useTranslation';
 
 // components
 import EarthquakeDisplay from '../earthquakeDisplay';
@@ -15,28 +15,26 @@ import type { ExtendedEarthquakeArray } from '@/types/extendedEarthquake';
 const useStyles = createStyles((theme) => ({
   main: {
     padding: '10vh 0'
-  },
+  }
 }));
 
 export interface HomeComponentProps {
-  latestEarthquakesArr: ExtendedEarthquakeArray
+  latestEarthquakesArr: ExtendedEarthquakeArray;
 }
 
-const HomeComponent = ({ latestEarthquakesArr }: HomeComponentProps ) => {
+const HomeComponent = ({ latestEarthquakesArr }: HomeComponentProps) => {
   const { classes } = useStyles();
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('common');
 
   return (
-    <Box className={ classes.main }>
-      <Title order={ 1 }>
-        { t('home') }
-      </Title>
+    <Box className={classes.main}>
+      <Title order={1}>{t('home')}</Title>
       <EarthquakeDisplay
-        title={ t('latest') }
-        latestEarthquakesArr={ latestEarthquakesArr }
+        title={t('latest')}
+        latestEarthquakesArr={latestEarthquakesArr}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default HomeComponent
+export default HomeComponent;

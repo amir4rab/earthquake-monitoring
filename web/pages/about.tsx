@@ -12,11 +12,11 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{ t('about') }</title>
+        <title>{t('about')}</title>
       </Head>
       <About />
     </>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;

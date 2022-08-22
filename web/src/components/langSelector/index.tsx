@@ -1,1 +1,1 @@
-export { default } from './langSelector'
+export { default } from './langSelector';

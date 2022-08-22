@@ -9,42 +9,42 @@ export const delCachedDataAll = async () => {
       await redis.json.del(key);
     }
     return true;
-  } catch ( err ) {
+  } catch (err) {
     console.error(err);
-    return null
+    return null;
   } finally {
-    await redis.disconnect()
+    await redis.disconnect();
   }
-}
+};
 
 /** Deletes specific sates data from Redis Cache */
-export const delCachedStateDataById = async ( stateId: string ) => {
+export const delCachedStateDataById = async (stateId: string) => {
   try {
     await connect();
-    
+
     await redis.json.del(`statesEarthquakes:redisJson:${stateId}`);
 
     return true;
-  } catch ( err ) {
+  } catch (err) {
     console.error(err);
-    return null
+    return null;
   } finally {
-    await redis.disconnect()
+    await redis.disconnect();
   }
-}
+};
 
 /** Deletes specific sates data from Redis Cache */
 export const delCachedLatestData = async () => {
   try {
     await connect();
-    
+
     await redis.json.del(`statesEarthquakes:redisJson:latest`);
 
     return true;
-  } catch ( err ) {
+  } catch (err) {
     console.error(err);
-    return null
+    return null;
   } finally {
-    await redis.disconnect()
+    await redis.disconnect();
   }
-}
+};

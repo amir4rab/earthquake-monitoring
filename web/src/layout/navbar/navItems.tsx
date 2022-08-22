@@ -1,10 +1,18 @@
 import React from 'react';
 
 // types
-import type { IconType } from 'react-icons'
+import type { IconType } from 'react-icons';
 
 // icons
-import { IoHome, IoPin, IoInformation, IoSearch, IoShapes, IoLocation, IoCloudDownload } from 'react-icons/io5';
+import {
+  IoHome,
+  IoPin,
+  IoInformation,
+  IoSearch,
+  IoShapes,
+  IoLocation,
+  IoCloudDownload
+} from 'react-icons/io5';
 
 // mantine
 import { Box, NavLink, NavLinkProps, Text } from '@mantine/core';
@@ -36,29 +44,28 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-
-const NavLinksStyles: NavLinkProps['styles']  = (t) => ({
+const NavLinksStyles: NavLinkProps['styles'] = (t) => ({
   root: {
     color: t.colors.gray[3],
     transition: 'background .15s ease-in-out',
     borderRadius: t.radius.md,
     '&[data-active]': {
       background: t.colors[t.primaryColor][7] + '80',
-      color: t.colors.gray[3],
+      color: t.colors.gray[3]
     },
-    [ '&[data-active]:hover' ] : {
+    ['&[data-active]:hover']: {
       background: t.colors[t.primaryColor][7] + 'a0 !important',
-      color: t.colors.gray[3],
+      color: t.colors.gray[3]
     },
-    [ '&:hover' ]: {
-      background: t.colorScheme === 'dark' ? t.colors.dark[4] : t.colors.dark[5],
+    ['&:hover']: {
+      background: t.colorScheme === 'dark' ? t.colors.dark[4] : t.colors.dark[5]
     }
   },
   body: {
     textAlign: t.dir === 'ltr' ? 'left' : 'right',
-    paddingRight: t.dir === 'ltr' ? 0 : t.spacing.xs,
+    paddingRight: t.dir === 'ltr' ? 0 : t.spacing.xs
   }
-})
+});
 
 interface NavItemBase {
   icon: IconType;
@@ -75,7 +82,7 @@ export interface NavLinkItem extends NavItemBase {
   path: string;
 }
 
-type NavItem = NavFunctionItem | NavLinkItem
+type NavItem = NavFunctionItem | NavLinkItem;
 
 export const navItems: NavItem[] = [
   {
@@ -126,61 +133,60 @@ interface InnerNavProps {
   onSearch?: Function;
   onLinkClick?: () => void;
 }
-const InnerNav = ({ onSearch, onLinkClick }: InnerNavProps ) => {
+const InnerNav = ({ onSearch, onLinkClick }: InnerNavProps) => {
   const { classes } = useStyles();
   const { pathname } = useRouter();
   const { t } = useTranslation('common');
 
   return (
     <>
-      <Box className={ classes.box }>
-        <Text className={ classes.title }>
-          { t('earthquake-monitoring') }
-        </Text>
+      <Box className={classes.box}>
+        <Text className={classes.title}>{t('earthquake-monitoring')}</Text>
       </Box>
-      <Box className={ classes.box } sx={{ flexGrow: 1 }}>
-        {
-          navItems.map(({ label, type, ...props }) => {
-            if ( type === 'functionItem' ) {
-              const { fn } = props as NavFunctionItem;
+      <Box className={classes.box} sx={{ flexGrow: 1 }}>
+        {navItems.map(({ label, type, ...props }) => {
+          if (type === 'functionItem') {
+            const { fn } = props as NavFunctionItem;
 
-              return (
+            return (
+              <NavLink
+                styles={NavLinksStyles}
+                component='button'
+                onClick={() => {
+                  onSearch && onSearch();
+                  fn();
+                }}
+                key={label}
+                icon={<props.icon />}
+                label={t(label)}
+                mb='sm'
+              />
+            );
+          }
+          if (type === 'linkItem') {
+            const { path } = props as NavLinkItem;
+            return (
+              <Link passHref key={label} href={path}>
                 <NavLink
-                  styles={ NavLinksStyles }
-                  component='button'
-                  onClick={ () => { onSearch && onSearch(); fn(); } }
-                  key={ label } 
-                  icon={ <props.icon /> }
-                  label={ t(label) }
+                  styles={NavLinksStyles}
+                  component='a'
+                  active={pathname === path}
+                  icon={<props.icon />}
+                  label={t(label)}
+                  onClick={() => onLinkClick && onLinkClick()}
                   mb='sm'
                 />
-              )
-            }
-            if ( type === 'linkItem' ) {
-              const { path } = props as NavLinkItem;
-              return (
-                <Link passHref key={ label } href={ path }>
-                  <NavLink
-                    styles={ NavLinksStyles } 
-                    component='a'
-                    active={ pathname === path }
-                    icon={ <props.icon /> }
-                    label={ t(label) }
-                    onClick={ () => onLinkClick && onLinkClick() }
-                    mb='sm'
-                  />
-                </Link>
-              )
-            }
-          })
-        }
+              </Link>
+            );
+          }
+        })}
       </Box>
-      <Box className={ classes.box }>
+      <Box className={classes.box}>
         <LangSelector />
         <ThemeSelector />
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default InnerNav
+export default InnerNav;

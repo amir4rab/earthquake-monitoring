@@ -18,66 +18,64 @@ import { useRouter } from 'next/router';
 // shared-data
 import states from '@/shared-data/states-geo-location';
 
-const MantineSpotlight = ({ children }:{ children: ReactNode }) => {
+const MantineSpotlight = ({ children }: { children: ReactNode }) => {
   const { t, lang } = useTranslation('common');
   const { t: statesT } = useTranslation('states');
   const { push } = useRouter();
   const isDesktop = useMediaQuery('(min-width: 922px)');
 
-
-  const actions: SpotlightAction[] = useMemo(()=> {
+  const actions: SpotlightAction[] = useMemo(() => {
     const navArr: SpotlightAction[] = [];
 
     navItems.forEach(({ type, ...props }) => {
-      if ( type === 'linkItem' ) {
+      if (type === 'linkItem') {
         const { label, path } = props as NavLinkItem;
 
         navArr.push({
           title: t(label),
           onTrigger: () => push(path, '', { locale: lang }),
-          icon: <props.icon />,
+          icon: <props.icon />
         });
       }
     });
 
-    for ( let i = 0; i < Object.keys(states).length; i++ ) {
-      const state =  i + '';
+    for (let i = 0; i < Object.keys(states).length; i++) {
+      const state = i + '';
 
       navArr.push({
         title: statesT(state),
         group: t('states'),
         onTrigger: () => push(`/states/${state}`, '', { locale: lang }),
-        icon: <IoLocation />,
+        icon: <IoLocation />
       });
     }
 
-    return navArr
-  }, [ lang, push, t, statesT ]);
+    return navArr;
+  }, [lang, push, t, statesT]);
 
   return (
     <SpotlightProvider
       actions={actions}
-      searchIcon={ <IoSearch /> }
-      searchPlaceholder={ t('search') }
+      searchIcon={<IoSearch />}
+      searchPlaceholder={t('search')}
       shortcut='mod + p'
       highlightQuery
       transition='slide-down'
       transitionDuration={300}
-      limit={ 10 }
+      limit={10}
       styles={(t) => ({
-        'searchInput': {
+        searchInput: {
           textAlign: t.dir === 'ltr' ? 'left' : 'right'
         },
-        'action': {
+        action: {
           textAlign: t.dir === 'ltr' ? 'left' : 'right'
         }
       })}
-      nothingFoundMessage={ t('no-search-result-no-query') }
-      topOffset={ isDesktop ? undefined : 0 }
-    >
-      { children }
+      nothingFoundMessage={t('no-search-result-no-query')}
+      topOffset={isDesktop ? undefined : 0}>
+      {children}
     </SpotlightProvider>
-  )
+  );
 };
 
 export default MantineSpotlight;

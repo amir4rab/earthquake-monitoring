@@ -5,7 +5,10 @@ import Head from 'next/head';
 import NearMe from '@/components/nearme';
 
 // type
-import type { ExtendedEarthquake, ExtendedEarthquakeArray } from '@/types/extendedEarthquake';
+import type {
+  ExtendedEarthquake,
+  ExtendedEarthquakeArray
+} from '@/types/extendedEarthquake';
 
 // utils
 import getLatestData from '@/utils/backend/getLatestData';
@@ -14,30 +17,32 @@ import getLatestData from '@/utils/backend/getLatestData';
 import useTranslation from 'next-translate/useTranslation';
 
 interface Props {
-  latestEarthquakesArr: ExtendedEarthquakeArray
+  latestEarthquakesArr: ExtendedEarthquakeArray;
 }
-const NearMePage: NextPage< Props > = ({ latestEarthquakesArr }) => {
+const NearMePage: NextPage<Props> = ({ latestEarthquakesArr }) => {
   const { t } = useTranslation('common');
 
   return (
     <>
       <Head>
-        <title>{ t('near-me') }</title>
+        <title>{t('near-me')}</title>
       </Head>
-      <NearMe latestEarthquakesArr={ latestEarthquakesArr }/>
+      <NearMe latestEarthquakesArr={latestEarthquakesArr} />
     </>
-  )
+  );
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-
   const data = await getLatestData();
-  
+
   return {
     props: {
-      latestEarthquakesArr: data.map( i => (({ ...i, date: i.date.valueOf() } as unknown ) as ExtendedEarthquake))
+      latestEarthquakesArr: data.map(
+        (i) =>
+          ({ ...i, date: i.date.valueOf() } as unknown as ExtendedEarthquake)
+      )
     }
-  }
-}
+  };
+};
 
-export default NearMePage
+export default NearMePage;

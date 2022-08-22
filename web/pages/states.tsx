@@ -12,11 +12,11 @@ const StatesPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{ t('states') }</title>
+        <title>{t('states')}</title>
       </Head>
       <States />
     </>
-  )
-}
+  );
+};
 
-export default StatesPage
+export default StatesPage;

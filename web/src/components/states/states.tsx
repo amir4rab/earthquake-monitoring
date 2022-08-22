@@ -1,14 +1,22 @@
 import React, { useMemo, useState } from 'react';
 
 // mantine
-import { Avatar, Center, Group, SimpleGrid, Text, Title, UnstyledButton } from '@mantine/core';
+import {
+  Avatar,
+  Center,
+  Group,
+  SimpleGrid,
+  Text,
+  Title,
+  UnstyledButton
+} from '@mantine/core';
 import { createStyles } from '@mantine/styles';
 
 // next-translate
 import useTranslation from 'next-translate/useTranslation';
 
 // states data
-import statesObj from '@/shared-data/states-geo-location'
+import statesObj from '@/shared-data/states-geo-location';
 
 // next
 import Link from 'next/link';
@@ -30,8 +38,9 @@ const useStyles = createStyles((t) => ({
     padding: t.spacing.md,
     borderRadius: t.radius.md,
     boxShadow: t.shadows.sm,
-    transition: 'box-shadow .15s ease-in-out, background .2s ease-in-out, transform .15s ease-in-out',
-    [ '&:hover' ]: {
+    transition:
+      'box-shadow .15s ease-in-out, background .2s ease-in-out, transform .15s ease-in-out',
+    ['&:hover']: {
       boxShadow: t.shadows.md,
       transform: 'scale(1.01)'
     }
@@ -41,89 +50,76 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-export interface StatesProps {
-
-};
-const States = ({}: StatesProps ) => {
+export interface StatesProps {}
+const States = ({}: StatesProps) => {
   const { classes } = useStyles();
   const { t } = useTranslation('common');
   const { t: statesT } = useTranslation('states');
-  const [ searchQuery, setSearchQuery ] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredArrayItems = useMemo(() => {
     try {
-      const arr = Object.keys(statesObj).map(i => ({ name: statesT(i), key: i }));
+      const arr = Object.keys(statesObj).map((i) => ({
+        name: statesT(i),
+        key: i
+      }));
 
       const formattedQuery = searchQuery.trim().replace(/ /, '-');
 
-      if ( formattedQuery.length === 0 ) return arr;
+      if (formattedQuery.length === 0) return arr;
 
-      const filteredArray = arr.filter(({ name }) => name.toLocaleLowerCase().replace(/ /, '-').includes(formattedQuery));
+      const filteredArray = arr.filter(({ name }) =>
+        name.toLocaleLowerCase().replace(/ /, '-').includes(formattedQuery)
+      );
 
       return filteredArray;
-    } catch(err) {
+    } catch (err) {
       console.error(err);
       return [];
     }
-  }, [ searchQuery, statesT ])
+  }, [searchQuery, statesT]);
 
   return (
-    <main className={ classes.main }>
-      <header className={ classes.header }>
+    <main className={classes.main}>
+      <header className={classes.header}>
         <Title mb='sm' order={1}>
-          { t('states') }
+          {t('states')}
         </Title>
-        <Title order={3}>
-          { t('states-subtitle') }
-        </Title>
+        <Title order={3}>{t('states-subtitle')}</Title>
       </header>
       <SearchInput
-        placeHolder={ t('search') }
-        searchQuery={ searchQuery }
-        setSearchQuery={ setSearchQuery }
-        icon={ <IoSearch /> }
+        placeHolder={t('search')}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        icon={<IoSearch />}
       />
       <SimpleGrid
         cols={3}
         spacing='lg'
         breakpoints={[
           { maxWidth: 'md', cols: 2, spacing: 'md' },
-          { maxWidth: 'sm', cols: 1, spacing: 'sm' },
-        ]}
-      >
-        {
-          filteredArrayItems.map(({ key, name }) => (
-            <Link key={ key } passHref href={`/states/${key}`}>
-              <UnstyledButton 
-                component='a' 
-                className={ classes.box } 
-              >
-                  <Group>
-                    <Avatar>
-                      { name[0] }
-                    </Avatar>
-                    <Text>
-                      { name }
-                    </Text>
-                  </Group>
-              </UnstyledButton>
-            </Link>
-          ))
-        }
+          { maxWidth: 'sm', cols: 1, spacing: 'sm' }
+        ]}>
+        {filteredArrayItems.map(({ key, name }) => (
+          <Link key={key} passHref href={`/states/${key}`}>
+            <UnstyledButton component='a' className={classes.box}>
+              <Group>
+                <Avatar>{name[0]}</Avatar>
+                <Text>{name}</Text>
+              </Group>
+            </UnstyledButton>
+          </Link>
+        ))}
       </SimpleGrid>
-      {
-        filteredArrayItems.length === 0 &&
+      {filteredArrayItems.length === 0 && (
         <Center sx={{ minHeight: '25vh', width: '100%' }}>
-          <Text>              
-            <Trans 
-              i18nKey='common:no-search-result'
-              values={{ searchQuery }}
-            />
+          <Text>
+            <Trans i18nKey='common:no-search-result' values={{ searchQuery }} />
           </Text>
         </Center>
-      }
+      )}
     </main>
-  )
+  );
 };
 
 export default States;

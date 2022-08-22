@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 // mantine
-import { createStyles, useMantineTheme } from '@mantine/styles'
+import { createStyles, useMantineTheme } from '@mantine/styles';
 
 // components
 import InnerNav from './navItems';
@@ -18,30 +18,35 @@ const useStyles = createStyles((t) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    [ t.fn.smallerThan('md') ]: {
+    [t.fn.smallerThan('md')]: {
       display: 'none'
     }
   },
   navToLeft: {
-    left: 0,
+    left: 0
   },
   navToRight: {
-    right: 0,
+    right: 0
   }
 }));
 
 interface Props {
-  width: string
+  width: string;
 }
 const DesktopNavbar = ({ width }: Props) => {
   const { classes, cx } = useStyles();
   const { dir } = useMantineTheme();
 
   return (
-    <nav style={{ width }} className={cx( classes.nav, dir === 'ltr' ? classes.navToLeft : classes.navToRight )} >  
+    <nav
+      style={{ width }}
+      className={cx(
+        classes.nav,
+        dir === 'ltr' ? classes.navToLeft : classes.navToRight
+      )}>
       <InnerNav />
     </nav>
-  )
-}
+  );
+};
 
 export default memo(DesktopNavbar);

@@ -12,11 +12,11 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{ t('notFound') }</title>
+        <title>{t('notFound')}</title>
       </Head>
       <NotFound />
     </>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;

@@ -17,12 +17,16 @@ export interface GetStatesDataFromPostgresReturn {
 /**
  * Finds the latest events of the requested state
  */
-export const GetStatesDataFromPostgres = async ({ stateId, pageSize= 25, page= 0 }: GetStatesDataFromPostgresProps ): Promise<GetStatesDataFromPostgresReturn> => {
+export const GetStatesDataFromPostgres = async ({
+  stateId,
+  pageSize = 25,
+  page = 0
+}: GetStatesDataFromPostgresProps): Promise<GetStatesDataFromPostgresReturn> => {
   const earthquakes = await prisma.earthquake.findMany({
     where: {
       state: {
         equals: parseInt(stateId)
-      },
+      }
     },
     include: {
       city: {
@@ -37,20 +41,22 @@ export const GetStatesDataFromPostgres = async ({ stateId, pageSize= 25, page= 0
     },
     take: pageSize,
     skip: pageSize * page
-  })
+  });
 
   const count = await prisma.earthquake.count({
     where: {
       state: {
         equals: parseInt(stateId)
-      },
+      }
     }
   });
 
-  return ({
-    latestEarthquakesArr: earthquakes.map( i => (({ ...i, date: i.date.valueOf() } as unknown ) as Earthquake)),
-    totalPages: Math.ceil(count/pageSize),
-  });
+  return {
+    latestEarthquakesArr: earthquakes.map(
+      (i) => ({ ...i, date: i.date.valueOf() } as unknown as Earthquake)
+    ),
+    totalPages: Math.ceil(count / pageSize)
+  };
 };
 
 export default GetStatesDataFromPostgres;

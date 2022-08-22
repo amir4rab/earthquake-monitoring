@@ -19,16 +19,19 @@ import SeoHeader from '@/components/seoHeader';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
-  const { t, lang } = useTranslation('common')
+  const { t, lang } = useTranslation('common');
 
   return (
     <>
       <Head>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <SeoHeader 
-          lang={ lang }
-          title={ t('earthquake-monitoring') }
-          subtitle={ t('earthquake-monitoring-subtitle') }
+        <meta
+          name='viewport'
+          content='minimum-scale=1, initial-scale=1, width=device-width'
+        />
+        <SeoHeader
+          lang={lang}
+          title={t('earthquake-monitoring')}
+          subtitle={t('earthquake-monitoring-subtitle')}
         />
       </Head>
       <SwrProvider>

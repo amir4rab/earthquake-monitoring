@@ -14,29 +14,28 @@ interface Props {
   data: GhRelease | null;
 }
 
-const DownloadPage: NextPage<Props> = ( props ) => {
-  const { t } = useTranslation('common')
+const DownloadPage: NextPage<Props> = (props) => {
+  const { t } = useTranslation('common');
 
   return (
     <>
       <Head>
-        <title>{ t('download') }</title>
+        <title>{t('download')}</title>
       </Head>
-      <Download { ...props }/>
+      <Download {...props} />
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-
   const data = await getApplications();
-  
+
   return {
     props: {
       data
     },
     revalidate: 60
-  }
-}
+  };
+};
 
-export default DownloadPage
+export default DownloadPage;

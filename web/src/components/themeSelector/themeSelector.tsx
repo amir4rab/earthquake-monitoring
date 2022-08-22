@@ -1,13 +1,13 @@
 import React from 'react';
 
 // mantine
-import { ActionIcon } from "@mantine/core"
+import { ActionIcon } from '@mantine/core';
 
 // colorscheme selector
-import { createStyles, useMantineColorScheme } from '@mantine/styles'
+import { createStyles, useMantineColorScheme } from '@mantine/styles';
 
 // icons
-import { IoSunny, IoMoon } from 'react-icons/io5'
+import { IoSunny, IoMoon } from 'react-icons/io5';
 import useTranslation from 'next-translate/useTranslation';
 
 const useStyles = createStyles((t) => ({
@@ -26,20 +26,21 @@ const useStyles = createStyles((t) => ({
 
 const ThemeSelector = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { t } = useTranslation('common')
+  const { t } = useTranslation('common');
   const { classes } = useStyles();
 
-
   return (
-    <div className={ classes.buttonWrapper }>
-      <p className={ classes.text }>
-      { colorScheme === 'dark' ? t('light-mode') : t('dark-mode') }
+    <div className={classes.buttonWrapper}>
+      <p className={classes.text}>
+        {colorScheme === 'dark' ? t('light-mode') : t('dark-mode')}
       </p>
-      <ActionIcon onClick={ () => toggleColorScheme() } aria-label={ colorScheme === 'dark' ? t('light-mode') : t('dark-mode') }>
-        { colorScheme === 'dark' ? <IoSunny /> : <IoMoon /> }
+      <ActionIcon
+        onClick={() => toggleColorScheme()}
+        aria-label={colorScheme === 'dark' ? t('light-mode') : t('dark-mode')}>
+        {colorScheme === 'dark' ? <IoSunny /> : <IoMoon />}
       </ActionIcon>
     </div>
-  )
-}
+  );
+};
 
 export default ThemeSelector;

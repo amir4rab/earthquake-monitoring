@@ -13,20 +13,18 @@ const NearMeFailedAlert = () => {
   const { t } = useTranslation('near-me');
 
   return (
-    <Alert
-      color='red'
-    >
+    <Alert color='red'>
       <Group mb='sm' spacing={2}>
         <IoAlert />
-        <Title order={ 3 } sx={(t) => ({ fontSize: t.fontSizes.sm, fontWeight: 'normal' })}>
-          { t('failed') }
+        <Title
+          order={3}
+          sx={(t) => ({ fontSize: t.fontSizes.sm, fontWeight: 'normal' })}>
+          {t('failed')}
         </Title>
       </Group>
-      <Text>
-        { t('failed-text') }
-      </Text>
-    </Alert> 
-  )
+      <Text>{t('failed-text')}</Text>
+    </Alert>
+  );
 };
 
 export default NearMeFailedAlert;
