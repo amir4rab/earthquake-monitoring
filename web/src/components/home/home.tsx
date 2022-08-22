@@ -12,7 +12,7 @@ import EarthquakeDisplay from '../earthquakeDisplay';
 // types
 import type { ExtendedEarthquakeArray } from '@/types/extendedEarthquake';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   main: {
     padding: '10vh 0'
   }

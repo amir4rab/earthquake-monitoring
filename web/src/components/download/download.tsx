@@ -163,7 +163,8 @@ const Download = ({ data }: Props) => {
               value={currentWindowLocation}
               bgColor={mantineWhite}
               fgColor={colors.dark[7]}
-              // @ts-ignore
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
               size='100%'
             />
             <Text sx={{ userSelect: 'none' }} component='p'>

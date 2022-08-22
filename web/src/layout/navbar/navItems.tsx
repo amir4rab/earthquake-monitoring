@@ -130,7 +130,7 @@ export const navItems: NavItem[] = [
 ];
 
 interface InnerNavProps {
-  onSearch?: Function;
+  onSearch?: () => void;
   onLinkClick?: () => void;
 }
 const InnerNav = ({ onSearch, onLinkClick }: InnerNavProps) => {

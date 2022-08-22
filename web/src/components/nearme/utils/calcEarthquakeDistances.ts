@@ -17,8 +17,8 @@ const calcEarthquakeDistances = ({
 }: CalcEarthquakeDistancesProps) => {
   try {
     if (geoData === null) return null;
-    let minDistance: number = 0,
-      maxDistance: number = 0;
+    let minDistance = 0,
+      maxDistance = 0;
     const userLocation = { lat: geoData.lat, lon: geoData.long };
 
     const resultArr: ExtendedEarthquake[] = earthquakesArr.map((earthquake) => {

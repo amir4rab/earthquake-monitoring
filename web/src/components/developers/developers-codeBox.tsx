@@ -24,7 +24,7 @@ const DevelopersCodeBox = ({ tabsProps, data }: DevelopersCodeBoxProps) => {
   return (
     <Tabs my='xl' variant='pills' defaultValue={data[0].id} {...tabsProps}>
       <Tabs.List>
-        {data.map(({ title, id, icon }, i) => (
+        {data.map(({ title, id, icon }) => (
           <Tabs.Tab value={id} key={id} icon={icon}>
             {title}
           </Tabs.Tab>

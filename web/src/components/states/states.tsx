@@ -50,8 +50,7 @@ const useStyles = createStyles((t) => ({
   }
 }));
 
-export interface StatesProps {}
-const States = ({}: StatesProps) => {
+const States = () => {
   const { classes } = useStyles();
   const { t } = useTranslation('common');
   const { t: statesT } = useTranslation('states');

@@ -89,7 +89,9 @@ const getApplications = async () => {
         `GET /repos/amir4rab/earthquake-monitoring/releases/latest`
       );
       return latestRelease.data as GhRelease; // returns the latest release for projects with at least of non-prerelease release
-    } catch {}
+    } catch {
+      console.warn('Failed to find a latest stable release!');
+    }
 
     try {
       const releases = await octokit.request(
@@ -97,7 +99,9 @@ const getApplications = async () => {
       );
       const data = releases.data as GhReleases; // returns the latest release for projects with no normal release
       return data[0];
-    } catch {}
+    } catch {
+      console.warn('Failed to find any release!');
+    }
 
     return null; // returns null in-case that project doesn't exists
   } catch (err) {
