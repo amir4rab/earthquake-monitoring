@@ -5,7 +5,6 @@ import { Title, Box, Text, Anchor } from '@mantine/core';
 import { useMantineTheme } from '@mantine/styles';
 
 // next-translate
-import useTranslation from 'next-translate/useTranslation';
 import Trans from 'next-translate/Trans';
 
 // components
@@ -16,12 +15,6 @@ import Map from '../map/suspended';
 import type { MapOptions } from 'leaflet';
 import type { ExtendedCircleProps } from '@/types/extendedCircleProps';
 import type { ExtendedEarthquake } from '@/types/extendedEarthquake';
-
-// next
-import Link from 'next/link';
-
-// utils
-import { getDate, getHour } from './earthquakeDisplay-utils';
 
 interface EarthquakeDisplayProps {
   latestEarthquakesArr: ExtendedEarthquake[];
@@ -39,7 +32,6 @@ const EarthquakeDisplay = ({
   isLoading = false
 }: EarthquakeDisplayProps) => {
   const { colors } = useMantineTheme();
-  const { t: statesT, lang } = useTranslation('states');
 
   const calcEarthQuakePoints = useMemo(() => {
     return latestEarthquakesArr.map(
@@ -76,86 +68,19 @@ const EarthquakeDisplay = ({
             <ListDisplay
               namespace='earthquake'
               searchable={{
-                fields: [0, 1, 3]
+                fields: ['state', 'mag', 'city']
               }}
               content={{
                 header: ['state', 'mag', 'dep', 'nc', 'date', 'hour'],
-                rows: latestEarthquakesArr.map(
-                  ({ id, date, dep, mag, state, city }) => ({
-                    id: id,
-                    items: [
-                      {
-                        key: 'state',
-                        value: statesT(state + ''),
-                        el: (
-                          <Link href={`/states/${state}`} passHref>
-                            <Text component='a' size='sm'>
-                              {statesT(state + '')}
-                            </Text>
-                          </Link>
-                        )
-                      },
-                      {
-                        key: 'mag',
-                        value: mag + '',
-                        el: (
-                          <Text
-                            sx={(t) =>
-                              mag > 4
-                                ? {
-                                    color:
-                                      t.colorScheme === 'dark'
-                                        ? t.colors.red[9]
-                                        : '#ff0000',
-                                    fontWeight: 'bold'
-                                  }
-                                : {}
-                            }
-                            size='sm'>
-                            {mag.toLocaleString(lang)}
-                          </Text>
-                        )
-                      },
-                      {
-                        key: 'dep',
-                        value: dep + '',
-                        el: (
-                          <Text size='sm'>
-                            {dep.toLocaleString(lang) +
-                              (lang !== 'fa' && lang !== 'ar'
-                                ? ' Km'
-                                : ' کلیومتر')}
-                          </Text>
-                        )
-                      },
-                      {
-                        key: 'city',
-                        value: city[lang === 'fa' ? 'nameFa' : 'name'],
-                        el: (
-                          <Text size='sm'>
-                            {city[lang === 'fa' ? 'nameFa' : 'name']}
-                          </Text>
-                        )
-                      },
-                      {
-                        key: 'date',
-                        el: (
-                          <Text size='sm'>
-                            {getDate(date as unknown as number, lang)}
-                          </Text>
-                        )
-                      },
-                      {
-                        key: 'hour',
-                        el: (
-                          <Text size='sm'>
-                            {getHour(date as unknown as number, lang)}
-                          </Text>
-                        )
-                      }
-                    ]
-                  })
-                )
+                rows: latestEarthquakesArr.map(({ city, date, ...props }) => ({
+                  city: {
+                    en: city['name'],
+                    fa: city['nameFa']
+                  },
+                  hour: date as unknown as number,
+                  date: date as unknown as number,
+                  ...props
+                }))
               }}
             />
           </Box>

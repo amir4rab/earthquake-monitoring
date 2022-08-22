@@ -1,7 +1,7 @@
-import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 // mantine
-import { Box, Table, Title } from '@mantine/core';
+import { Box, Table, Text, Title } from '@mantine/core';
 import { useMantineTheme } from '@mantine/styles';
 
 // next-translate
@@ -13,17 +13,30 @@ import { IoSearch } from 'react-icons/io5';
 // components
 import SearchInput from '../searchInput';
 
+// next
+import Link from 'next/link';
+
+// utils
+import { getDate, getHour } from '../listDisplay/listDisplay-utils';
+
 // types
+interface RowsInterface {
+  id: string;
+  state: number;
+  mag: number;
+  dep: number;
+  city: {
+    fa: string;
+    en: string;
+  };
+  date: number;
+}
+
+type RowsInterfaceFiles = 'state' | 'mag' | 'dep' | 'city' | 'date';
+
 export interface Content {
   header: string[];
-  rows: {
-    id: string;
-    items: {
-      el: ReactNode;
-      key: string;
-      value?: string;
-    }[];
-  }[];
+  rows: RowsInterface[];
 }
 
 interface Props {
@@ -33,7 +46,7 @@ interface Props {
   searchable?:
     | false
     | {
-        fields: number[];
+        fields: RowsInterfaceFiles[];
       };
 }
 const ListDisplay = ({
@@ -43,35 +56,61 @@ const ListDisplay = ({
   searchable = false
 }: Props) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const filesAreValid = useRef<null | boolean>(null);
+  const [ssr, setSrr] = useState(true);
   const { t } = useTranslation(namespace);
+  const { t: statesT, lang } = useTranslation('states');
   const { t: commonT } = useTranslation('common');
   const { dir } = useMantineTheme();
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') setSrr(false);
+  }, []);
+
   const filteredArray = useMemo(() => {
     // filters the content to find the included items
-    if (
-      filesAreValid.current !== true ||
-      searchable === false ||
-      searchQuery.length === 0
-    )
-      return content.rows;
+    if (searchable === false || searchQuery.length === 0) return content.rows;
     try {
       const formattedSearchQuery = searchQuery.toLowerCase().replace(/ /, '-');
 
       const filteredArray = { ...content }.rows.filter((item) => {
         let isIncluded = false;
         searchable.fields.every((key) => {
-          if (
-            item.items[key]?.value
-              ?.toLocaleLowerCase()
-              .replace(/ /, '-')
-              ?.includes(formattedSearchQuery)
-          ) {
-            isIncluded = true;
-            return false;
+          switch (key) {
+            case 'city': {
+              // checking if the city name is included in search query
+              if (
+                item[key][lang === 'fa' ? 'fa' : 'en']
+                  ?.toLocaleLowerCase()
+                  .replace(/ /, '-')
+                  ?.includes(formattedSearchQuery)
+              ) {
+                isIncluded = true;
+                return false;
+              }
+              return true;
+            }
+            case 'state': {
+              // checking if the state name is included in search query
+              if (
+                statesT(item[key] + '')
+                  ?.toLocaleLowerCase()
+                  .replace(/ /, '-')
+                  ?.includes(formattedSearchQuery)
+              ) {
+                isIncluded = true;
+                return false;
+              }
+              return true;
+            }
+            default: {
+              // checking for every other field
+              if ((item[key] + '').includes(formattedSearchQuery)) {
+                isIncluded = true;
+                return false;
+              }
+              return true;
+            }
           }
-          return true;
         });
 
         return isIncluded;
@@ -82,22 +121,7 @@ const ListDisplay = ({
       console.error(err);
       return [];
     }
-  }, [searchQuery, content, searchable]);
-
-  // validates the search fields
-  useEffect(() => {
-    if (filesAreValid.current !== null || searchable === false) return;
-
-    const biggestIndex = searchable.fields.sort()[searchable.fields.length - 1];
-    if (biggestIndex > content.header.length - 1) {
-      console.error(
-        `Couldn't found index "${biggestIndex}", please recheck your searchable fields`
-      );
-      filesAreValid.current = false;
-    } else {
-      filesAreValid.current = true;
-    }
-  }, [content.header.length, searchable]);
+  }, [searchQuery, content, searchable, lang, statesT]);
 
   return (
     <Box>
@@ -131,11 +155,51 @@ const ListDisplay = ({
             </tr>
           </thead>
           <tbody>
-            {filteredArray.map(({ id, items }) => (
+            {filteredArray.map(({ city, date, dep, mag, state, id }) => (
               <tr key={id}>
-                {items.map((i) => (
-                  <td key={i.key}>{i.el}</td>
-                ))}
+                <td>
+                  <Link href={`/states/${state}`} passHref>
+                    <Text component='a' size='sm'>
+                      {statesT(state + '')}
+                    </Text>
+                  </Link>
+                </td>
+                <td>
+                  <Text
+                    sx={(t) =>
+                      mag > 4
+                        ? {
+                            color:
+                              t.colorScheme === 'dark'
+                                ? t.colors.red[9]
+                                : '#ff0000',
+                            fontWeight: 'bold'
+                          }
+                        : {}
+                    }
+                    size='sm'>
+                    {mag.toLocaleString(lang)}
+                  </Text>
+                </td>
+                <td>
+                  <Text size='sm'>
+                    {dep.toLocaleString(lang) +
+                      (lang !== 'fa' && lang !== 'ar' ? ' Km' : ' کلیومتر')}
+                  </Text>
+                </td>
+                <td>
+                  <Text size='sm'>{lang === 'fa' ? city.fa : city.en}</Text>
+                </td>
+                <td>
+                  <Text size='sm'>
+                    {getDate(date as unknown as number, ssr, lang)}
+                  </Text>
+                </td>
+                <td>
+                  <Text size='sm'>
+                    {getHour(date as unknown as number, ssr, lang)}
+                  </Text>
+                </td>
               </tr>
             ))}
           </tbody>

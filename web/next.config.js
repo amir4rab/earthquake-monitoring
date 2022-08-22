@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 
 const nextTranslate = require('next-translate');
@@ -47,7 +49,7 @@ const nextConfig = {
   }
 };
 
-module.exports = (_phase, { _ }) => {
+module.exports = (_phase) => {
   const plugins = [nextTranslate, withBundleAnalyzer];
   return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig });
 };
