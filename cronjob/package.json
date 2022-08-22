@@ -9,12 +9,13 @@
     "build": "tsc -p .",
     "init-prisma-schema": "rm -r -f ./prisma && cp ../prisma . -r",
     "prisma-migrate-dev": "npx prisma migrate dev --schema=../prisma/schema.prisma --skip-generate",
-    "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma --skip-generate",
+    "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma",
     "prisma-studio": "npx prisma studio",
     "prisma-generate": "npx prisma generate",
     "docker-prisma-migrate-prod": "npx prisma migrate deploy",
     "docker-prisma-generate": "npx prisma generate",
-    "docker-start": "cross-env NODE_ENV=production && npm run docker-prisma-migrate-prod && npm run build && npm run start"
+    "docker-start": "cross-env NODE_ENV=production && npm run docker-prisma-migrate-prod && npm run build && npm run start",
+    "prettier": "prettier --write . --config .prettierrc --config-precedence file-override"
   },
   "dependencies": {
     "@prisma/client": "^4.1.0",
@@ -28,6 +29,7 @@
     "@types/uuid": "^8.3.4",
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
     "prisma": "^4.1.0",
     "typescript": "^4.7.4"
   }
