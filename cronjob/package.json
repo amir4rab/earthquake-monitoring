@@ -1,7 +1,11 @@
 {
-  "name": "cronjob",
-  "author": "Amir Arab",
-  "version": "1.1.1",
+  "name": "earthquake-monitoring-cronjob",
+  "author": {
+    "name": "Amir Arab",
+    "email": "contact@amir4rab.com",
+    "url": "http://amir4rab.com/"
+  },
+  "version": "1.1.2",
   "module": "CommonJS",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
