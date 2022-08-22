@@ -20,61 +20,61 @@ import { navItems, NavLinkItem } from '../../layout/navbar/navItems';
 import { useNavigate } from 'react-router-dom';
 
 // shared-data
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import states from '@/shared-data/states-geo-location';
 
-const MantineSpotlight = ({ children }:{ children: ReactNode }) => {
+const MantineSpotlight = ({ children }: { children: ReactNode }) => {
   const { t, i18n } = useTranslation('common');
   const { t: statesT } = useTranslation('states');
   const push = useNavigate();
   const isDesktop = useMediaQuery('(min-width: 922px)');
 
-  const actions: SpotlightAction[] = useMemo(()=> {
+  const actions: SpotlightAction[] = useMemo(() => {
     const navArr: SpotlightAction[] = [];
-    if ( i18n.language ) {};
 
     navItems.forEach(({ type, ...props }) => {
-      if ( type === 'linkItem' ) {
+      if (type === 'linkItem') {
+        // eslint-disable-next-line react/prop-types
         const { label, path } = props as NavLinkItem;
 
         navArr.push({
           title: t(label),
           onTrigger: () => push(path),
-          icon: <props.icon />,
+          icon: <props.icon />
         });
       }
     });
 
-    for ( let i = 0; i < Object.keys(states).length; i++ ) {
-      const state =  i + '';
+    for (let i = 0; i < Object.keys(states).length; i++) {
+      const state = i + '';
 
       navArr.push({
         title: statesT(state),
         group: t('states'),
         onTrigger: () => push(`/states/${state}`),
-        icon: <IoLocation />,
+        icon: <IoLocation />
       });
     }
 
-    return navArr
-  }, [ i18n.language, push, t, statesT ])
+    return navArr;
+  }, [i18n.language, push, t, statesT]);
 
   return (
     <SpotlightProvider
       actions={actions}
-      searchIcon={ <IoSearch /> }
-      searchPlaceholder={ t('search') }
+      searchIcon={<IoSearch />}
+      searchPlaceholder={t('search')}
       shortcut='mod + p'
       highlightQuery
       transition='slide-down'
       transitionDuration={300}
-      limit={ 10 }
-      topOffset={ isDesktop ? undefined : 0 }
-      nothingFoundMessage={ t('no-search-result-no-query') }
-    >
-      { children }
+      limit={10}
+      topOffset={isDesktop ? undefined : 0}
+      nothingFoundMessage={t('no-search-result-no-query')}>
+      {children}
     </SpotlightProvider>
-  )
+  );
 };
 
 export default MantineSpotlight;
