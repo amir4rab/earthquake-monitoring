@@ -62,6 +62,10 @@ check box displays if the fixes goal has been meet or not.
 
 - [x] Hydration fix for earthquake/listDisplay components
 
+**v1.1.3**
+
+- [x] backend cronjobs prisma connection bug fix
+
 ---
 
 ## Possible new features
