@@ -11,6 +11,7 @@
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "build": "tsc -p .",
+    "lint": "eslint .",
     "init-prisma-schema": "rm -r -f ./prisma && cp ../prisma . -r",
     "prisma-migrate-dev": "npx prisma migrate dev --schema=../prisma/schema.prisma --skip-generate",
     "prisma-migrate-prod": "npx prisma migrate deploy --schema=../prisma/schema.prisma",
@@ -31,7 +32,10 @@
   "devDependencies": {
     "@types/node": "^18.0.6",
     "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
     "cross-env": "^7.0.3",
+    "eslint": "^8.22.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
     "prisma": "^4.1.0",
