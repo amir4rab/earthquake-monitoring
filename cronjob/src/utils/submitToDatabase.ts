@@ -8,12 +8,24 @@ import calcDiff from './calcDiff';
  * Calculates the difference from new data and the existing data in database, and submits the new data
  */
 const submitToDatabase = async (
-  data: Prisma.EarthquakeCreateInput[]
+  data: Prisma.EarthquakeCreateInput[],
+  prisma: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >
 ): Promise<Prisma.EarthquakeCreateInput[]> => {
-  try {
-    const prisma = new PrismaClient();
-    await prisma.$connect();
+  if (data.length === 0) {
+    console.error(
+      `⚠️ Error in "submitToDatabase":`,
+      'submitToDatabase has been called with an empty array!'
+    );
+    return [];
+  }
 
+  await prisma.$connect();
+
+  try {
     const latestItem = await prisma.earthquake.findFirst({
       // gets the latest added item to db
       orderBy: {
@@ -38,6 +50,8 @@ const submitToDatabase = async (
   } catch (err) {
     console.error(`⚠️ Error in "submitToDatabase":`, err);
     return [];
+  } finally {
+    await prisma.$disconnect();
   }
 };
 

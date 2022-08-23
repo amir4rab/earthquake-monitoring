@@ -3,21 +3,34 @@ import getData from './getData';
 import submitToDatabase from './submitToDatabase';
 import callNext from './callNext';
 
+// types
+import type { Prisma, PrismaClient } from '@prisma/client';
+
 interface cronjobProps {
   verbose?: boolean;
   revalidateInDev?: boolean;
   skipCallingNext?: boolean;
+  prisma: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >;
 }
+
+/**
+ * Calls the cronjob processes, fetches the data, stores it inside database and calls next.js.
+ */
 const cronjob = async ({
   verbose = false,
   revalidateInDev = false,
-  skipCallingNext = false
+  skipCallingNext = false,
+  prisma
 }: cronjobProps) => {
   try {
     const data = await getData(verbose);
     if (data === null) return;
 
-    const diff = await submitToDatabase(data);
+    const diff = await submitToDatabase(data, prisma);
     if (verbose)
       console.log(
         diff.length !== 0

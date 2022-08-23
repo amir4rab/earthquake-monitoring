@@ -5,12 +5,17 @@ import dotenv from 'dotenv';
 import cronjob from './utils/cronjob';
 import getTimeInterval from './utils/getTimeInterval';
 
+// Prisma
+import { PrismaClient } from '@prisma/client';
+
 dotenv.config();
 
 const defaultTimeInterval = 1000 * 60 * 10; // default time interval is 10 minutes
 const timeInterval = getTimeInterval(defaultTimeInterval);
 
 const date = new Date();
+// setting up prisma client globally
+const prisma = new PrismaClient();
 
 console.log(
   `Started cronjob server at ${date.toLocaleDateString(
@@ -20,7 +25,12 @@ console.log(
 let connectedToNext = false;
 
 if (process.env.NODE_ENV === 'development')
-  cronjob({ verbose: true, revalidateInDev: true, skipCallingNext: true });
+  cronjob({
+    verbose: true,
+    revalidateInDev: true,
+    skipCallingNext: true,
+    prisma
+  });
 
 (async () => {
   while (!connectedToNext) {
@@ -38,7 +48,7 @@ if (process.env.NODE_ENV === 'development')
             const date = new Date();
             console.log(`Running cronjob, ${date.toLocaleTimeString('de')} ⏰`);
 
-            cronjob({ verbose: true, revalidateInDev: true });
+            cronjob({ verbose: true, revalidateInDev: true, prisma });
           }, timeInterval); // every 10 minutes
         } catch (err) {
           resolve(false);

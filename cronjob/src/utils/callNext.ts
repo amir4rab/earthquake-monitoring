@@ -18,7 +18,9 @@ const findStatesWithNewItems = (arr: Prisma.EarthquakeCreateInput[]) => {
   return Object.keys(states);
 };
 
-/** Calls next app api routs to re-generate cached data */
+/**
+ * Calls next app api routs to re-generate cached data
+ */
 const callNext = async ({ apiKey, apiRoute, diff }: CallNextProps) => {
   try {
     const requestBody: {

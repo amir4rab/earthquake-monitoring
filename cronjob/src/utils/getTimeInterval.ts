@@ -1,3 +1,8 @@
+/**
+ * Gets default time from env file
+ * @param { number } defaultTimeInterval
+ * @returns { number }
+ */
 const getTimeInterval = (defaultTimeInterval: number): number => {
   let result = defaultTimeInterval;
 

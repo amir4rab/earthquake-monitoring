@@ -48,6 +48,9 @@ const mappedStates = {
   yazd: 30
 };
 
+/**
+ * Fetches the data from "irsc.ut.ac.ir" and returns it in the required format
+ */
 const getData = async (verbose = false) => {
   try {
     const fetch = (await import('node-fetch')).default;

@@ -15,6 +15,11 @@ interface itemSchema {
   date: string;
 }
 
+/**
+ * Converts XML to JSON
+ * @param { string } XMLdata
+ * @returns { itemSchema[] | null }
+ */
 const xmlToJson = (XMLdata: string): itemSchema[] | null => {
   try {
     const parser = new XMLParser();
