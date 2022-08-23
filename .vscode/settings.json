@@ -12,6 +12,9 @@
     "shared-data": "shared",
     "postgres": "database",
     "swr": "next",
+    "i18n/de": "i18n",
+    "i18n/en": "i18n",
+    "i18n/fa": "i18n",
     "subcomponents": "components"
   },
   "material-icon-theme.files.associations": {
@@ -19,6 +22,10 @@
     "i18n.base.js": "i18n",
     "i18n.docker.js": "i18n",
     "i18n.js": "i18n",
+    ".vscode/extensions.json": "vscode",
+    ".vscode/settings.json": "vscode",
+    "android-release.yml": "android",
+    "codeql.yml": "codeowners"
   },
   "materialTheme.accent": "Blue",
   "eslint.workingDirectories": [
