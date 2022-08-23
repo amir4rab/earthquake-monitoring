@@ -74,10 +74,13 @@ const getData = async (verbose = false) => {
 
     enJson.forEach((i, index) => {
       const [cityNameEn, stateEn] = i.reg1.split(', ');
-      const [cityNameFa, _] = faJson[index].reg1.split('&#1548; ');
+      const [cityNameFa] = faJson[index].reg1.split('&#1548; ');
 
       const state = stateEn.toLowerCase().replace(/ /g, '-');
-      const stateCode = mappedStates.hasOwnProperty(state)
+      const stateCode = Object.prototype.hasOwnProperty.call(
+        mappedStates,
+        state
+      )
         ? (mappedStates as unknown as { [v: string]: number })[state]
         : null;
 

@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'development')
 (async () => {
   while (!connectedToNext) {
     console.log('Trying to connect to Next.js 🔗');
-    connectedToNext = await new Promise<boolean>(async (resolve) => {
+    connectedToNext = await new Promise<boolean>((resolve) => {
       setTimeout(async () => {
         try {
           const fetch = (await import('node-fetch')).default;
