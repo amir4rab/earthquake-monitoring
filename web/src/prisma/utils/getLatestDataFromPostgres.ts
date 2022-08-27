@@ -3,12 +3,10 @@ import { prisma } from '@/prisma';
 // types
 import type { Earthquake } from '@prisma/client';
 
-type GetLatestDataFromPostgres = (
-  pageSize?: number
-) => Promise<Earthquake[]>;
+type GetLatestDataFromPostgres = (pageSize?: number) => Promise<Earthquake[]>;
 
 export const getLatestDataFromPostgres: GetLatestDataFromPostgres = async (
-  pageSize = 25,
+  pageSize = 25
 ) => {
   try {
     const data = await prisma.earthquake.findMany({
@@ -21,7 +19,7 @@ export const getLatestDataFromPostgres: GetLatestDataFromPostgres = async (
         }
       },
       orderBy: {
-        date: 'asc'
+        date: 'desc'
       },
       take: pageSize
     });

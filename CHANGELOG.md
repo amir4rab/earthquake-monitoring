@@ -66,6 +66,10 @@ check box displays if the fixes goal has been meet or not.
 
 - [x] backend cronjobs prisma connection bug fix
 
+**v1.1.4**
+
+- [x] backend minor bug fix
+
 ---
 
 ## Possible new features
