@@ -42,7 +42,15 @@ const submitToDatabase = async (
     }
 
     for (let i = 0; i < diff.length; i++) {
-      diff[i] && (await prisma.earthquake.create({ data: diff[i] }));
+      try {
+        diff[i] && (await prisma.earthquake.create({ data: diff[i] }));
+      } catch (err) {
+        console.error(
+          `⚠️ Error in "submitToDatabase", while submitting a item to database:`,
+          diff[i],
+          err
+        );
+      }
     }
 
     await prisma.$disconnect();
