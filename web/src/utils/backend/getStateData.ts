@@ -41,7 +41,7 @@ const getStateData: (
           latestEarthquakesArr: cachedStateData[
             page
           ] as ExtendedEarthquakeArray,
-          totalPages: cachedStateData.length - 1
+          totalPages: cachedStateData.length > 5 ? 5 : cachedStateData.length
         };
     } else {
       await delCachedStateDataById(stateId);
@@ -70,7 +70,7 @@ const getStateData: (
 
     return {
       latestEarthquakesArr: slicedStateData[page] as ExtendedEarthquakeArray,
-      totalPages
+      totalPages: totalPages > 5 ? 5 : totalPages
     };
   } catch (err) {
     console.error(err);
