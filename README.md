@@ -1,3 +1,7 @@
+> **Warning**
+> This Project is no longer maintained, there might be vulnerabilities in dependencies!
+> Use it at your own risk!
+
 ![Banner](./banner.png)
 
 # Earthquake monitoring
