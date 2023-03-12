@@ -1,9 +1,9 @@
 > **Warning**
-> This Project is no longer maintained, there might be vulnerabilities in dependencies!
+> ⛔️ This Project is no longer maintained, there might be vulnerabilities in dependencies!
 > Use it at your own risk!
 
 > **Warning**
-> Some of the docker images are incompatible with ARM architecture!
+> ⚠️ Some of the docker images are incompatible with ARM architecture!
 
 > **Warning**
 > Due to new Geolocation limitations from the Tehran geo physics center, only Iranian IPs can reach the API. 
@@ -32,6 +32,27 @@
 > sudo docker compose -f ./docker-compose.dev.yml down
 > sudo docker compose -f ./docker-compose.prod.yml up -d
 > ```
+> You can use the following data, incase you can't access the original API.
+> **Cities**
+> | name | nameFa | index | earthquakes |
+> | - | - | :-: | :-: |
+> | Ghaem shahr | قائم شهر | - | - |
+> | Meraveh tappe | مراوه تپه | - | - |
+> | Natanz | نطنز | - | - |
+> | Rabor | روبار | - | - |
+> | Ravar | راور | - | - |
+>
+> **EarthQuakes**
+> | ID | state | reg | mag | dep | long | lat | date | city |
+> | - | - | - | - | - | - | - | - | - |
+> | 0001 | 23 | 0 | 3.9 | 6 | 56.00 | 38.06 | 23:03-12T:00:00:00+00:00 | Meraveh tappe |
+> | 0002 | 20 | 0 | 2.2 | 25 | 57.09 | 29.16 | 23:03-11T:00:00:00+00:00 | Rabor |
+> | 0003 | 20 | 0 | 2.6 | 8 | 57.47 | 31.18 | 23:03-10T:00:00:00+00:00 | Ravar |
+> | 0004 | 26 | 0 | 2.5 | 21 | 52.93 | 36.50 | 23:03-09T:00:00:00+00:00 | Ghaem Shahr |
+> | 0005 | 3 | 0 | 3.4 | 10 | 51.88 | 33.54 | 23:03-03T:00:00:00+00:00 | Natanz |
+>
+> Use gitpod for an instant online dev environment.
+> I am deeply Sorry for your incontinent.
 
 ![Banner](./banner.png)
 
