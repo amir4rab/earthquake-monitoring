@@ -3,7 +3,7 @@
 > Use it at your own risk!
 
 > **Warning**
-> ⚠️ Some of the docker images are incompatible with ARM architecture!
+> ⚠️ Some of the docker images are incompatible with ARM architecture! You can use gitpod or github codesapaces, incase you own such device.
 
 > **Warning**
 > Due to new Geolocation limitations from the Tehran geo physics center, only Iranian IPs can reach the API. 
@@ -51,7 +51,7 @@
 > | 0004 | 26 | 0 | 2.5 | 21 | 52.93 | 36.50 | 23:03-09T:00:00:00+00:00 | Ghaem Shahr |
 > | 0005 | 3 | 0 | 3.4 | 10 | 51.88 | 33.54 | 23:03-03T:00:00:00+00:00 | Natanz |
 >
-> Use gitpod for an instant online dev environment.
+> 
 > I am deeply Sorry for your incontinent.
 
 ![Banner](./banner.png)
