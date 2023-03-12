@@ -1,5 +1,7 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 RUN apk add --no-cache libc6-compat
+RUN apk update \
+  && apk add openssl1.1-compat
 
 WORKDIR /app
 
@@ -7,7 +9,7 @@ WORKDIR /app
 COPY cronjob/package.json cronjob/package-lock.json ./ 
 
 # Installing dependencies
-RUN npm ci --legacy-peer-deps
+RUN npm install
 
 # Copying every other file
 COPY cronjob/ ./

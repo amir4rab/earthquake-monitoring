@@ -1,5 +1,7 @@
-FROM node:18-alpine AS builder
+FROM node:lts-alpine AS builder
 RUN apk add --no-cache libc6-compat
+RUN apk update \
+  && apk add openssl1.1-compat
 
 # Setting workdir
 WORKDIR /app
@@ -11,7 +13,7 @@ COPY app/package.json app/pnpm-lock.yaml* ./
 RUN npm install pnpm --location=global
 
 # Installing dependencies
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 # Copying main file
 COPY app/ .
