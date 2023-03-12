@@ -2,6 +2,37 @@
 > This Project is no longer maintained, there might be vulnerabilities in dependencies!
 > Use it at your own risk!
 
+> **Warning**
+> Some of the docker images are incompatible with ARM architecture!
+
+> **Warning**
+> Due to new Geolocation limitations from the Tehran geo physics center, only Iranian IPs can reach the API. 
+> Therefore you have to follow this guide to display earthquakes. 
+> Firstly you need to start the databases in development mode. 
+> Be sure you have `docker` and `docker-compose`, before running the commands.
+>```bash
+> cd docker
+> sudo docker compose -f ./docker-compose.dev.yml up -d
+>```
+> Then you need to start a Prisma studio server. 
+> Keep in mind you need `pnpm` and `node.js` for the following commands. 
+> Open another terminal and run the following commands.
+> ```bash
+> cd cronjob
+> pnpm install
+> pnpm run prisma-init
+> pnpm run prisma-generate
+> pnpm run prisma-init
+> pnpm run prisma-studio
+> ```
+> Lastly, you can add the necessary data manually with the help of Prisma studio. 
+> After data insertion, close the Prisma studio by clicking `left-control + C` ( Windows and Linux ) or `command + C` on MacOS. 
+> Write the following commands on the first terminal to start the prod containers.
+> ```bash
+> sudo docker compose -f ./docker-compose.dev.yml down
+> sudo docker compose -f ./docker-compose.prod.yml up -d
+> ```
+
 ![Banner](./banner.png)
 
 # Earthquake monitoring
