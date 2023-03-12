@@ -1,38 +1,46 @@
 > **Warning**
-> ⛔️ This Project is no longer maintained, there might be vulnerabilities in dependencies!
-> Use it at your own risk!
+> This Project is no longer maintained, there might be vulnerabilities in dependencies!
+> **Use it at your own risk!**
 
 > **Warning**
-> ⚠️ Some of the docker images are incompatible with ARM architecture! You can use gitpod or github codesapaces, incase you own such device.
+> Some of the docker images are incompatible with ARM architecture! You can use gitpod or github codesapaces, incase you own such device.
 
 > **Warning**
 > Due to new Geolocation limitations from the Tehran geo physics center, only Iranian IPs can reach the API. 
-> Therefore you have to follow this guide to display earthquakes. 
-> Firstly you need to start the databases in development mode. 
-> Be sure you have `docker` and `docker-compose`, before running the commands.
->```bash
-> cd docker
-> sudo docker compose -f ./docker-compose.dev.yml up -d
->```
+> Therefore you have to follow this guide to add earthquakes. 
+> Firstly you need to start database containers in development mode. 
+> Be sure you have `docker` and `docker-compose`.
+> 
+> ```bash
+> cd docker # Changing the directory
+> sudo docker compose -f ./docker-compose.dev.yml up -d # Starting docker containers
+> ```
+>
 > Then you need to start a Prisma studio server. 
 > Keep in mind you need `pnpm` and `node.js` for the following commands. 
 > Open another terminal and run the following commands.
+> 
 > ```bash
-> cd cronjob
-> pnpm install
-> pnpm run prisma-init
-> pnpm run prisma-generate
-> pnpm run prisma-init
-> pnpm run prisma-studio
+> cd cronjob # Changing the directory
+> pnpm install # Installing dependencies 
+> pnpm run prisma-init # Initializing Prisma 
+> pnpm run prisma-generate # Generating Prisma schemas
+> pnpm run prisma-migrate-prod # Deploying initial migrations
+> pnpm run prisma-studio # Starting Prisma studio
 > ```
+> 
 > Lastly, you can add the necessary data manually with the help of Prisma studio. 
 > After data insertion, close the Prisma studio by clicking `left-control + C` ( Windows and Linux ) or `command + C` on MacOS. 
 > Write the following commands on the first terminal to start the prod containers.
+> 
 > ```bash
-> sudo docker compose -f ./docker-compose.dev.yml down
-> sudo docker compose -f ./docker-compose.prod.yml up -d
+> sudo docker compose -f ./docker-compose.dev.yml down # Stopping development containers
+> sudo docker compose -f ./docker-compose.prod.yml up -d # Starting production containers
 > ```
+> 
 > You can use the following data, incase you can't access the original API.
+> <br>
+> 
 > **Cities**
 > | name | nameFa | index | earthquakes |
 > | - | - | :-: | :-: |
@@ -51,8 +59,8 @@
 > | 0004 | 26 | 0 | 2.5 | 21 | 52.93 | 36.50 | 23:03-09T:00:00:00+00:00 | Ghaem Shahr |
 > | 0005 | 3 | 0 | 3.4 | 10 | 51.88 | 33.54 | 23:03-03T:00:00:00+00:00 | Natanz |
 >
-> 
-> I am deeply Sorry for your incontinent.
+> <br>
+> I am deeply sorry for your incontinent.
 
 ![Banner](./banner.png)
 
